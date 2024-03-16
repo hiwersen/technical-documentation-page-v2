@@ -1,0 +1,145 @@
+/* Your technical documentation should use at least one media query */
+/* "#navbar" should be shown on the left side of the screen and should always be visible to the user */
+
+*:not(#form-container *) {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family:Arial, Helvetica, sans-serif;
+    color:rgb(82, 80, 80);
+}
+
+#container {
+    max-width: 1450px;
+    margin: 0 auto;
+    display: flex;
+}
+
+#navbar {
+    min-width: 25%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+}
+
+header {
+    color:rgb(17, 17, 17);
+    font-size: 2em;
+}
+
+header:first-of-type {
+    margin: 0;
+}
+
+#navbar header,
+#navbar a {
+    padding: 1.5rem 2.5rem;
+}
+
+#navbar li {
+    list-style-type: none;
+}
+
+
+#navbar a {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    border-left: 2px solid rgb(211, 211, 211);
+    transition: background-color 0.3s ease;
+}
+
+#navbar a:link, 
+#navbar a:visited,
+#navbar a:hover,
+#navbar a:active {
+    color: unset;
+}
+
+#navbar a:hover,
+#navbar a.view {
+    background-color: rgb(240, 240, 240);
+    border-left: 2px solid rgb(133, 133, 133);
+    
+}
+
+#main-doc {
+    padding: 2em;
+    line-height: 1.8em;
+}
+
+#main-doc header {
+    margin: 1em 0;
+    padding-top: 0.5em; 
+}
+
+#main-doc p {
+    margin: 1em 0;
+}
+
+#main-doc li {
+    margin: 0.5em 3.5em;
+}
+
+.code {
+    background-color: rgb(240, 240, 240);
+    display: block;
+    line-height: 2;
+    padding: 1.5em !important;
+}
+
+code {
+    background-color: rgb(240, 240, 240);
+    padding: 0.2em !important;
+}
+
+
+
+#form-container {
+    margin: 2.5em 0;
+}
+
+
+@media only screen and (max-width: 430px) {
+    html {
+        font-size: 62.5%;
+    }
+
+    #container {
+        width: 100vw;
+    }
+
+    #main-doc {
+        max-width: 75%;
+    }
+
+    header {
+        font-size: 1.2em;
+    }
+
+    #navbar header,
+    #navbar a,
+    #main-doc,
+    .code {
+        padding: 1em !important;
+    }
+
+    .code {
+        font-size: 0.7em;
+    }
+
+    form {
+        transform: scale(0.55, 0.7);
+        margin-left: -93px !important;
+    }
+
+    form button {
+        font-size: 0.8em;
+    }
+
+}
