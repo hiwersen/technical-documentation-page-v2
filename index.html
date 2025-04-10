@@ -1,408 +1,661 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Technical Documentation Page | freeCodeCamp Project</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <div id="container">
-        <nav id="navbar">
+      <main>
+        <div id="container-content1">
+          <nav id="navbar">
+            <header>Web Forms:</header>
+            <div>
+              <ul>
+                <li>
+                  <a class="nav-link view" href="#introduction">Introduction</a>
+                </li>
+                <li>
+                  <a class="nav-link" href="#prerequisites">Prerequisites</a>
+                </li>
+                <li><a class="nav-link" href="#design">Design</a></li>
+                <li>
+                  <a class="nav-link" href="#the_form_element"
+                    >The form element</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="nav-link"
+                    href="#the_label_input_and_textarea_elements"
+                    >The label, input, and textarea elements</a
+                  >
+                </li>
+                <li>
+                  <a class="nav-link" href="#the_button_element"
+                    >The button element</a
+                  >
+                </li>
+                <li><a class="nav-link" href="#styling">Styling</a></li>
+                <li>
+                  <a class="nav-link" href="#submitting_data"
+                    >Submitting data</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <div class="grid-c1">
+            <section id="introduction" class="grid-c2">
+              <div class="banner-title">
+                <h1>INTRODUCTION</h1>
+                <p>
+                  Web forms are a very powerful tool for interacting with users
+                  — most commonly they are used for collecting data from users,
+                  or allowing them to control a user interface. However, for
+                  historical and technical reasons, it's not always obvious how
+                  to use them to their full potential.
+                </p>
+              </div>
+              <div class="list">
+                <p>
+                  In this documentation, we'll cover all the essential aspects
+                  of Web forms including:
+                </p>
+                <ul>
+                  <li>Marking up their HTML structure</li>
+                  <li>Styling form controls</li>
+                  <li>Validating form data</li>
+                  <li>Submitting data to the server</li>
+                </ul>
+              </div>
+            </section>
+
+            <section id="prerequisites" class="grid-c2">
+              <div class="banner">
+                <h1>Prerequisites</h1>
+                <article>
+                  <p>
+                    You should at least work through the
+                    <a
+                      href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML"
+                      target="_blank"
+                      >Introduction to HTML.</a
+                    >
+                  </p>
+                  <p>
+                    However, form elements are more complex than most other HTML
+                    elements, and they also require a close marriage of related
+                    <a
+                      href="https://developer.mozilla.org/en-US/docs/Learn/CSS"
+                      target="_blank"
+                      >CSS</a
+                    >
+                    and
+                    <a
+                      href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript"
+                      target="_blank"
+                      >JavaScript</a
+                    >
+                    techniques to get the most out of them.
+                  </p>
+                </article>
+              </div>
+            </section>
+
+            <section id="design" class="grid-c2">
+              <div>
+                <div>
+                  <h1>Design<span class="line"></span></h1>
+
+                  <article>
+                    <p>
+                      From a user experience (UX) point of view, it's important
+                      to remember that the bigger your form, the more you risk
+                      frustrating people and losing users. Keep it simple and
+                      stay focused: ask only for the data you absolutely need.
+                    </p>
+                    <p>
+                      In the example, our form will contain three text fields
+                      and one button. We are asking the user for their name,
+                      their email and the message they want to send. Hitting the
+                      button will send their data to a web server.
+                    </p>
+                  </article>
+                </div>
+              </div>
+
+              <div id="form-container">
+                <form action="/my-handling-form-page" method="post">
+                  <label for="name">Name:</label>
+                  <input type="text" id="name" name="user_name" />
+                  <label for="mail">Email:</label>
+                  <input type="email" id="mail" name="user_email" />
+                  <label for="msg">Message:</label>
+                  <textarea id="msg" name="user_message" rows="4"></textarea>
+                  <button type="submit">Send your message</button>
+                </form>
+              </div>
+            </section>
+
+            <!--
+            <section id="the_form_element">
+              <h1>The form element</h1>
+              <div class="grid-c2">
+                <div>
+                  <pre><code id="code-form-element" class="code"></code></pre>
+                  <script>
+                    document.getElementById("code-form-element").textContent =
+                      `<form 
+  action="/my-handling-form-page" 
+  method="post"
+>
+  …
+</form>`;
+                  </script>
+                </div>
+                <article class="flex-c">
+                  <div>
+                    <p>
+                      The
+                      <a
+                        href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form"
+                        target="_blank"
+                        ><code>&lt;form&gt;</code></a
+                      >
+                      element is a container element like a section or footer
+                      element, but specifically for containing forms; it also
+                      supports some specific attributes to configure the way the
+                      form behaves.
+                    </p>
+                  </div>
+                  <div class="list">
+                    <p>
+                      All of its attributes are optional, but it's standard
+                      practice to always set at least the action and method
+                      attributes:
+                    </p>
+                    <ul>
+                      <li>
+                        The action attribute defines the location (URL) where
+                        the form's collected data should be sent when it is
+                        submitted.
+                      </li>
+                      <li>
+                        The method attribute defines which HTTP method to send
+                        the data with (usually get or post).
+                      </li>
+                    </ul>
+                  </div>
+                </article>
+              </div>
+            </section>
+            <section id="the_label_input_and_textarea_elements">
+              <div>
+                <div>
+                  <h1>
+                    <span>The label,</span>
+                    <span>input and</span>
+                    <span>textarea</span>
+                    <span>elements</span>
+                  </h1>
+                  <div class="note">
+                    <p>
+                      Note the use of the for attribute on all label elements,
+                      which takes as its value the id of the form control with
+                      which it is associated — this is how you associate a form
+                      control with its label, enabling mouse, trackpad, and
+                      touch device users to click on the label to activate the
+                      corresponding control, and it also provides an accessible
+                      name for screen readers to read out to their users.
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <p>
+                    In terms of HTML code we need something like the following
+                    to implement these form widgets:
+                  </p>
+                  
+                  <pre><codeblock id="codeBlock-form-container" class="code"></codeblock></pre>
+                  <script>
+                    document.getElementById(
+                      "codeBlock-form-container"
+                    ).textContent =
+                      `<form action="/my-handling-form-page" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="user_name" />
+        <label for="mail">Email:</label>
+        <input type="email" id="mail" name="user_email" />
+        <label for="msg">Message:</label>
+        <textarea id="msg" name="user_message"></textarea>
+        <button type="submit">Send your message</button>
+      </form>`;
+                  </script>
+                </div>
+              </div>
+
+              <div class="text-fields-info">
+                <div id="text-input">
+                  <div>
+                    <div>
+                      <p class="list-header">
+                        Our contact form is not complex: the data entry portion
+                        contains three text fields, each with a corresponding
+                        <a
+                          href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label"
+                          target="_blank"
+                          ><code>&lt;label&gt;</code></a
+                        >:
+                      </p>
+
+                      <ul>
+                        <li>
+                          The
+                          <a
+                            href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input"
+                            target="_blank"
+                            ><code>&lt;input&gt;</code></a
+                          >
+                          field for the name is a single-line text field.
+                        </li>
+                        <li>
+                          The input field for the email is an input of type
+                          email: a single-line text field that accepts only
+                          email addresses.
+                        </li>
+                        <li>
+                          The input field for the message is a
+                          <a
+                            href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea"
+                            target="_blank"
+                            ><code>&lt;textarea&gt;</code></a
+                          >; a multiline text field.
+                        </li>
+                      </ul>
+                    </div>
+                    <div>
+                      <p class="list-header">
+                        On the input element, the most important attribute is
+                        the type attribute. This attribute is extremely
+                        important because it defines the way the input element
+                        appears and behaves.
+                      </p>
+                      <ul>
+                        <li>
+                          In our simple example, we use the value text for the
+                          first input — the default value for this attribute. It
+                          represents a basic single-line text field that accepts
+                          any kind of text input.
+                        </li>
+                        <li>
+                          For the second input, we use the value email, which
+                          defines a single-line text field that only accepts a
+                          well-formed email address.
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <p>
+                        To define the default value of an input element you have
+                        to use the value attribute like this:
+                      </p>
+                    </div>
+                    <div>
+                      <pre><code id="code-input-value" class="code"></code></pre>
+                      <script>
+                        document.getElementById(
+                          "code-input-value"
+                        ).textContent = `<input 
+      type="text" 
+      value="default text here..." 
+    />`;
+                      </script>
+                    </div>
+                  </div>
+                </div>
+                <div id="textarea">
+                  <div>
+                    <p>
+                      Last but not least, note the syntax of input vs. textarea.
+                      This is one of the oddities of HTML. The input tag is a
+                      void element, meaning that it doesn't need a closing tag.
+                      textarea is not a void element, meaning it should be
+                      closed with the proper ending tag.
+                    </p>
+                  </div>
+                  <div>
+                    <div>
+                      <p>
+                        If you want to define a default value for a textarea,
+                        you put it between the opening and closing tags of the
+                        textarea element, like this:
+                      </p>
+                    </div>
+                    <pre><codeblock id="codeblock-textarea-value" class="code"></codeblock></pre>
+                    <script>
+                      document.getElementById(
+                        "codeblock-textarea-value"
+                      ).textContent = `<textarea>
+      default text here...
+    </textarea>`;
+                    </script>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section id="the_button_element">
+              <h1>The button element</h1>
+              <div class="grid-c2">
+                <div>
+                  <pre><code id="code-button-element" class="code"></code></pre>
+                  <script>
+                    document.getElementById("code-button-element").textContent =
+                      `<button 
+  type="submit"
+>
+  Send your message
+</button>`;
+                  </script>
+                </div>
+                <article class="flex-c">
+                  <div>
+                    <p>
+                      The
+                      <a
+                        href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button"
+                        target="_blank"
+                        ><code>&lt;button&gt;</code></a
+                      >
+                      element allows the user to send, or "submit", their data
+                      once they have filled out the form.
+                    </p>
+                  </div>
+                  <div class="list">
+                    <p>
+                      The button element also accepts a type attribute — this
+                      accepts one of three values: submit, reset, or button:
+                    </p>
+                    <ul>
+                      <li>
+                        A click on a submit button (the default value) sends the
+                        form's data to the web page defined by the action
+                        attribute of the form element.
+                      </li>
+                      <li>
+                        A click on a reset button resets all the form widgets to
+                        their default value immediately. From a UX point of
+                        view, this is considered bad practice, so you should
+                        avoid using this type of button unless you really have a
+                        good reason to include one.
+                      </li>
+                      <li>
+                        A click on a button button does nothing! That sounds
+                        silly, but it's amazingly useful for building custom
+                        buttons — you can define their chosen functionality with
+                        JavaScript.
+                      </li>
+                    </ul>
+                  </div>
+                </article>
+              </div>
+            </section>
+            -->
+          </div>
+        </div>
+        <!--
+        <div id="container-content2">
+          <section id="styling">
+            <div>
+              <h1>
+                <pre><codeblock id="codeblock-style-element" class="code"></codeblock></pre>
+                <script>
+                  document.getElementById(
+                    "codeblock-style-element"
+                  ).textContent = `<style>
+    …
+  </style>`;
+                </script>
+              </h1>
+              <div class="style-ps">
+                <div>
+                  <p>
+                    It is beyond the scope of this documentation to teach form
+                    styling in detail but some basic form styling with CSS to
+                    make it look
+                    <span class="ok">OK.</span>
+                  </p>
+                  <p>
+                    First of all, add a
+                    <a
+                      href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style"
+                      target="_blank"
+                      ><code>&lt;style&gt;</code></a
+                    >
+                    element to your page, inside your HTML head:
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="css">
+              <p>Inside the style tags, add the following CSS:</p>
+
+              <pre><codeblock id="codeblock-css" class="code">
+  form {
+      /* Center the form on the page */
+      margin: 0 auto;
+      width: 400px;
+      /* Form outline */
+      padding: 16px;
+      border: 1px solid #ccc;
+      border-radius: 1em;
+  }
+      
+  label {
+      /* Uniform size & alignment */
+      display: inline-block;
+      width: 90px;
+      text-align: right;
+  }
+      
+  input,
+  textarea {
+      /* To make sure that all text fields have the same font settings
+          By default, textareas have a monospace font */
+      font: 1em sans-serif;
+  
+      /* Uniform text field size */
+      width: 300px;
+      box-sizing: border-box;
+  
+      /* Match form field borders */
+      border: 1px solid #999;
+  }
+      
+  textarea {
+      /* Align multiline text fields with their labels */
+      vertical-align: top;
+  }
+      
+  button {
+      /* This extra margin represents roughly the same space as the space
+          between the labels and their text fields */
+      /* Align buttons with the text fields */
+      margin-left: 98px; /* same size as the label elements */
+  }
+      
+  input:not(input:first-of-type),
+  label:not(label:first-of-type),
+  textarea,
+  button {
+      margin-top: 16px;
+  }
+              </codeblock></pre>
+            </div>
+          </section>
+        </div>
+        <div id="container-content3">
+          <nav id="navbar">
             <header>Web Forms</header>
             <ul>
-                <li><a class="nav-link" href="#introduction">Introduction</a></li>
-                <li><a class="nav-link" href="#prerequisites">Prerequisites</a></li>
-                <li><a class="nav-link" href="#design">Design</a></li>
-                <li><a class="nav-link" href="#the_form_element">The form element</a></li>
-                <li><a class="nav-link" href="#the_label,_input,_and_textarea_elements">The label, input, and textarea elements</a></li>
-                <li><a class="nav-link" href="#the_button_element">The button element</a></li>
-                <li><a class="nav-link" href="#styling">Styling</a></li>
-                <li><a class="nav-link" href="#submitting_data">Submitting data</a></li>
-                <li><a class="nav-link" href="#reference">Reference</a></li>
+              <li><a class="nav-link" href="#introduction">Introduction</a></li>
+              <li>
+                <a class="nav-link" href="#prerequisites">Prerequisites</a>
+              </li>
+              <li><a class="nav-link" href="#design">Design</a></li>
+              <li>
+                <a class="nav-link" href="#the_form_element"
+                  >The form element</a
+                >
+              </li>
+              <li>
+                <a
+                  class="nav-link"
+                  href="#the_label_input_and_textarea_elements"
+                  >The label, input, and textarea elements</a
+                >
+              </li>
+              <li>
+                <a class="nav-link" href="#the_button_element"
+                  >The button element</a
+                >
+              </li>
+              <li><a class="nav-link" href="#styling">Styling</a></li>
+              <li>
+                <a class="nav-link" href="#submitting_data">Submitting data</a>
+              </li>
             </ul>
-        </nav>
-        <main id="main-doc">
-            <section class="main-section" id="introduction">
-                <header>Introduction</header>
-                <article>
-                    <p>
-                        Web forms are a very powerful tool for interacting with users — 
-                        most commonly they are used for collecting data from users, 
-                        or allowing them to control a user interface. However, 
-                        for historical and technical reasons, 
-                        it's not always obvious how to use them to their full potential.
-                    </p>
-                    <p>
-                        In this documentation, we'll cover all the essential aspects of Web forms including:
-                    </p>
-                    <ul>
-                        <li>Marking up their HTML structure</li>
-                        <li>Styling form controls</li>
-                        <li>Validating form data</li>
-                        <li>Submitting data to the server</li>
-                    </ul>
-                    <code></code>
+          </nav>
+          <div class="grid-c1">
+            <section id="submitting_data" class="grid-c2">
+              <div>
+                <h1>Submitting data</h1>
+                <article class="flex-c">
+                  <p>
+                    The form element defines where and how to send the data to
+                    the server thanks to the action and method attributes.
+                  </p>
+                  <p>
+                    The form data is sent to the server as name/value pairs. We
+                    provide a name attribute for each form control. The names
+                    are important on both the client- and server-side; they tell
+                    the browser which name to give each piece of data and, on
+                    the server side, they let the server handle each piece of
+                    data by name.
+                  </p>
+                  <p>
+                    In our example, the form will send 3 pieces of data named
+                    "user_name", "user_email", and "user_message". That data
+                    will be sent to the URL "/my-handling-form-page" using the
+                    HTTP POST method.
+                  </p>
+                  <p>
+                    On the server side, the script at the URL
+                    "/my-handling-form-page" will receive the data as a list of
+                    3 key/value items contained in the HTTP request. The way
+                    this script will handle that data is up to you. It's beyond
+                    the scope of this guide to go deeply into that subject
+                  </p>
+                  <p>
+                    To name the data in a form, you need to use the name
+                    attribute on each form widget that will collect a specific
+                    piece of data:
+                  </p>
                 </article>
+              </div>
+              <div class="grid-c2">
+                <div>
+                  <pre><codeblock id="codeblock-submit-data" class="code"></codeblock></pre>
+                  <script>
+                    document.getElementById(
+                      "codeblock-submit-data"
+                    ).textContent = `<form 
+  action="/handle-form-page" 
+  method="post">
+  ...
+  <input
+    name="user_name"
+    id="name"
+    type="text" 
+  />
+  ...
+  <input
+    name="user_email"
+    id="mail"
+    type="email" 
+  />
+  ...
+  <textarea
+    name="user_message"
+    id="msg"
+  >
+  </textarea>
+  ...`;
+                  </script>
+                </div>
+              </div>
             </section>
-            <section class="main-section" id="prerequisites">
-                <header>Prerequisites</header>
-                <article>
-                    <p>
-                        You should at least work through the 
-                        <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML" target="_blank">Introduction to HTML.</a>
-                    </p>
-                    <p>
-                        However, form elements are more complex than most other HTML elements, 
-                        and they also require a close marriage of related 
-                        <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS" target="_blank">CSS</a> and 
-                        <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript" target="_blank">JavaScript</a>
-                         techniques to get the most out of them.
-                    </p>
-                    <code></code>
-                </article>
-            </section>
-            <section class="main-section" id="design">
-                <header>Design</header>
-                <article>
-                    <p>
-                        From a user experience (UX) point of view, it's important to remember that the bigger your form, 
-                        the more you risk frustrating people and losing users. Keep it simple and stay focused: 
-                        ask only for the data you absolutely need.
-                    </p>
-                    <p>
-                        In the example, our form will contain three text fields and one button. 
-                        We are asking the user for their name, their email and the message they want to send. 
-                        Hitting the button will send their data to a web server.
-                    </p>
-                    <div id="form-container">
-                        <form action="/my-handling-form-page" method="post">
-                            <label for="name">Name:</label>
-                            <input type="text" id="name" name="user_name" />
-                            <label for="mail">Email:</label>
-                            <input type="email" id="mail" name="user_email" />
-                            <label for="msg">Message:</label>
-                            <textarea id="msg" name="user_message"></textarea>
-                            <button type="submit">Send your message</button>
-                        </form>
-                          <style>
-                            form {
-                                /* Center the form on the page */
-                                margin: 0 auto;
-                                width: 400px;
-                                /* Form outline */
-                                padding: 16px;
-                                border: 1px solid #ccc;
-                                border-radius: 1em;
-                                }
-    
-                            label {
-                                /* Uniform size & alignment */
-                                display: inline-block;
-                                width: 90px;
-                                text-align: right;
-                                }
-    
-                            input,
-                            textarea {
-                                /* To make sure that all text fields have the same font settings
-                                    By default, textareas have a monospace font */
-                                font: 1em sans-serif;
-    
-                                /* Uniform text field size */
-                                width: 300px;
-                                box-sizing: border-box;
-    
-                                /* Match form field borders */
-                                border: 1px solid #999;
-                                }
-    
-                            textarea {
-                            /* Align multiline text fields with their labels */
-                            vertical-align: top;
-                            }
-    
-                            button {
-                                /* Align buttons with the text fields */
-                                /* Same size as the label elements 90px
-                                    5px extra margin represent roughly the same space as the space
-                                    between the labels and their text fields */
-                                margin-left: 95px;
-                                }
-    
-                            input:not(input:first-of-type),
-                            label:not(label:first-of-type),
-                            textarea,
-                            button {
-                                margin-top: 16px;
-                            }
-                          </style>
-                    </div>
-                </article>
-            </section>
-            <section class="main-section" id="the_form_element">
-                <header>The form element</header>
-                <pre><code id="code-form-element" class="code"></code></pre>
-                <script>
-                    document.getElementById('code-form-element').textContent = `<form action="/my-handling-form-page" method="post">…</form>`;
-                </script>
-                <article>
-                    <p>
-                        The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form" target="_blank"><code>&lt;form&gt;</code></a> element a container element like a section or footer element, 
-                        but specifically for containing forms; it also supports some 
-                        specific attributes to configure the way the form behaves. 
-                    </p>
-                    <p>
-                        All of its attributes are optional, 
-                        but it's standard practice to always set at least the action and method attributes:
-                    </p>
-                    <ul>
-                        <li>The action attribute defines the location (URL) where the form's collected data should be sent when it is submitted.</li>
-                        <li>The method attribute defines which HTTP method to send the data with (usually get or post).</li>
-                    </ul>
-                    
-                </article>
-            </section>
-            <section class="main-section" id="the_label,_input,_and_textarea_elements">
-                <header>The label, input, and textarea elements</header>
-                <article>
-                    <p>
-                        Our contact form is not complex: the data entry portion contains three text fields, 
-                        each with a corresponding <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label" target="_blank"><code>&lt;label&gt;</code></a>:
-                    </p>
-                    <ul>
-                        <li>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input" target="_blank"><code>&lt;input&gt;</code></a> field for the name is a single-line text field.</li>
-                        <li>The input field for the email is an input of type email: 
-                            a single-line text field that accepts only email addresses.</li>
-                        <li>The input field for the message is a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea" target="_blank"><code>&lt;textarea&gt;</code></a>; a multiline text field.</li>
-                    </ul>
-                    <p>In terms of HTML code we need something like the following to implement these form widgets:</p>
-                    <pre><codeblock id="codeBlock-form-container" class="code"></codeblock></pre>
-<script>
-    document.getElementById('codeBlock-form-container').textContent = `<form action="/my-handling-form-page" method="post">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="user_name" />
-    <label for="mail">Email:</label>
-    <input type="email" id="mail" name="user_email" />
-    <label for="msg">Message:</label>
-    <textarea id="msg" name="user_message"></textarea>
-    <button type="submit">Send your message</button>
-</form>`;
-</script>
-                    <p>
-                        Note the use of the for attribute on all label elements, 
-                        which takes as its value the id of the form control with which it is associated — 
-                        this is how you associate a form control with its label,  enabling mouse, trackpad, 
-                        and touch device users to click on the label to activate the corresponding control, 
-                        and it also provides an accessible name for screen readers to read out to their users. 
-                    </p>
-                    <p>
-                        On the input element, the most important attribute is the type attribute. 
-                        This attribute is extremely important because it defines the way the input element appears and behaves.
-                    </p>
-                    <ul>
-                        <li>In our simple example, we use the value text for the first input — the default value for this attribute. 
-                            It represents a basic single-line text field that accepts any kind of text input.</li>
-                        <li>For the second input, we use the value email, which defines a single-line 
-                            text field that only accepts a well-formed email address.</li>
-                    </ul>
-                    <p>
-                        To define the default value of an input element you have to use the value attribute like this:
-                    </p>
-    <pre><code id="code-input-value" class="code"></code></pre>
-    <script>
-        document.getElementById('code-input-value').textContent = `<input type="text" value="by default this element is filled with this text" />`;
-    </script>
-                    <p>
-                        Last but not least, note the syntax of input vs. textarea. 
-                        This is one of the oddities of HTML. The input tag is a void element, 
-                        meaning that it doesn't need a closing tag. textarea is not a void element, 
-                        meaning it should be closed with the proper ending tag.
-                    </p>
-                    <p>
-                        If you want to define a default value for a textarea, you put it between the opening 
-                        and closing tags of the textarea element, like this:
-                    </p>
-    <pre><codeblock id="codeblock-textarea-value" class="code"></codeblock></pre>
-<script>
-    document.getElementById('codeblock-textarea-value').textContent = `<textarea>by default this element is filled with this text</textarea>`;
-</script>
-                </article>
-            </section>
-            <section class="main-section" id="the_button_element">
-                <header>The button element</header>
-                <article>
-                    <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button" target="_blank"><code>&lt;button&gt;</code></a> element allows the user to send, or "submit", their data once they have filled out the form.</p>
-    <pre><code id="code-button-element" class="code"></code></pre>
-    <script>
-        document.getElementById('code-button-element').textContent = `<button type="submit">Send your message</button>`;
-    </script>
-                    <p>
-                        The button element also accepts a type attribute — this accepts one of three values: 
-                        submit, reset, or button:
-                    </p>
-                    <ul>
-                        <li>A click on a submit button (the default value) sends the form's data to 
-                            the web page defined by the action attribute of the form element.</li>
-                        <li>A click on a reset button resets all the form widgets to their default value immediately. 
-                            From a UX point of view, this is considered bad practice, 
-                            so you should avoid using this type of button unless you really have a good reason to include one.</li>
-                        <li>A click on a button button does nothing! That sounds silly, 
-                            but it's amazingly useful for building custom buttons — 
-                            you can define their chosen functionality with JavaScript.</li>
-                    </ul>
-                </article>
-            </section>
-            <section class="main-section" id="styling">
-                <header>Styling</header>
-                <article>
-                    <p>
-                        It is beyond the scope of this documentation to teach form styling in detail but some
-                        basic form styling with CSS to make it look OK.
-                    </p>
-                    <p>
-                        First of all, add a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style" target="_blank"><code>&lt;style&gt;</code></a> element to your page, inside your HTML head:
-                    </p>
-    <pre><codeblock id="codeblock-style-element" class="code"></codeblock></pre>
-<script>
-    document.getElementById('codeblock-style-element').textContent = `<style>
-        …
-</style>`;
-</script>
-                    <p>Inside the style tags, add the following CSS:</p>
-    <pre><codeblock id="codeblock-css" class="code">
-form {
-    /* Center the form on the page */
-    margin: 0 auto;
-    width: 400px;
-    /* Form outline */
-    padding: 16px;
-    border: 1px solid #ccc;
-    border-radius: 1em;
-}
-    
-label {
-    /* Uniform size & alignment */
-    display: inline-block;
-    width: 90px;
-    text-align: right;
-}
-    
-input,
-textarea {
-    /* To make sure that all text fields have the same font settings
-        By default, textareas have a monospace font */
-    font: 1em sans-serif;
-
-    /* Uniform text field size */
-    width: 300px;
-    box-sizing: border-box;
-
-    /* Match form field borders */
-    border: 1px solid #999;
-}
-    
-textarea {
-    /* Align multiline text fields with their labels */
-    vertical-align: top;
-}
-    
-button {
-    /* This extra margin represent roughly the same space as the space
-        between the labels and their text fields */
-    /* Align buttons with the text fields */
-    margin-left: 98px; /* same size as the label elements */
-}
-    
-input:not(input:first-of-type),
-label:not(label:first-of-type),
-textarea,
-button {
-    margin-top: 16px;
-}
-    </codeblock></pre>
-                </article>
-            </section>
-            <section class="main-section" id="submitting_data">
-                <header>Submitting data</header>
-                <article>
-                    <p>
-                        The form element defines where and how to send the data to the server
-                        thanks to the action and method attributes.
-                    </p>
-                    <p>
-                        The form data is sent to the server as name/value pairs.
-                        We provide a name attribute for each form control. 
-                        The names are important on both the client- and server-side; 
-                        they tell the browser which name to give each piece of data and, 
-                        on the server side, they let the server handle each piece of data by name. 
-                    </p>
-                    <p>
-                        To name the data in a form, you need to use the name attribute on each form 
-                        widget that will collect a specific piece of data:
-                    </p>
-    <pre><codeblock id="codeblock-submit-data" class="code"></codeblock></pre>
-<script>
-    document.getElementById('codeblock-submit-data').textContent = `<form action="/my-handling-form-page" method="post">
-...
-<input type="text" id="name" name="user_name" />
-...
-<input type="email" id="mail" name="user_email" />
-...
-<textarea id="msg" name="user_message"></textarea>
-...`;
-</script>
-                    <p>
-                        In our example, the form will send 3 pieces of data named 
-                        "user_name", "user_email", and "user_message". 
-                        That data will be sent to the URL "/my-handling-form-page" using the HTTP POST method.
-                    </p>
-                    <p>
-                        On the server side, the script at the URL "/my-handling-form-page" 
-                        will receive the data as a list of 3 key/value items contained in the HTTP request. 
-                        The way this script will handle that data is up to you. 
-                        It's beyond the scope of this guide to go deeply into that subject
-                    </p>
-                </article>
-            </section>
-            <section class="main-section" id="reference">
-                <header>Reference</header>
-                
-                <article>
-                    <p></p>
-                    <p></p>
-                    <code></code>
-                    <li>All the documentation in this page is taken from 
-                        <a 
-                        href="https://developer.mozilla.org/en-US/docs/Learn/Forms" 
-                        target="_">MDN Web form building blocks.
-                        </a>
-                    </li>
-                </article>
-            </section>
-        </main>
+          </div>
+        </div>
+        -->
+      </main>
+      <footer>
+        <div class="banner">
+          <p>
+            All documentation on this page has been sourced from
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Learn/Forms"
+              target="_blank"
+            >
+              MDN Web form building blocks
+            </a>
+            for educational purposes.
+          </p>
+        </div>
+      </footer>
     </div>
     <script>
-        window.addEventListener('load', () => {
-            window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('.main-section');
-            const navLinks = document.querySelectorAll('.nav-link');
-            let sectionInViewID = '';
+      window.addEventListener("load", () => {
+        window.addEventListener("scroll", () => {
+          const sections = document.querySelectorAll("section");
+          const navLinks = document.querySelectorAll(".nav-link");
+          let sectionInViewID = "";
 
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                    if (scrollY > sectionTop - 64) sectionInViewID = section.getAttribute('id');
-            });
-            navLinks.forEach(link => {
-                (link.getAttribute('href') === "#" + sectionInViewID)
-                ? link.classList.add('view')
-                : link.classList.remove('view')
-            });
-            });
+          sections.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (scrollY > sectionTop - 64)
+              sectionInViewID = section.getAttribute("id");
+          });
+          navLinks.forEach((link) => {
+            link.getAttribute("href") === "#" + sectionInViewID
+              ? link.classList.add("view")
+              : link.classList.remove("view");
+          });
         });
+      });
 
-        document.querySelector('form').onsubmit = e => e.preventDefault();
+      document.querySelector("form").onsubmit = (e) => {
+        e.preventDefault();
+        const [name, email, message] = [
+          e.target.user_name,
+          e.target.user_email,
+          e.target.user_message,
+        ];
+
+        if (!name.value || !email.value || !message.value) {
+          window.alert("All fields need to be filled!");
+          return;
+        }
+
+        [name.value, email.value, message.value] = ["", "", ""];
+
+        window.alert("Your message was sent!");
+      };
     </script>
-</body>
+  </body>
 </html>
