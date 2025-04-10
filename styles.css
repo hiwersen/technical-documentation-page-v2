@@ -29,7 +29,7 @@
 
   --ease: 0.3s ease;
 
-  font-size: clamp(14px, 0.33vw + 13px, 20px);
+  font-size: clamp(16px, 0.33vw + 13px, 20px);
 }
 
 /* For Firefox */
@@ -134,6 +134,7 @@ li:not(#navbar li)::before {
 }
 
 form {
+  font-size: 1.5em;
   margin: 5em auto;
   max-width: 35em;
   position: relative;
