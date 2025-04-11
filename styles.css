@@ -491,11 +491,13 @@ footer a {
   font-size: 1.4em;
 }
 
-#the_form_element h1 {
+#the_form_element h1,
+#the_button_element h1 {
   letter-spacing: -0.02em;
 }
 
-#the_form_element > .first-paragraph {
+#the_form_element > .first-paragraph,
+#the_button_element > .first-paragraph {
   font-size: inherit;
 }
 
@@ -591,6 +593,8 @@ footer a {
   color: black;
   display: block;
   line-height: 2;
+  background-color: var(--c2);
+  padding: 0.8em;
 }
 
 #form-container {
@@ -727,8 +731,15 @@ footer a {
     row-gap: var(--sp10);
   }
 
+  .list ul {
+    row-gap: 0;
+  }
+
   .list li {
     max-width: var(--sp12);
+    border-top: var(--sp1x0) solid var(--c2);
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
   }
 
   #introduction .list {
@@ -943,10 +954,14 @@ footer a {
 
 @media screen and (max-width: 450px) {
   h1 {
-    font-size: 2.5em;
+    font-size: 2.3em;
   }
 
   .list ul {
     flex-direction: column;
+  }
+
+  .code {
+    padding: 0.4em;
   }
 }
