@@ -32,9 +32,20 @@ window.addEventListener("load", () => {
   });
 });
 
-document.querySelector(".hamb-menu").addEventListener("click", () => {
+document.querySelector(".hamb-menu").addEventListener("click", (event) => {
+  event.stopPropagation();
   document.querySelector(".nav-links").classList.toggle("active");
   document.querySelector(".hamb-menu").classList.toggle("close");
+});
+
+window.addEventListener("click", () => {
+  const hambMenu = document.querySelector(".hamb-menu");
+  const navLinks = document.querySelector(".nav-links");
+
+  if (hambMenu.classList.contains("close")) {
+    hambMenu.classList.remove("close");
+    navLinks.classList.remove("active");
+  }
 });
 
 document.querySelector("form").onsubmit = (e) => {
