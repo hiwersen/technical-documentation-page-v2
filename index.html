@@ -7,157 +7,154 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id="container">
-      <main>
-        <div id="container-content1">
-          <nav class="navbar">
-            <header>
-              <span class="hamb-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-              </span>
-              <span class="navbar-label">Web Forms:</span>
-              <span class="section-in-view"></span>
-            </header>
-            <div class="nav-links-container">
-              <div class="nav-links">
-                <ul>
-                  <li>
-                    <a class="nav-link view" href="#introduction"
-                      >Introduction</a
-                    >
-                  </li>
-                  <li>
-                    <a class="nav-link" href="#prerequisites">Prerequisites</a>
-                  </li>
-                  <li><a class="nav-link" href="#design">Design</a></li>
-                  <li>
-                    <a class="nav-link" href="#the_form_element"
-                      >The form element</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      class="nav-link"
-                      href="#the_label_input_and_textarea_elements"
-                      >The label, input, and textarea elements</a
-                    >
-                  </li>
-                  <li>
-                    <a class="nav-link" href="#the_button_element"
-                      >The button element</a
-                    >
-                  </li>
-                  <li><a class="nav-link" href="#styling">Styling</a></li>
-                  <li>
-                    <a class="nav-link" href="#submitting_data"
-                      >Submitting data</a
-                    >
-                  </li>
-                </ul>
-              </div>
+    <main class="page-container">
+      <div id="container-content1">
+        <nav class="navbar">
+          <header>
+            <span class="hamb-menu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+            <span class="navbar-label">Web Forms:</span>
+            <span class="section-in-view"></span>
+          </header>
+          <div class="nav-links-container">
+            <div class="nav-links">
+              <ul>
+                <li>
+                  <a class="nav-link view" href="#introduction">Introduction</a>
+                </li>
+                <li>
+                  <a class="nav-link" href="#prerequisites">Prerequisites</a>
+                </li>
+                <li><a class="nav-link" href="#design">Design</a></li>
+                <li>
+                  <a class="nav-link" href="#the_form_element"
+                    >The form element</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="nav-link"
+                    href="#the_label_input_and_textarea_elements"
+                    >The label, input, and textarea elements</a
+                  >
+                </li>
+                <li>
+                  <a class="nav-link" href="#the_button_element"
+                    >The button element</a
+                  >
+                </li>
+                <li><a class="nav-link" href="#styling">Styling</a></li>
+                <li>
+                  <a class="nav-link" href="#submitting_data"
+                    >Submitting data</a
+                  >
+                </li>
+              </ul>
             </div>
-          </nav>
-          <div class="grid-c1">
-            <section id="introduction" class="grid-c2">
-              <div class="banner-title">
-                <h1>INTRODUCTION</h1>
-                <p>
-                  Web forms are a very powerful tool for interacting with users
-                  — most commonly they are used for collecting data from users,
-                  or allowing them to control a user interface. However, for
-                  historical and technical reasons, it's not always obvious how
-                  to use them to their full potential.
-                </p>
-              </div>
-              <div class="list">
-                <p>
-                  In this documentation, we'll cover all the essential aspects
-                  of Web forms including:
-                </p>
-                <ul>
-                  <li>Marking up their HTML structure</li>
-                  <li>Styling form controls</li>
-                  <li>Validating form data</li>
-                  <li>Submitting data to the server</li>
-                </ul>
-              </div>
-            </section>
+          </div>
+        </nav>
+        <div class="grid-c1">
+          <section id="introduction" class="grid-c2">
+            <div class="banner-title">
+              <h1>INTRODUCTION</h1>
+              <p>
+                Web forms are a very powerful tool for interacting with users —
+                most commonly they are used for collecting data from users, or
+                allowing them to control a user interface. However, for
+                historical and technical reasons, it's not always obvious how to
+                use them to their full potential.
+              </p>
+            </div>
+            <div class="list">
+              <p>
+                In this documentation, we'll cover all the essential aspects of
+                Web forms including:
+              </p>
+              <ul>
+                <li>Marking up their HTML structure</li>
+                <li>Styling form controls</li>
+                <li>Validating form data</li>
+                <li>Submitting data to the server</li>
+              </ul>
+            </div>
+          </section>
 
-            <section id="prerequisites" class="grid-c2">
-              <div class="banner">
-                <h1>Prerequisites</h1>
+          <section id="prerequisites" class="grid-c2">
+            <div class="banner">
+              <h1>Prerequisites</h1>
+              <article>
+                <p>
+                  You should at least work through the
+                  <a
+                    href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML"
+                    target="_blank"
+                    >Introduction to HTML.</a
+                  >
+                </p>
+                <p>
+                  However, form elements are more complex than most other HTML
+                  elements, and they also require a close marriage of related
+                  <a
+                    href="https://developer.mozilla.org/en-US/docs/Learn/CSS"
+                    target="_blank"
+                    >CSS</a
+                  >
+                  and
+                  <a
+                    href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript"
+                    target="_blank"
+                    >JavaScript</a
+                  >
+                  techniques to get the most out of them.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section id="design">
+            <div>
+              <div>
+                <h1>Design<span class="line"></span></h1>
+
                 <article>
                   <p>
-                    You should at least work through the
-                    <a
-                      href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML"
-                      target="_blank"
-                      >Introduction to HTML.</a
-                    >
+                    From a user experience (UX) point of view, it's important to
+                    remember that the bigger your form, the more you risk
+                    frustrating people and losing users. Keep it simple and stay
+                    focused: ask only for the data you absolutely need.
                   </p>
                   <p>
-                    However, form elements are more complex than most other HTML
-                    elements, and they also require a close marriage of related
-                    <a
-                      href="https://developer.mozilla.org/en-US/docs/Learn/CSS"
-                      target="_blank"
-                      >CSS</a
-                    >
-                    and
-                    <a
-                      href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript"
-                      target="_blank"
-                      >JavaScript</a
-                    >
-                    techniques to get the most out of them.
+                    In the example, our form will contain three text fields and
+                    one button. We are asking the user for their name, their
+                    email and the message they want to send. Hitting the button
+                    will send their data to a web server.
                   </p>
                 </article>
               </div>
-            </section>
+            </div>
 
-            <section id="design">
-              <div>
-                <div>
-                  <h1>Design<span class="line"></span></h1>
+            <div id="form-container">
+              <form action="/my-handling-form-page" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="user_name" required />
+                <label for="mail">Email:</label>
+                <input type="email" id="mail" name="user_email" required />
+                <label for="msg">Message:</label>
+                <textarea
+                  id="msg"
+                  name="user_message"
+                  rows="4"
+                  required
+                ></textarea>
+                <button type="submit">Send your message</button>
+              </form>
+            </div>
+          </section>
 
-                  <article>
-                    <p>
-                      From a user experience (UX) point of view, it's important
-                      to remember that the bigger your form, the more you risk
-                      frustrating people and losing users. Keep it simple and
-                      stay focused: ask only for the data you absolutely need.
-                    </p>
-                    <p>
-                      In the example, our form will contain three text fields
-                      and one button. We are asking the user for their name,
-                      their email and the message they want to send. Hitting the
-                      button will send their data to a web server.
-                    </p>
-                  </article>
-                </div>
-              </div>
-
-              <div id="form-container">
-                <form action="/my-handling-form-page" method="post">
-                  <label for="name">Name:</label>
-                  <input type="text" id="name" name="user_name" required />
-                  <label for="mail">Email:</label>
-                  <input type="email" id="mail" name="user_email" required />
-                  <label for="msg">Message:</label>
-                  <textarea
-                    id="msg"
-                    name="user_message"
-                    rows="4"
-                    required
-                  ></textarea>
-                  <button type="submit">Send your message</button>
-                </form>
-              </div>
-            </section>
-
-            <!--
+          <!--
             <section id="the_form_element">
               <h1>The form element</h1>
               <div class="grid-c2">
@@ -422,9 +419,9 @@
               </div>
             </section>
             -->
-          </div>
         </div>
-        <!--
+      </div>
+      <!--
         <div id="container-content2">
           <section id="styling">
             <div>
@@ -619,8 +616,9 @@
           </div>
         </div>
         -->
-      </main>
-      <footer>
+    </main>
+    <footer>
+      <div class="page-container">
         <div class="banner">
           <p>
             All documentation on this page has been sourced from
@@ -633,8 +631,8 @@
             for educational purposes.
           </p>
         </div>
-      </footer>
-    </div>
+      </div>
+    </footer>
     <script src="./script.js"></script>
   </body>
 </html>

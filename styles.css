@@ -59,9 +59,16 @@ body {
   color: var(--c4);
 }
 
-#container {
+main {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--sp11);
+}
+
+.page-container {
   max-width: 1900px;
   margin: 0 auto;
+  padding: var(--sp6) var(--sp6) 0;
 }
 
 #container-content1,
@@ -90,13 +97,6 @@ body {
   flex-wrap: wrap;
   column-gap: var(--sp4);
   row-gap: var(--sp6);
-}
-
-main {
-  padding: var(--sp6) var(--sp6) 0;
-  display: flex;
-  flex-direction: column;
-  row-gap: var(--sp11);
 }
 
 header {
@@ -195,15 +195,14 @@ button:hover {
 }
 
 footer {
+  min-height: 30vh;
   font-style: italic;
   background-color: var(--c5);
-  padding: var(--sp6) 0;
   line-height: 1.5;
 }
 
-footer div {
-  max-width: 280px;
-  margin-left: calc(25vw + var(--sp4) + var(--sp6));
+footer .banner {
+  margin-left: calc(25vw + var(--sp6));
 }
 
 footer p {
@@ -341,7 +340,7 @@ footer a {
   align-items: center;
   font-family: "Courier New", Courier, monospace;
   letter-spacing: -0.03em;
-  font-size: 0.8em;
+  font-size: 0.9em;
   padding: 0.2em 0.4em;
   margin-bottom: -0.2em;
   font-weight: 100;
@@ -741,8 +740,20 @@ footer a {
     font-size: 1em;
   }
 
+  #introduction h1 {
+    letter-spacing: -0.04em;
+  }
+
   #prerequisites {
     padding-left: var(--sp8);
+  }
+
+  footer {
+    font-size: 0.9em;
+  }
+
+  footer .banner {
+    width: unset;
   }
 }
 
@@ -837,6 +848,7 @@ footer a {
 
   #introduction h1 {
     margin: calc(1em + 47px) 0 1em;
+    letter-spacing: unset;
   }
 
   .banner-title p {
@@ -859,12 +871,8 @@ footer a {
     padding: var(--sp8) 0;
   }
 
-  footer {
-    font-size: 0.9em;
-  }
-
-  footer div {
-    margin-left: var(--sp6);
+  footer .banner {
+    margin-left: unset;
   }
 }
 
@@ -912,10 +920,6 @@ footer a {
 
   #design h1 {
     font-size: clamp(6.5em, 30vw, 9.9em);
-  }
-
-  form {
-    margin-top: 3em;
   }
 
   button {
