@@ -261,6 +261,7 @@ footer a {
 
 .navbar {
   width: 25vw;
+  max-width: 100%;
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -280,8 +281,16 @@ footer a {
   padding: var(--sp3);
 }
 
-.hamb-menu:hover {
-  cursor: pointer;
+/* Desktop */
+@media (hover: hover) {
+  .hamb-menu:hover {
+    cursor: pointer;
+    background-color: var(--c2);
+  }
+}
+
+/* All devices - inc mobile */
+.hamb-menu:active {
   background-color: var(--c2);
 }
 
@@ -323,6 +332,23 @@ footer a {
   letter-spacing: -0.03em;
   margin-bottom: -0.2em;
   text-shadow: 1px 1px 1px var(--c2);
+  text-wrap: nowrap;
+}
+
+.section-in-view {
+  display: none;
+  height: 100%;
+  align-items: center;
+  font-family: "Courier New", Courier, monospace;
+  letter-spacing: -0.03em;
+  font-size: 0.8em;
+  padding: 0.2em 0.4em;
+  margin-bottom: -0.2em;
+  font-weight: 100;
+  text-wrap: nowrap;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .nav-links-container {
@@ -774,6 +800,10 @@ footer a {
     display: flex;
   }
 
+  .section-in-view {
+    display: flex;
+  }
+
   .navbar ul {
     background-color: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(5px);
@@ -878,7 +908,7 @@ footer a {
   .navbar > header {
     font-size: 1.25em;
     padding: 0.25em 0.5em;
-    gap: var(--sp4);
+    gap: var(--sp3);
   }
 
   #design h1 {
@@ -891,5 +921,11 @@ footer a {
 
   button {
     justify-self: center;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .list ul {
+    flex-direction: column;
   }
 }

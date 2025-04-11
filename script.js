@@ -1,14 +1,29 @@
 window.addEventListener("load", () => {
   window.addEventListener("scroll", () => {
     const sections = document.querySelectorAll("section");
+    const sectionInView = document.querySelector(".section-in-view");
     const navLinks = document.querySelectorAll(".nav-link");
     let sectionInViewID = "";
+
+    const sectionNames = {
+      introduction: "Introduction",
+      prerequisites: "Prerequisites",
+      design: "Design",
+      the_form_element: "The Form",
+      the_label_input_and_textarea_elements: "Label |Input |Textarea",
+      the_button_element: "The Button",
+      styling: "Styling",
+      submitting_data: "Submitting Data",
+    };
 
     sections.forEach((section) => {
       const sectionTop = section.offsetTop;
       if (scrollY > sectionTop - 64)
         sectionInViewID = section.getAttribute("id");
     });
+
+    sectionInView.textContent = sectionNames[sectionInViewID];
+
     navLinks.forEach((link) => {
       link.getAttribute("href") === "#" + sectionInViewID
         ? link.classList.add("view")
