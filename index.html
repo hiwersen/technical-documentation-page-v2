@@ -10,41 +10,53 @@
     <div id="container">
       <main>
         <div id="container-content1">
-          <nav id="navbar">
-            <header>Web Forms:</header>
-            <div>
-              <ul>
-                <li>
-                  <a class="nav-link view" href="#introduction">Introduction</a>
-                </li>
-                <li>
-                  <a class="nav-link" href="#prerequisites">Prerequisites</a>
-                </li>
-                <li><a class="nav-link" href="#design">Design</a></li>
-                <li>
-                  <a class="nav-link" href="#the_form_element"
-                    >The form element</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="nav-link"
-                    href="#the_label_input_and_textarea_elements"
-                    >The label, input, and textarea elements</a
-                  >
-                </li>
-                <li>
-                  <a class="nav-link" href="#the_button_element"
-                    >The button element</a
-                  >
-                </li>
-                <li><a class="nav-link" href="#styling">Styling</a></li>
-                <li>
-                  <a class="nav-link" href="#submitting_data"
-                    >Submitting data</a
-                  >
-                </li>
-              </ul>
+          <nav class="navbar">
+            <header>
+              <span class="hamb-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+              <span class="navbar-label">Web Forms:</span>
+              <span class="section-in-view"></span>
+            </header>
+            <div class="nav-links-container">
+              <div class="nav-links">
+                <ul>
+                  <li>
+                    <a class="nav-link view" href="#introduction"
+                      >Introduction</a
+                    >
+                  </li>
+                  <li>
+                    <a class="nav-link" href="#prerequisites">Prerequisites</a>
+                  </li>
+                  <li><a class="nav-link" href="#design">Design</a></li>
+                  <li>
+                    <a class="nav-link" href="#the_form_element"
+                      >The form element</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="nav-link"
+                      href="#the_label_input_and_textarea_elements"
+                      >The label, input, and textarea elements</a
+                    >
+                  </li>
+                  <li>
+                    <a class="nav-link" href="#the_button_element"
+                      >The button element</a
+                    >
+                  </li>
+                  <li><a class="nav-link" href="#styling">Styling</a></li>
+                  <li>
+                    <a class="nav-link" href="#submitting_data"
+                      >Submitting data</a
+                    >
+                  </li>
+                </ul>
+              </div>
             </div>
           </nav>
           <div class="grid-c1">
@@ -504,7 +516,7 @@
           </section>
         </div>
         <div id="container-content3">
-          <nav id="navbar">
+          <nav class="navbar">
             <header>Web Forms</header>
             <ul>
               <li><a class="nav-link" href="#introduction">Introduction</a></li>
@@ -623,44 +635,6 @@
         </div>
       </footer>
     </div>
-    <script>
-      window.addEventListener("load", () => {
-        window.addEventListener("scroll", () => {
-          const sections = document.querySelectorAll("section");
-          const navLinks = document.querySelectorAll(".nav-link");
-          let sectionInViewID = "";
-
-          sections.forEach((section) => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (scrollY > sectionTop - 64)
-              sectionInViewID = section.getAttribute("id");
-          });
-          navLinks.forEach((link) => {
-            link.getAttribute("href") === "#" + sectionInViewID
-              ? link.classList.add("view")
-              : link.classList.remove("view");
-          });
-        });
-      });
-
-      document.querySelector("form").onsubmit = (e) => {
-        e.preventDefault();
-        const [name, email, message] = [
-          e.target.user_name,
-          e.target.user_email,
-          e.target.user_message,
-        ];
-
-        if (!name.value || !email.value || !message.value) {
-          window.alert("All fields need to be filled!");
-          return;
-        }
-
-        [name.value, email.value, message.value] = ["", "", ""];
-
-        window.alert("Your message was sent!");
-      };
-    </script>
+    <script src="./script.js"></script>
   </body>
 </html>

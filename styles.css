@@ -118,7 +118,7 @@ ul {
   list-style: none;
 }
 
-li:not(#navbar li) {
+li:not(.navbar li) {
   position: relative;
   line-height: 1.1em;
   font-weight: initial;
@@ -127,7 +127,7 @@ li:not(#navbar li) {
 
 /* Custom bullet character */
 /* ! ::marker doesn't allow margin control */
-li:not(#navbar li)::before {
+li:not(.navbar li)::before {
   content: "•";
   position: absolute;
   left: 0;
@@ -259,7 +259,7 @@ footer a {
   gap: var(--sp3);
 }
 
-#navbar {
+.navbar {
   width: 25vw;
   height: fit-content;
   display: flex;
@@ -269,16 +269,76 @@ footer a {
   z-index: 99;
 }
 
-#navbar a {
+.hamb-menu {
+  position: relative;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(var(--sp7) - var(--sp2));
+  width: var(--sp7);
+  box-sizing: content-box;
+  padding: var(--sp3);
+}
+
+.hamb-menu:hover {
+  cursor: pointer;
+  background-color: var(--c2);
+}
+
+.hamb-menu span {
+  display: block;
+  border-bottom: var(--sp2) solid var(--c5);
+  height: 0;
+  width: inherit;
+  transform-origin: center center;
+}
+
+.hamb-menu.close {
+  justify-content: center;
+  align-items: center;
+}
+
+.hamb-menu.close span {
+  position: absolute;
+}
+
+.hamb-menu.close span:first-of-type {
+  transform: rotate(-45deg);
+}
+
+.hamb-menu.close span:last-of-type {
+  transform: rotate(45deg);
+}
+
+.hamb-menu.close span:nth-of-type(2) {
+  display: none;
+}
+
+.navbar-label {
+  display: inline-block;
+  font-family: "Courier New", Courier, monospace;
+  height: 0.9em;
+  /* Match the height for center alignment */
+  line-height: 0.9em;
+  letter-spacing: -0.03em;
+  margin-bottom: -0.2em;
+  text-shadow: 1px 1px 1px var(--c2);
+}
+
+.nav-links-container {
+  position: relative;
+}
+
+.navbar a {
   padding: 1.5rem 2.5rem;
 }
 
-#navbar li {
+.navbar li {
   list-style-type: none;
   margin: 0;
 }
 
-#navbar a {
+.navbar a {
   display: block;
   width: 100%;
   text-decoration: none;
@@ -288,19 +348,19 @@ footer a {
     background-color var(--ease);
 }
 
-#navbar a:link,
-#navbar a:visited,
-#navbar a:hover,
-#navbar a:active {
+.navbar a:link,
+.navbar a:visited,
+.navbar a:hover,
+.navbar a:active {
   color: var(--c4);
 }
 
-#navbar a:hover {
+.navbar a:hover {
   background-color: var(--c5) !important;
   color: var(--c1) !important;
 }
 
-#navbar a.view {
+.navbar a.view {
   background-color: var(--c2);
   border-left: var(--sp1) solid var(--c3);
 }
@@ -633,11 +693,7 @@ footer a {
 }
 
 @media screen and (max-width: 1560px) {
-  #navbar {
-    width: 15vw;
-  }
-
-  #navbar a {
+  .navbar a {
     padding: 1.5rem;
   }
 }
@@ -653,10 +709,6 @@ footer a {
     display: flex;
     flex-direction: column;
     row-gap: var(--sp10);
-  }
-
-  #navbar {
-    width: 25vw;
   }
 
   #introduction .list {
@@ -680,61 +732,72 @@ footer a {
     row-gap: var(--sp8);
   }
 
+  main {
+    padding: 0 var(--sp6);
+  }
+
   h1 {
     font-size: 2em;
   }
 
-  #navbar {
-    position: fixed;
-    top: var(--sp3);
-    left: var(--sp3);
-    width: 50vw;
+  .navbar {
+    top: var(--sp4);
+    width: fit-content;
+    min-width: 50vw;
   }
 
-  #navbar:hover {
-    cursor: pointer;
-  }
-
-  #navbar header {
+  .navbar > header {
+    font-size: 1.5em;
     background-color: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(5px);
-    font-family: "Courier New", Courier, monospace;
     padding: 0.5em;
     margin: 0;
     border: var(--sp2) solid var(--c5);
-    text-shadow: 1px 1px 1px var(--c2);
-    font-size: 1.3em;
+    display: flex;
+    align-items: center;
+    gap: var(--sp5);
   }
 
-  #navbar > div {
+  .nav-links {
     display: none;
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
   }
 
-  #navbar ul {
+  .nav-links.active {
+    display: initial;
+  }
+
+  .hamb-menu {
+    display: flex;
+  }
+
+  .navbar ul {
     background-color: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(5px);
     width: 100%;
   }
 
-  #navbar a:link,
-  #navbar a:visited,
-  #navbar a:hover,
-  #navbar a:active {
-    color: var(--c3);
+  .navbar a.view {
+    color: var(--c3) !important;
+  }
+
+  .navbar a:link,
+  .navbar a:visited,
+  .navbar a:hover,
+  .navbar a:active {
+    color: var(--c1);
     font-size: 1.2em;
   }
 
-  #navbar a:hover {
+  .navbar a:hover {
     background-color: var(--c2) !important;
     color: var(--c5) !important;
   }
 
-  #navbar:hover > div {
-    display: initial;
-  }
-
-  #container-content3 #navbar {
+  #container-content3 .navbar {
     display: none;
   }
 
@@ -747,7 +810,7 @@ footer a {
   }
 
   .banner-title p {
-    font-size: 1.4em;
+    font-size: 1.6em;
   }
 
   #prerequisites::before {
@@ -812,13 +875,18 @@ footer a {
 }
 
 @media screen and (max-width: 510px) {
+  .navbar > header {
+    font-size: 1.25em;
+    padding: 0.25em 0.5em;
+    gap: var(--sp4);
+  }
+
   #design h1 {
     font-size: clamp(6.5em, 30vw, 9.9em);
   }
 
   form {
     margin-top: 3em;
-    font-size: 1em;
   }
 
   button {
