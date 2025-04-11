@@ -96,7 +96,7 @@ main {
   flex-direction: column;
   flex-wrap: wrap;
   column-gap: var(--sp4);
-  row-gap: var(--sp6);
+  row-gap: var(--sp8);
 }
 
 header {
@@ -108,10 +108,10 @@ header {
 
 h1 {
   color: var(--c5);
-  font-size: 4.5rem;
+  font-size: 4.5em;
   line-height: 1;
   font-weight: normal;
-  margin-bottom: 0.5em;
+  margin-bottom: 1em;
 }
 
 ul {
@@ -444,7 +444,7 @@ footer a {
 
 #prerequisites h1 {
   color: var(--c3);
-  font-size: 1.775rem;
+  font-size: 1.775em;
 }
 
 #prerequisites a {
@@ -461,7 +461,6 @@ footer a {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: var(--sp6);
-  min-height: 60vh;
 }
 
 #design > div:first-of-type > div {
@@ -476,6 +475,7 @@ footer a {
   letter-spacing: -0.065em;
   line-height: 0.77;
   margin-left: -0.065em;
+  margin-bottom: 0.5em;
   position: relative;
 }
 
@@ -487,25 +487,16 @@ footer a {
   border-bottom: var(--sp1x5) solid var(--c4);
 }
 
-#the_form_element .flex-c,
-#the_button_element .flex-c {
-  row-gap: 2.5em;
-}
-
-#the_form_element article > div:first-of-type p,
-#the_button_element article > div:first-of-type p {
+.first-paragraph {
   font-size: 1.4em;
 }
 
-#the_form_element .list ul,
-#the_button_element .list ul {
-  justify-content: start;
-  row-gap: var(--sp4);
+#the_form_element h1 {
+  letter-spacing: -0.02em;
 }
 
-#the_form_element .list li,
-#the_button_element .list li {
-  width: var(--sp12);
+#the_form_element > .first-paragraph {
+  font-size: inherit;
 }
 
 #styling {
@@ -515,7 +506,7 @@ footer a {
 }
 
 #styling h1 {
-  font-size: 7rem;
+  font-size: 7em;
   color: var(--color4);
   letter-spacing: 0.1em;
   width: fit-content;
@@ -595,6 +586,7 @@ footer a {
 }
 
 .code {
+  font-size: clamp(0.9rem, 4vw, 1.4rem);
   background-color: var(--bg-color1);
   color: black;
   display: block;
@@ -638,9 +630,8 @@ footer a {
 
 .note p {
   flex: 0.5;
-  font-size: 2em;
   color: var(--color1);
-  margin: 0 !important;
+  margin: 0;
 }
 
 .text-fields-info {
@@ -719,7 +710,7 @@ footer a {
 
 @media screen and (max-width: 1560px) {
   .navbar a {
-    padding: 1.5rem;
+    padding: 1.5em;
   }
 }
 
@@ -734,6 +725,10 @@ footer a {
     display: flex;
     flex-direction: column;
     row-gap: var(--sp10);
+  }
+
+  .list li {
+    max-width: var(--sp12);
   }
 
   #introduction .list {
@@ -765,6 +760,10 @@ footer a {
     column-gap: var(--sp8);
   }
 
+  #design {
+    gap: var(--sp10);
+  }
+
   .grid-c2 {
     row-gap: var(--sp8);
   }
@@ -774,7 +773,7 @@ footer a {
   }
 
   h1 {
-    font-size: 2em;
+    font-size: 3em;
   }
 
   .navbar {
@@ -842,6 +841,10 @@ footer a {
     display: none;
   }
 
+  .first-paragraph {
+    font-size: 1.2em;
+  }
+
   #introduction {
     min-height: initial;
   }
@@ -882,6 +885,10 @@ footer a {
     justify-content: center;
   }
 
+  .grid-c1 {
+    gap: var(--sp10);
+  }
+
   #design h1 {
     font-size: 10em;
   }
@@ -892,6 +899,9 @@ footer a {
     row-gap: 0.8em;
     width: 80%;
     justify-self: center;
+    /* ! Match button's margin displacement */
+    margin-top: 64px;
+    margin-bottom: 86px;
   }
 
   label {
@@ -918,8 +928,12 @@ footer a {
     gap: var(--sp3);
   }
 
+  h1 {
+    font-size: 2.5em;
+  }
+
   #design h1 {
-    font-size: clamp(6.5em, 30vw, 9.9em);
+    font-size: clamp(6.5em, 25vw, 9.9em);
   }
 
   button {
@@ -928,6 +942,10 @@ footer a {
 }
 
 @media screen and (max-width: 450px) {
+  h1 {
+    font-size: 2.5em;
+  }
+
   .list ul {
     flex-direction: column;
   }
