@@ -89,6 +89,28 @@ main {
   grid-template-columns: repeat(2, 1fr);
   column-gap: var(--sp6);
   row-gap: var(--sp6);
+  width: 100%;
+}
+
+/* ! Force content to stay within grid columns */
+.grid-c2 > * {
+  /* Critical for preventing content expansion */
+  min-width: 0;
+  /* Help with long text wrapping */
+  overflow-wrap: break-word;
+  /* For older browsers */
+  word-wrap: break-word;
+}
+
+/* ! Force codeblocks to stay within grid columns */
+.grid-c2 pre,
+.grid-c2 code {
+  /* Allow code to wrap */
+  white-space: pre-wrap;
+  /* Add horizontal scrolling if needed */
+  overflow-x: auto;
+  /* Restrict to parent width */
+  max-width: 100%;
 }
 
 .flex-c {
@@ -97,14 +119,12 @@ main {
   flex-wrap: wrap;
   column-gap: var(--sp4);
   row-gap: var(--sp8);
-  background-color: yellow;
 }
 
 header {
   background-color: var(--c1);
   color: var(--c5);
   font-size: 2em;
-  margin-bottom: 1em;
   padding: 0.25em;
 }
 
@@ -114,7 +134,7 @@ section[id]:not(:first-of-type) {
 
 h1 {
   color: var(--c5);
-  font-size: 4.5em;
+  font-size: 3.7em;
   line-height: 1;
   font-weight: normal;
   margin-bottom: 1em;
@@ -430,6 +450,14 @@ footer a {
   font-size: 0.85em;
 }
 
+#introduction .list ul {
+  column-gap: var(--sp4);
+}
+
+#introduction .list ul > * {
+  flex: 0.5;
+}
+
 #prerequisites {
   position: relative;
   background-color: var(--c5);
@@ -467,25 +495,12 @@ footer a {
   color: var(--c3);
 }
 
-#design {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp11);
-}
-
-#design > div:first-of-type {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  column-gap: var(--sp6);
-}
-
-#design > div:first-of-type > div {
-  display: flex;
-  flex-direction: column;
+#design.flex-c {
+  row-gap: var(--sp11);
 }
 
 #design h1 {
-  font-size: 11.3em;
+  font-size: clamp(6.5em, 11.5vw, 9.9em);
   font-weight: bold;
   color: var(--c4);
   letter-spacing: -0.065em;
@@ -523,6 +538,7 @@ footer a {
   height: 100%;
 }
 
+/* Match .code's height to its sibling article */
 #the_form_element > .grid-c2 > div:first-of-type code,
 #the_button_element > .grid-c2 > div:first-of-type code {
   height: 100%;
@@ -615,14 +631,14 @@ footer a {
 }
 
 .code {
-  font-size: clamp(0.9rem, 4vw, 1.4rem);
+  font-size: clamp(0.9rem, 1.6vw, 1.2rem);
   background-color: var(--bg-color1);
   color: black;
   display: block;
   line-height: 2;
   background-color: var(--c2);
   padding: 0.8em;
-  overflow-y: auto;
+  overflow: auto;
 }
 
 #form-container {
@@ -716,40 +732,14 @@ footer a {
   padding-top: 1.5em;
 }
 
-#submitting_data {
-  margin-bottom: var(--sp11);
-}
-
-#submitting_data > div:first-of-type > .flex-c {
-  max-height: 80vh; /* ! TODO: account for screen w */
-}
-
 #submitting_data > div:first-of-type > .flex-c p {
-  max-width: var(--sp12);
   padding-top: var(--sp6);
-  border-top: 1px solid var(--c4);
+  max-width: var(--sp12);
+  border-top: var(--sp1x0) solid var(--c2);
 }
 
-#submitting_data > .grid-c2:last-of-type > div {
-  grid-column: 2;
-}
-
-@media screen and (max-width: 1750px) {
-  #design h1 {
-    font-size: 11em;
-  }
-}
-
-@media screen and (max-width: 1560px) {
-  .navbar a {
-    padding: 1.5em;
-  }
-}
-
-@media screen and (max-width: 1430px) {
-  #design h1 {
-    font-size: 10.5em;
-  }
+#submitting_data {
+  margin-bottom: 0;
 }
 
 @media screen and (max-width: 1300px) {
@@ -962,8 +952,8 @@ footer a {
     gap: var(--sp10);
   }
 
-  #design h1 {
-    font-size: 10em;
+  #design.flex-c {
+    row-gap: var(--sp10);
   }
 
   form {
@@ -972,9 +962,9 @@ footer a {
     row-gap: 0.8em;
     width: 80%;
     justify-self: center;
-    /* ! Match button's margin displacement */
-    margin-top: 64px;
-    margin-bottom: 86px;
+    /* ! Match bottom's margin displacement */
+    margin-top: 44px;
+    margin-bottom: 96px;
   }
 
   label {
@@ -1002,10 +992,6 @@ footer a {
 
   h1 {
     font-size: 2.5em;
-  }
-
-  #design h1 {
-    font-size: clamp(6.5em, 25vw, 9.9em);
   }
 
   button {

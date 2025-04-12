@@ -79,10 +79,14 @@
                 Web forms including:
               </p>
               <ul>
-                <li>Marking up their HTML structure</li>
-                <li>Styling form controls</li>
-                <li>Validating form data</li>
-                <li>Submitting data to the server</li>
+                <div>
+                  <li>Marking up their HTML structure</li>
+                  <li>Styling form controls</li>
+                </div>
+                <div>
+                  <li>Validating form data</li>
+                  <li>Submitting data to the server</li>
+                </div>
               </ul>
             </div>
           </section>
@@ -119,8 +123,8 @@
             </div>
           </section>
 
-          <section id="design">
-            <div>
+          <section id="design" class="flex-c">
+            <div class="grid-c2">
               <div>
                 <h1>Design<span class="line"></span></h1>
 
@@ -518,82 +522,78 @@
             </div>
           </section>
         </div>
-        <div id="container-content3">
-          <nav class="navbar">
-            <header>Web Forms</header>
-            <ul>
-              <li><a class="nav-link" href="#introduction">Introduction</a></li>
-              <li>
-                <a class="nav-link" href="#prerequisites">Prerequisites</a>
-              </li>
-              <li><a class="nav-link" href="#design">Design</a></li>
-              <li>
-                <a class="nav-link" href="#the_form_element"
-                  >The form element</a
-                >
-              </li>
-              <li>
-                <a
-                  class="nav-link"
-                  href="#the_label_input_and_textarea_elements"
-                  >The label, input, and textarea elements</a
-                >
-              </li>
-              <li>
-                <a class="nav-link" href="#the_button_element"
-                  >The button element</a
-                >
-              </li>
-              <li><a class="nav-link" href="#styling">Styling</a></li>
-              <li>
-                <a class="nav-link" href="#submitting_data">Submitting data</a>
-              </li>
-            </ul>
-          </nav>
-          <div class="grid-c1">
-            <section id="submitting_data" class="grid-c2">
-              <div>
-                <h1>Submitting data</h1>
-                <article class="flex-c">
-                  <p>
-                    The form element defines where and how to send the data to
-                    the server thanks to the action and method attributes.
-                  </p>
-                  <p>
-                    The form data is sent to the server as name/value pairs. We
-                    provide a name attribute for each form control. The names
-                    are important on both the client- and server-side; they tell
-                    the browser which name to give each piece of data and, on
-                    the server side, they let the server handle each piece of
-                    data by name.
-                  </p>
-                  <p>
-                    In our example, the form will send 3 pieces of data named
-                    "user_name", "user_email", and "user_message". That data
-                    will be sent to the URL "/my-handling-form-page" using the
-                    HTTP POST method.
-                  </p>
-                  <p>
-                    On the server side, the script at the URL
-                    "/my-handling-form-page" will receive the data as a list of
-                    3 key/value items contained in the HTTP request. The way
-                    this script will handle that data is up to you. It's beyond
-                    the scope of this guide to go deeply into that subject
-                  </p>
-                  <p>
-                    To name the data in a form, you need to use the name
-                    attribute on each form widget that will collect a specific
-                    piece of data:
-                  </p>
-                </article>
-              </div>
-              <div class="grid-c2">
-                <div>
-                  <pre><codeblock id="codeblock-submit-data" class="code"></codeblock></pre>
-                  <script>
-                    document.getElementById(
-                      "codeblock-submit-data"
-                    ).textContent = `<form 
+        -->
+      <div id="container-content3">
+        <nav class="navbar">
+          <header>Web Forms</header>
+          <ul>
+            <li><a class="nav-link" href="#introduction">Introduction</a></li>
+            <li>
+              <a class="nav-link" href="#prerequisites">Prerequisites</a>
+            </li>
+            <li><a class="nav-link" href="#design">Design</a></li>
+            <li>
+              <a class="nav-link" href="#the_form_element">The form element</a>
+            </li>
+            <li>
+              <a class="nav-link" href="#the_label_input_and_textarea_elements"
+                >The label, input, and textarea elements</a
+              >
+            </li>
+            <li>
+              <a class="nav-link" href="#the_button_element"
+                >The button element</a
+              >
+            </li>
+            <li><a class="nav-link" href="#styling">Styling</a></li>
+            <li>
+              <a class="nav-link" href="#submitting_data">Submitting data</a>
+            </li>
+          </ul>
+        </nav>
+
+        <section id="submitting_data">
+          <h1>Submitting data</h1>
+          <div class="grid-c2">
+            <div>
+              <article class="flex-c">
+                <p>
+                  The form element defines where and how to send the data to the
+                  server thanks to the action and method attributes.
+                </p>
+                <p>
+                  The form data is sent to the server as name/value pairs. We
+                  provide a name attribute for each form control. The names are
+                  important on both the client- and server-side; they tell the
+                  browser which name to give each piece of data and, on the
+                  server side, they let the server handle each piece of data by
+                  name.
+                </p>
+                <p>
+                  In our example, the form will send 3 pieces of data named
+                  "user_name", "user_email", and "user_message". That data will
+                  be sent to the URL "/my-handling-form-page" using the HTTP
+                  POST method.
+                </p>
+                <p>
+                  On the server side, the script at the URL
+                  "/my-handling-form-page" will receive the data as a list of 3
+                  key/value items contained in the HTTP request. The way this
+                  script will handle that data is up to you. It's beyond the
+                  scope of this guide to go deeply into that subject
+                </p>
+                <p>
+                  To name the data in a form, you need to use the name attribute
+                  on each form widget that will collect a specific piece of
+                  data:
+                </p>
+              </article>
+            </div>
+            <div>
+              <pre><codeblock id="codeblock-submit-data" class="code"></codeblock></pre>
+              <script>
+                document.getElementById("codeblock-submit-data").textContent =
+                  `<form 
   action="/handle-form-page" 
   method="post">
   ...
@@ -615,13 +615,11 @@
   >
   </textarea>
   ...`;
-                  </script>
-                </div>
-              </div>
-            </section>
+              </script>
+            </div>
           </div>
-        </div>
-        -->
+        </section>
+      </div>
     </main>
     <footer>
       <div class="page-container">
