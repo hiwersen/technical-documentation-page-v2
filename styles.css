@@ -963,8 +963,8 @@ footer a {
     width: 80%;
     justify-self: center;
     /* ! Match bottom's margin displacement */
-    margin-top: 44px;
-    margin-bottom: 96px;
+    margin-top: 39px;
+    margin-bottom: 39px;
   }
 
   label {
@@ -980,7 +980,8 @@ footer a {
   button {
     grid-column: unset;
     align-self: center;
-    margin-bottom: -4.1em;
+    margin-top: 1.4em;
+    margin-bottom: 0;
   }
 }
 
