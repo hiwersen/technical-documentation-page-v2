@@ -107,6 +107,10 @@ header {
   padding: 0.25em;
 }
 
+section[id]:not(:first-of-type) {
+  scroll-margin-top: var(--sp10);
+}
+
 h1 {
   color: var(--c5);
   font-size: 4.5em;
@@ -846,7 +850,7 @@ footer a {
 
   .nav-links a {
     /* ! BUG: Ellipsis doesn't work with flexbox ? */
-    height: var(--sp9);
+    height: calc(var(--sp9) - var(--sp3));
     display: flex;
     align-items: center;
     padding: 0 1.5em;
