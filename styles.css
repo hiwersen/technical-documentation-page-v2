@@ -274,6 +274,15 @@ footer a {
   z-index: 99;
 }
 
+.navbar:has(.nav-links.active)::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(3px);
+  z-index: -1;
+}
+
 .hamb-menu {
   position: relative;
   display: none;
@@ -506,6 +515,19 @@ footer a {
 #the_button_element > .first-paragraph {
   font-size: inherit;
 }
+
+/* ! TODO: Align .code height
+#the_form_element > .grid-c2 > div:first-of-type,
+#the_button_element > .grid-c2 > div:first-of-type {
+  min-height: 100%;
+  background-color: yellow;
+}
+
+#the_form_element .code,
+#the_button_element .code {
+  min-height: 100%;
+}
+*/
 
 #styling {
   position: relative;
