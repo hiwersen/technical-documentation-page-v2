@@ -793,7 +793,11 @@ footer a {
     width: 100%;
   }
 
-  .navbar > header {
+  .navbar.menu-only {
+    width: fit-content;
+  }
+
+  header {
     font-size: 1.5em;
     background-color: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(5px);
@@ -806,10 +810,26 @@ footer a {
     min-height: var(--sp9);
   }
 
+  header.menu {
+    padding: 0.25em;
+    min-height: initial;
+  }
+
   .nav-links-container {
     width: 75%;
     max-width: 100%;
     min-width: var(--sp12);
+  }
+
+  .navbar-label.hide,
+  .section-in-view.hide,
+  .nav-links-container.hide {
+    /* ! BUG FIXED:
+    for some reason the .nav-links-container
+    affects the header's width
+    despite being siblings
+    FIX: remove nav-links from the document flow */
+    display: none !important;
   }
 
   .nav-links {
@@ -825,7 +845,7 @@ footer a {
   }
 
   .nav-links a {
-    /* ! Ellipsis doesn't work with flexbox ? */
+    /* ! BUG: Ellipsis doesn't work with flexbox ? */
     height: var(--sp9);
     display: flex;
     align-items: center;
@@ -949,7 +969,7 @@ footer a {
 }
 
 @media screen and (max-width: 510px) {
-  .navbar > header {
+  header {
     font-size: 1.25em;
     padding: 0.25em 0.5em;
     gap: var(--sp3);
