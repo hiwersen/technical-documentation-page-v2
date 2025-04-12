@@ -1,14 +1,30 @@
 window.addEventListener("load", () => {
+  const header = document.querySelector("header");
+  const footer = document.querySelector("footer");
   const sections = document.querySelectorAll("section");
   const navBar = document.querySelector(".navbar");
-  const header = document.querySelector("header");
   const navbarLabel = document.querySelector(".navbar-label");
   const sectionInView = document.querySelector(".section-in-view");
   const navLinksContainer = document.querySelector(".nav-links-container");
   const navLinks = document.querySelector(".nav-links");
   const navLinksList = document.querySelectorAll(".nav-link");
   const hambMenu = document.querySelector(".hamb-menu");
-  let lastY = null;
+
+  let lastY = 0;
+
+  function navbarMenuOnly() {
+    navBar.classList.add("menu-only");
+    navbarLabel.classList.add("hide");
+    sectionInView.classList.add("hide");
+    navLinksContainer.classList.add("hide");
+  }
+
+  function navbarMiniForm() {
+    navBar.classList.remove("menu-only");
+    navbarLabel.classList.remove("hide");
+    sectionInView.classList.remove("hide");
+    navLinksContainer.classList.remove("hide");
+  }
 
   window.addEventListener("scroll", () => {
     let sectionInViewID = "";
@@ -23,19 +39,22 @@ window.addEventListener("load", () => {
       submitting_data: "Submitting Data",
     };
 
-    if (!navLinks.classList.contains("active")) {
-      if (lastY && scrollY > lastY) {
-        navbarLabel.classList.add("hide");
-        sectionInView.classList.add("hide");
-        navLinksContainer.classList.add("hide");
-        navBar.classList.add("menu-only");
-        header.classList.add("menu");
+    // Show header as mini-form field when scroll is at header or footer
+    if (
+      scrollY <= header.offsetTop + header.offsetHeight ||
+      scrollY >= footer.offsetTop - window.innerHeight
+    ) {
+      navbarMiniForm();
+    } else if (
+      // Don't change header while menu is open and
+      // Exclude minor scroll changes to avoid flickering
+      !navLinks.classList.contains("active") &&
+      Math.abs(scrollY - lastY) > 10
+    ) {
+      if (scrollY > lastY) {
+        navbarMenuOnly();
       } else {
-        navbarLabel.classList.remove("hide");
-        sectionInView.classList.remove("hide");
-        navLinksContainer.classList.remove("hide");
-        navBar.classList.remove("menu-only");
-        header.classList.remove("menu");
+        navbarMiniForm();
       }
     }
 
