@@ -97,6 +97,7 @@ main {
   flex-wrap: wrap;
   column-gap: var(--sp4);
   row-gap: var(--sp8);
+  background-color: yellow;
 }
 
 header {
@@ -516,18 +517,16 @@ footer a {
   font-size: inherit;
 }
 
-/* ! TODO: Align .code height
-#the_form_element > .grid-c2 > div:first-of-type,
-#the_button_element > .grid-c2 > div:first-of-type {
-  min-height: 100%;
-  background-color: yellow;
+/* Match .code's height to its sibling article */
+#the_form_element > .grid-c2 > div:first-of-type pre,
+#the_button_element > .grid-c2 > div:first-of-type pre {
+  height: 100%;
 }
 
-#the_form_element .code,
-#the_button_element .code {
-  min-height: 100%;
+#the_form_element > .grid-c2 > div:first-of-type code,
+#the_button_element > .grid-c2 > div:first-of-type code {
+  height: 100%;
 }
-*/
 
 #styling {
   position: relative;
@@ -623,6 +622,7 @@ footer a {
   line-height: 2;
   background-color: var(--c2);
   padding: 0.8em;
+  overflow-y: auto;
 }
 
 #form-container {
