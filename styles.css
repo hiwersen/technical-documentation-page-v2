@@ -77,6 +77,10 @@ main {
   column-gap: var(--sp6);
 }
 
+#container-content3 {
+  margin-bottom: var(--sp11);
+}
+
 .grid-c1 {
   flex: 1;
   display: grid;
@@ -243,6 +247,7 @@ footer a {
   width: min-content;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   row-gap: 1.25em;
 }
 
@@ -255,6 +260,7 @@ footer a {
   width: var(--sp12);
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   gap: var(--sp4);
 }
 
@@ -281,7 +287,8 @@ footer a {
   */
   display: flex;
   flex-wrap: wrap;
-  gap: var(--sp3);
+  column-gap: var(--sp4);
+  row-gap: var(--sp3);
 }
 
 .navbar {
@@ -451,6 +458,9 @@ footer a {
 }
 
 #introduction .list ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: var(--sp3);
   column-gap: var(--sp4);
 }
 
@@ -732,14 +742,29 @@ footer a {
   padding-top: 1.5em;
 }
 
-#submitting_data > div:first-of-type > .flex-c p {
-  padding-top: var(--sp6);
-  max-width: var(--sp12);
-  border-top: var(--sp1x0) solid var(--c2);
+#submitting_data {
+  /* ! BUG FIXED: don't use width: 100% 
+  otherwise it will invade the sibling's apace */
+  flex: 1;
 }
 
-#submitting_data {
-  margin-bottom: 0;
+#submitting_data .banner p {
+  color: unset;
+  border-top: var(--sp1x0) solid var(--c2);
+  padding-top: var(--sp4);
+}
+
+#submitting_data .banner {
+  column-gap: calc(var(--sp6) + var(--sp2));
+  height: fit-content;
+}
+
+.flex-r {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: var(--sp4);
+  column-gap: calc(var(--sp6) + var(--sp2));
+  height: fit-content;
 }
 
 @media screen and (max-width: 1300px) {
@@ -750,7 +775,8 @@ footer a {
   }
 
   .list ul {
-    row-gap: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .list li {
@@ -948,6 +974,18 @@ footer a {
     justify-content: center;
   }
 
+  .list ul {
+    grid-template-columns: 1fr !important;
+  }
+
+  main {
+    row-gap: var(--sp10);
+  }
+
+  #container-content3 {
+    margin-bottom: var(--sp10);
+  }
+
   .grid-c1 {
     gap: var(--sp10);
   }
@@ -998,15 +1036,19 @@ footer a {
   button {
     justify-self: center;
   }
+
+  .list li {
+    max-width: unset;
+  }
+
+  .banner {
+    width: unset;
+  }
 }
 
 @media screen and (max-width: 450px) {
   h1 {
     font-size: 2.3em;
-  }
-
-  .list ul {
-    flex-direction: column;
   }
 
   .code {
