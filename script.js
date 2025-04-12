@@ -49,7 +49,7 @@ window.addEventListener("load", () => {
       // Don't change header while menu is open and
       // Exclude minor scroll changes to avoid flickering
       !navLinks.classList.contains("active") &&
-      Math.abs(scrollY - lastY) > 10
+      Math.abs(scrollY - lastY) > 1
     ) {
       if (scrollY > lastY) {
         navbarMenuOnly();
