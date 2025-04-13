@@ -129,7 +129,7 @@
                   <p>
                     From a user experience (UX) point of view, it's important to
                     remember that the bigger your form, the more you risk
-                    frustrating people and losing users. Keep it simple and stay
+                    frustrating people and losing them. Keep it simple and stay
                     focused: ask only for the data you absolutely need.
                   </p>
                   <p>
@@ -145,13 +145,13 @@
             <div id="form-container">
               <form action="/my-handling-form-page" method="post">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="user_name" required />
+                <input type="text" id="name" name="user-name" required />
                 <label for="mail">Email:</label>
-                <input type="email" id="mail" name="user_email" required />
+                <input type="email" id="mail" name="user-email" required />
                 <label for="msg">Message:</label>
                 <textarea
                   id="msg"
-                  name="user_message"
+                  name="user-message"
                   rows="4"
                   required
                 ></textarea>
@@ -230,10 +230,41 @@
                     corresponding control, and it also provides an accessible
                     name for screen readers to read out to their users.
                   </p>
-                  <p>
-                    In terms of HTML code we need something like the following
-                    to implement these form widgets:
-                  </p>
+                  <div class="list">
+                    <p>
+                      Our contact form is not complex: the data entry portion
+                      contains three text fields, each with a corresponding
+                      <a
+                        href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label"
+                        target="_blank"
+                        ><code>&lt;label&gt;</code></a
+                      >:
+                    </p>
+                    <ul>
+                      <li>
+                        The
+                        <a
+                          href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input"
+                          target="_blank"
+                          ><code>&lt;input&gt;</code></a
+                        >
+                        field for the name is a single-line text field.
+                      </li>
+                      <li>
+                        The input field for the email is an input of type email:
+                        a single-line text field that accepts only email
+                        addresses.
+                      </li>
+                      <li>
+                        The input field for the message is a
+                        <a
+                          href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea"
+                          target="_blank"
+                          ><code>&lt;textarea&gt;</code></a
+                        >; a multiline text field.
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
               <div>
@@ -246,12 +277,26 @@
   method="post"
 >
   <label for="name">Name</label>
-  <input type="text" id="name" name="user_name"/>
+  <input 
+    id="name" 
+    name="user-name" 
+    type="text" 
+  />
   <label for="mail">Email</label>
-  <input type="email" id="mail" name="user_email"/>
+  <input 
+    id="mail" 
+    name="user-email"
+    type="email"
+  />
   <label for="msg">Message</label>
-  <textarea id="msg" name="user_message"</textarea>
-  <button type="submit">Send your message</button>
+  <textarea 
+    id="msg" 
+    name="user-message">
+  </textarea>
+  <button 
+    type="submit">
+    Send your message
+  </button>
 </form>`;
                 </script>
               </div>
@@ -259,40 +304,6 @@
 
             <div id="text-input" class="grid-c2">
               <div class="flex-r">
-                <div class="list">
-                  <p>
-                    Our contact form is not complex: the data entry portion
-                    contains three text fields, each with a corresponding
-                    <a
-                      href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label"
-                      target="_blank"
-                      ><code>&lt;label&gt;</code></a
-                    >:
-                  </p>
-                  <ul>
-                    <li>
-                      The
-                      <a
-                        href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input"
-                        target="_blank"
-                        ><code>&lt;input&gt;</code></a
-                      >
-                      field for the name is a single-line text field.
-                    </li>
-                    <li>
-                      The input field for the email is an input of type email: a
-                      single-line text field that accepts only email addresses.
-                    </li>
-                    <li>
-                      The input field for the message is a
-                      <a
-                        href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea"
-                        target="_blank"
-                        ><code>&lt;textarea&gt;</code></a
-                      >; a multiline text field.
-                    </li>
-                  </ul>
-                </div>
                 <div class="list">
                   <p>
                     On the input element, the most important attribute is the
@@ -325,8 +336,9 @@
                 <pre><code id="code-input-value" class="code"></code></pre>
                 <script>
                   document.getElementById("code-input-value").textContent =
-                    `<input 
-  type="text" 
+                    `<input
+  name="user-name"
+  type="text"
   value="default text here..." 
 />`;
                 </script>
@@ -357,7 +369,9 @@
                 <script>
                   document.getElementById(
                     "codeblock-textarea-value"
-                  ).textContent = `<textarea>
+                  ).textContent = `<textarea
+  name="user-message"
+>
   default text here...
 </textarea>`;
                 </script>
@@ -588,7 +602,7 @@
                 </p>
                 <p>
                   In our example, the form will send 3 pieces of data named
-                  "user_name", "user_email", and "user_message". That data will
+                  "user-name", "user-email", and "user-message". That data will
                   be sent to the URL "/my-handling-form-page" using the HTTP
                   POST method.
                 </p>
@@ -616,26 +630,18 @@
   action="/handle-form-page" 
   method="post"
 >
-  ...
   <input
     name="user-name"
-    id="name"
-    type="text" 
   />
-  ...
   <input
     name="user-email"
-    id="mail"
     type="email" 
   />
-  ...
   <textarea
     name="user-message"
-    id="message"
   >
   </textarea>
-  <button 
-    type="submit">
+  <button>
     Send your message
   </button>
 </form>`;
