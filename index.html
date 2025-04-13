@@ -437,28 +437,34 @@
           </section>
         </div>
       </div>
-      <!--
-        <div id="container-content2">
-          <section id="styling">
-            <div>
+
+      <div id="container-content2">
+        <section id="styling" class="flex-c">
+          <div class="flex-c">
+            <div class="grid-c2">
               <h2>
                 <pre><codeblock id="codeblock-style-element" class="code"></codeblock></pre>
                 <script>
                   document.getElementById(
                     "codeblock-style-element"
                   ).textContent = `<style>
-    …
-  </style>`;
+  …
+</style>`;
                 </script>
               </h2>
-              <div class="style-ps">
-                <div>
+            </div>
+
+            <div class="grid-c2">
+              <div class="flex-r">
+                <div class="banner">
                   <p>
                     It is beyond the scope of this documentation to teach form
                     styling in detail but some basic form styling with CSS to
                     make it look
                     <span class="ok">OK.</span>
                   </p>
+                </div>
+                <div class="banner">
                   <p>
                     First of all, add a
                     <a
@@ -471,64 +477,69 @@
                 </div>
               </div>
             </div>
-            <div class="css">
-              <p>Inside the style tags, add the following CSS:</p>
+          </div>
 
-              <pre><codeblock id="codeblock-css" class="code">
-  form {
-      /* Center the form on the page */
-      margin: 0 auto;
-      width: 400px;
-      /* Form outline */
-      padding: 16px;
-      border: 1px solid #ccc;
-      border-radius: 1em;
-  }
-      
-  label {
-      /* Uniform size & alignment */
-      display: inline-block;
-      width: 90px;
-      text-align: right;
-  }
-      
-  input,
-  textarea {
-      /* To make sure that all text fields have the same font settings
-          By default, textareas have a monospace font */
-      font: 1em sans-serif;
-  
-      /* Uniform text field size */
-      width: 300px;
-      box-sizing: border-box;
-  
-      /* Match form field borders */
-      border: 1px solid #999;
-  }
-      
-  textarea {
-      /* Align multiline text fields with their labels */
-      vertical-align: top;
-  }
-      
-  button {
-      /* This extra margin represents roughly the same space as the space
-          between the labels and their text fields */
-      /* Align buttons with the text fields */
-      margin-left: 98px; /* same size as the label elements */
-  }
-      
-  input:not(input:first-of-type),
-  label:not(label:first-of-type),
-  textarea,
-  button {
-      margin-top: 16px;
-  }
+          <div class="css-code">
+            <p>Inside the style tags, add the following CSS:</p>
+
+            <pre><codeblock id="codeblock-css" class="code">
+form {
+  /* Center the form on the page */
+  margin: 0 auto;
+  width: 400px;
+  /* Form outline */
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 1em;
+}
+    
+label {
+  /* Uniform size & alignment */
+  display: inline-block;
+  width: 90px;
+  text-align: right;
+}
+    
+input,
+textarea {
+  /* Make sure all text fields
+    have the same font settings
+    By default and textarea have
+    a monospace font
+  */
+  font: 1em sans-serif;
+
+  /* Uniform text field's size */
+  width: 300px;
+  box-sizing: border-box;
+
+  /* Match form field's borders */
+  border: 1px solid #999;
+}
+    
+textarea {
+  /* Align multiline text fields
+    with their labels */
+  vertical-align: top;
+}
+    
+button {
+  /* This extra margin represents 
+    roughly the same space as the space
+    between the labels and their text fields */
+  margin-left: 98px;
+}
+    
+input:not(input:first-of-type),
+label:not(label:first-of-type),
+textarea,
+button {
+    margin-top: 16px;
+}
               </codeblock></pre>
-            </div>
-          </section>
-        </div>
-        -->
+          </div>
+        </section>
+      </div>
       <div id="container-content3">
         <nav class="navbar">
           <header>

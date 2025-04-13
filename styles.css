@@ -550,64 +550,31 @@ pre {
   height: 100%;
 }
 
-#styling {
-  position: relative;
-  font-size: 1.2em;
-  color: var(--color2);
+#styling > .flex-c:first-of-type {
+  flex-direction: column-reverse;
+  row-gap: var(--sp6);
+  background-color: var(--c2);
+  padding: var(--sp6);
 }
 
 #styling h2 {
-  font-size: 7em;
+  font-size: clamp(2.5em, 10vw - 24px, 156px);
   color: var(--color4);
   letter-spacing: 0.1em;
   width: fit-content;
   margin: 0;
 }
 
-#styling > div:first-of-type {
-  min-height: 90vh;
-  display: flex;
-  flex-direction: column-reverse;
-  background-color: var(--bg-color1);
-  padding: 12px;
+#styling > .flex-c:first-of-type > .grid-c2:nth-of-type(2) .flex-r {
+  grid-column: 2;
 }
 
-.style-ps {
-  display: flex;
-  gap: 64px;
-}
-
-.style-ps::before {
-  content: "";
-  flex: 0.5;
-}
-
-.style-ps div {
-  display: flex;
-  column-gap: 16px;
-  flex: 0.5;
-}
-
-.style-ps p {
-  color: var(--color1);
-  max-width: 280px;
-  margin: 0;
+#styling .banner {
+  color: var(--c5);
 }
 
 .ok {
   font-size: 1.2em;
-}
-
-#styling article > div:first-of-type {
-  display: flex;
-  justify-content: center;
-  margin: 160px 0;
-  font-size: 1.7em;
-  line-height: initial;
-}
-
-#styling article > div div:nth-of-type(1) {
-  flex: 0.8;
 }
 
 #codeblock-style-element {
@@ -616,20 +583,18 @@ pre {
   padding: 0;
 }
 
-#codeblock-css {
-  background-color: var(--bg-color2);
-  color: var(--color3);
-}
-
 #styling a {
   color: inherit;
 }
 
-.css {
+.css-code {
   position: relative;
+
+  /* ! DEBUGGING */
+  display: none;
 }
 
-.css > p:first-of-type {
+.css-code > p:first-of-type {
   position: absolute;
   top: 12px;
   left: 24px;
@@ -716,6 +681,10 @@ pre {
   .grid-c2 {
     display: flex;
     flex-direction: column;
+  }
+
+  #styling > .flex-c:first-of-type {
+    flex-direction: initial;
   }
 
   .list ul {
