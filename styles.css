@@ -92,7 +92,7 @@ main {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: var(--sp6);
-  row-gap: var(--sp6);
+  row-gap: var(--sp9);
   width: 100%;
 }
 
@@ -122,7 +122,7 @@ main {
   flex-direction: column;
   flex-wrap: wrap;
   column-gap: var(--sp4);
-  row-gap: var(--sp8);
+  row-gap: var(--sp10);
 }
 
 header {
@@ -257,15 +257,11 @@ footer a {
 }
 
 .banner {
-  width: var(--sp12);
+  flex: 1;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   gap: var(--sp4);
-}
-
-.banner p {
-  color: var(--c5);
 }
 
 .list {
@@ -285,10 +281,23 @@ footer a {
   grid-template-rows: auto;
   gap: var(--sp2);
   */
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: var(--sp4);
+
+  /*
   display: flex;
   flex-wrap: wrap;
   column-gap: var(--sp4);
   row-gap: var(--sp3);
+  */
+}
+
+.list li {
+  border-top: var(--sp1x0) solid var(--c2);
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
 }
 
 .navbar {
@@ -438,7 +447,6 @@ footer a {
 }
 
 #introduction h1 {
-  font-weight: bold;
   letter-spacing: -0.09em;
   line-height: 0.8em;
   margin: 1em 0;
@@ -457,13 +465,6 @@ footer a {
   font-size: 0.85em;
 }
 
-#introduction .list ul {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  row-gap: var(--sp3);
-  column-gap: var(--sp4);
-}
-
 #introduction .list ul > * {
   flex: 0.5;
 }
@@ -472,7 +473,7 @@ footer a {
   position: relative;
   background-color: var(--c5);
   min-height: 50vh;
-  padding-top: var(--sp8);
+  padding: var(--sp8) 0;
 }
 
 #prerequisites::after {
@@ -529,7 +530,7 @@ footer a {
 }
 
 .first-paragraph {
-  font-size: 1.4em;
+  font-size: 1.6em;
 }
 
 #the_form_element h1,
@@ -543,14 +544,8 @@ footer a {
 }
 
 /* Match .code's height to its sibling article */
-#the_form_element > .grid-c2 > div:first-of-type pre,
-#the_button_element > .grid-c2 > div:first-of-type pre {
-  height: 100%;
-}
-
-/* Match .code's height to its sibling article */
-#the_form_element > .grid-c2 > div:first-of-type code,
-#the_button_element > .grid-c2 > div:first-of-type code {
+.code,
+pre {
   height: 100%;
 }
 
@@ -657,89 +652,27 @@ footer a {
   border: var(--sp1) solid var(--c5);
 }
 
-#the_label_input_and_textarea_elements h1 {
-  display: flex;
-  flex-direction: column;
+#the_label_input_and_textarea_elements h1 > span {
+  display: block;
 }
 
-#the_label_input_and_textarea_elements > div:first-of-type {
-  display: flex;
-  gap: 64px;
+#title-and-label h1 {
+  margin-bottom: 0;
 }
 
-#the_label_input_and_textarea_elements > div:first-of-type div {
-  flex: 0.5;
+#title-and-label.grid-c2,
+#text-input.grid-c2,
+#textarea.grid-c2 {
+  row-gap: var(--sp6);
 }
 
-#the_label_input_and_textarea_elements > div:first-of-type > div:last-of-type {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+#text-input .flex-r {
+  row-gap: var(--sp8);
 }
 
-#the_label_input_and_textarea_elements
-  > div:first-of-type
-  > div:last-of-type
-  p {
-  max-width: 280px;
-  border-top: 0.5px solid var(--color1);
-  padding-top: 1.5em;
-}
-
-.note p {
-  flex: 0.5;
-  color: var(--color1);
-  margin: 0;
-}
-
-.text-fields-info {
-  margin-top: 180px;
-}
-
-#textarea,
-#text-input {
-  display: flex;
-  gap: 64px;
-  margin-top: 40px;
-}
-
-#textarea > div,
-#text-input > div {
-  flex: 0.5;
-}
-
-#textarea > div:first-of-type {
-  flex: 0.5;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-#text-input > div:first-of-type {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-#textarea > div:first-of-type > p,
-#text-input > div:first-of-type > div {
-  max-width: 280px;
-  border-top: 0.5px solid var(--color1);
-  padding-top: 1.5em;
-}
-
-#text-input > div:last-of-type,
-#textarea > div:last-of-type {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-#text-input > div:last-of-type > div:first-of-type,
-#textarea > div:last-of-type > div:first-of-type {
-  max-width: 280px;
-  border-top: 0.5px solid var(--color1);
-  padding-top: 1.5em;
+#title-and-label .flex-c > p:last-of-type,
+#text-input .flex-r > div:last-of-type {
+  color: var(--c5);
 }
 
 #submitting_data {
@@ -763,7 +696,7 @@ footer a {
   display: flex;
   flex-wrap: wrap;
   row-gap: var(--sp4);
-  column-gap: calc(var(--sp6) + var(--sp2));
+  column-gap: var(--sp6);
   height: fit-content;
 }
 
@@ -771,19 +704,11 @@ footer a {
   .grid-c2 {
     display: flex;
     flex-direction: column;
-    row-gap: var(--sp10);
   }
 
   .list ul {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .list li {
-    max-width: var(--sp12);
-    border-top: var(--sp1x0) solid var(--c2);
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
   }
 
   #introduction .list {
@@ -931,7 +856,7 @@ footer a {
   }
 
   .first-paragraph {
-    font-size: 1.2em;
+    font-size: 1.4em;
   }
 
   #introduction {
@@ -990,8 +915,16 @@ footer a {
     gap: var(--sp10);
   }
 
+  .flex-c {
+    gap: var(--sp8);
+  }
+
   #design.flex-c {
     row-gap: var(--sp10);
+  }
+
+  .banner p {
+    width: initial;
   }
 
   form {
@@ -1042,7 +975,7 @@ footer a {
   }
 
   .banner {
-    width: unset;
+    flex: initial;
   }
 }
 

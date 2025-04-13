@@ -211,164 +211,159 @@
             </div>
           </section>
 
-          <!--
-            <section id="the_label_input_and_textarea_elements">
-              <div>
-                <div>
-                  <h1>
-                    <span>The label,</span>
-                    <span>input and</span>
-                    <span>textarea</span>
-                    <span>elements</span>
-                  </h1>
-                  <div class="note first-paragraph">
-                    <p>
-                      Note the use of the for attribute on all label elements,
-                      which takes as its value the id of the form control with
-                      which it is associated — this is how you associate a form
-                      control with its label, enabling mouse, trackpad, and
-                      touch device users to click on the label to activate the
-                      corresponding control, and it also provides an accessible
-                      name for screen readers to read out to their users.
-                    </p>
-                  </div>
-                </div>
-                <div>
+          <section id="the_label_input_and_textarea_elements" class="flex-c">
+            <div id="title-and-label" class="grid-c2">
+              <div class="flex-c">
+                <h1>
+                  <span>The label,</span>
+                  <span>input and</span>
+                  <span>textarea</span>
+                  <span>elements</span>
+                </h1>
+                <div class="flex-c">
+                  <p class="first-paragraph">
+                    Note the use of the for attribute on all label elements,
+                    which takes as its value the id of the form control with
+                    which it is associated — this is how you associate a form
+                    control with its label, enabling mouse, trackpad, and touch
+                    device users to click on the label to activate the
+                    corresponding control, and it also provides an accessible
+                    name for screen readers to read out to their users.
+                  </p>
                   <p>
                     In terms of HTML code we need something like the following
                     to implement these form widgets:
                   </p>
-                  
-                  <pre><codeblock id="codeBlock-form-container" class="code"></codeblock></pre>
-                  <script>
-                    document.getElementById(
-                      "codeBlock-form-container"
-                    ).textContent =
-                      `<form action="/my-handling-form-page" method="post">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="user_name" />
-        <label for="mail">Email:</label>
-        <input type="email" id="mail" name="user_email" />
-        <label for="msg">Message:</label>
-        <textarea id="msg" name="user_message"></textarea>
-        <button type="submit">Send your message</button>
-      </form>`;
-                  </script>
                 </div>
               </div>
+              <div>
+                <pre><codeblock id="codeBlock-form-container" class="code"></codeblock></pre>
+                <script>
+                  document.getElementById(
+                    "codeBlock-form-container"
+                  ).textContent = `<form 
+  action="/my-handling-form-page" 
+  method="post"
+>
+  <label for="name">Name</label>
+  <input type="text" id="name" name="user_name"/>
+  <label for="mail">Email</label>
+  <input type="email" id="mail" name="user_email"/>
+  <label for="msg">Message</label>
+  <textarea id="msg" name="user_message"</textarea>
+  <button type="submit">Send your message</button>
+</form>`;
+                </script>
+              </div>
+            </div>
 
-              <div class="text-fields-info">
-                <div id="text-input">
-                  <div>
-                    <div>
-                      <p class="list-header">
-                        Our contact form is not complex: the data entry portion
-                        contains three text fields, each with a corresponding
-                        <a
-                          href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label"
-                          target="_blank"
-                          ><code>&lt;label&gt;</code></a
-                        >:
-                      </p>
-
-                      <ul>
-                        <li>
-                          The
-                          <a
-                            href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input"
-                            target="_blank"
-                            ><code>&lt;input&gt;</code></a
-                          >
-                          field for the name is a single-line text field.
-                        </li>
-                        <li>
-                          The input field for the email is an input of type
-                          email: a single-line text field that accepts only
-                          email addresses.
-                        </li>
-                        <li>
-                          The input field for the message is a
-                          <a
-                            href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea"
-                            target="_blank"
-                            ><code>&lt;textarea&gt;</code></a
-                          >; a multiline text field.
-                        </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <p class="list-header">
-                        On the input element, the most important attribute is
-                        the type attribute. This attribute is extremely
-                        important because it defines the way the input element
-                        appears and behaves.
-                      </p>
-                      <ul>
-                        <li>
-                          In our simple example, we use the value text for the
-                          first input — the default value for this attribute. It
-                          represents a basic single-line text field that accepts
-                          any kind of text input.
-                        </li>
-                        <li>
-                          For the second input, we use the value email, which
-                          defines a single-line text field that only accepts a
-                          well-formed email address.
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div>
-                    <div>
-                      <p>
-                        To define the default value of an input element you have
-                        to use the value attribute like this:
-                      </p>
-                    </div>
-                    <div>
-                      <pre><code id="code-input-value" class="code"></code></pre>
-                      <script>
-                        document.getElementById(
-                          "code-input-value"
-                        ).textContent = `<input 
-      type="text" 
-      value="default text here..." 
-    />`;
-                      </script>
-                    </div>
-                  </div>
+            <div id="text-input" class="grid-c2">
+              <div class="flex-r">
+                <div class="list">
+                  <p>
+                    Our contact form is not complex: the data entry portion
+                    contains three text fields, each with a corresponding
+                    <a
+                      href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label"
+                      target="_blank"
+                      ><code>&lt;label&gt;</code></a
+                    >:
+                  </p>
+                  <ul>
+                    <li>
+                      The
+                      <a
+                        href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input"
+                        target="_blank"
+                        ><code>&lt;input&gt;</code></a
+                      >
+                      field for the name is a single-line text field.
+                    </li>
+                    <li>
+                      The input field for the email is an input of type email: a
+                      single-line text field that accepts only email addresses.
+                    </li>
+                    <li>
+                      The input field for the message is a
+                      <a
+                        href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea"
+                        target="_blank"
+                        ><code>&lt;textarea&gt;</code></a
+                      >; a multiline text field.
+                    </li>
+                  </ul>
                 </div>
-                <div id="textarea">
-                  <div>
-                    <p>
-                      Last but not least, note the syntax of input vs. textarea.
-                      This is one of the oddities of HTML. The input tag is a
-                      void element, meaning that it doesn't need a closing tag.
-                      textarea is not a void element, meaning it should be
-                      closed with the proper ending tag.
-                    </p>
-                  </div>
-                  <div>
-                    <div>
-                      <p>
-                        If you want to define a default value for a textarea,
-                        you put it between the opening and closing tags of the
-                        textarea element, like this:
-                      </p>
-                    </div>
-                    <pre><codeblock id="codeblock-textarea-value" class="code"></codeblock></pre>
-                    <script>
-                      document.getElementById(
-                        "codeblock-textarea-value"
-                      ).textContent = `<textarea>
-      default text here...
-    </textarea>`;
-                    </script>
-                  </div>
+                <div class="list">
+                  <p>
+                    On the input element, the most important attribute is the
+                    type attribute. This attribute is extremely important
+                    because it defines the way the input element appears and
+                    behaves.
+                  </p>
+                  <ul>
+                    <li>
+                      In our simple example, we use the value text for the first
+                      input — the default value for this attribute. It
+                      represents a basic single-line text field that accepts any
+                      kind of text input.
+                    </li>
+                    <li>
+                      For the second input, we use the value email, which
+                      defines a single-line text field that only accepts a
+                      well-formed email address.
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <p>
+                    To define the default value of an input element you have to
+                    use the value attribute like this:
+                  </p>
                 </div>
               </div>
-            </section>
-            -->
+              <div>
+                <pre><code id="code-input-value" class="code"></code></pre>
+                <script>
+                  document.getElementById("code-input-value").textContent =
+                    `<input 
+  type="text" 
+  value="default text here..." 
+/>`;
+                </script>
+              </div>
+            </div>
+
+            <div id="textarea" class="grid-c2">
+              <div class="flex-r">
+                <div class="banner">
+                  <p>
+                    Last but not least, note the syntax of input vs. textarea.
+                    This is one of the oddities of HTML. The input tag is a void
+                    element, meaning that it doesn't need a closing tag.
+                    textarea is not a void element, meaning it should be closed
+                    with the proper ending tag.
+                  </p>
+                </div>
+                <div class="banner">
+                  <p>
+                    If you want to define a default value for a textarea, you
+                    put it between the opening and closing tags of the textarea
+                    element, like this:
+                  </p>
+                </div>
+              </div>
+              <div>
+                <pre><codeblock id="codeblock-textarea-value" class="code"></codeblock></pre>
+                <script>
+                  document.getElementById(
+                    "codeblock-textarea-value"
+                  ).textContent = `<textarea>
+  default text here...
+</textarea>`;
+                </script>
+              </div>
+            </div>
+          </section>
 
           <section id="the_button_element">
             <h1>The button element</h1>
@@ -619,26 +614,31 @@
                 document.getElementById("codeblock-submit-data").textContent =
                   `<form 
   action="/handle-form-page" 
-  method="post">
+  method="post"
+>
   ...
   <input
-    name="user_name"
+    name="user-name"
     id="name"
     type="text" 
   />
   ...
   <input
-    name="user_email"
+    name="user-email"
     id="mail"
     type="email" 
   />
   ...
   <textarea
-    name="user_message"
-    id="msg"
+    name="user-message"
+    id="message"
   >
   </textarea>
-  ...`;
+  <button 
+    type="submit">
+    Send your message
+  </button>
+</form>`;
               </script>
             </div>
           </div>
