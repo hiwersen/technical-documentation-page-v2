@@ -136,7 +136,8 @@ section[id]:not(:first-of-type) {
   scroll-margin-top: var(--sp10);
 }
 
-h1 {
+h1,
+h2 {
   color: var(--c5);
   font-size: 3.7em;
   line-height: 1;
@@ -497,7 +498,7 @@ footer a {
   color: var(--c2);
 }
 
-#prerequisites h1 {
+#prerequisites h2 {
   color: var(--c3);
   font-size: 1.775em;
 }
@@ -510,7 +511,7 @@ footer a {
   row-gap: var(--sp11);
 }
 
-#design h1 {
+#design h2 {
   font-size: clamp(6.5em, 11.5vw, 9.9em);
   font-weight: bold;
   color: var(--c4);
@@ -533,8 +534,8 @@ footer a {
   font-size: 1.6em;
 }
 
-#the_form_element h1,
-#the_button_element h1 {
+#the_form_element h2,
+#the_button_element h2 {
   letter-spacing: -0.02em;
 }
 
@@ -555,7 +556,7 @@ pre {
   color: var(--color2);
 }
 
-#styling h1 {
+#styling h2 {
   font-size: 7em;
   color: var(--color4);
   letter-spacing: 0.1em;
@@ -652,11 +653,16 @@ pre {
   border: var(--sp1) solid var(--c5);
 }
 
-#the_label_input_and_textarea_elements h1 > span {
-  display: block;
+#the_label_input_and_textarea_elements h2 {
+  font-size: clamp(3.5em, 7.8vw, 6em);
 }
 
-#title-and-label h1 {
+#the_label_input_and_textarea_elements h2 > span {
+  display: block;
+  text-wrap: nowrap;
+}
+
+#title-and-label h2 {
   margin-bottom: 0;
 }
 
@@ -752,7 +758,7 @@ pre {
     padding: 0 var(--sp6);
   }
 
-  h1 {
+  h2 {
     font-size: 3em;
   }
 
@@ -962,7 +968,7 @@ pre {
     gap: var(--sp3);
   }
 
-  h1 {
+  h2 {
     font-size: 2.5em;
   }
 
@@ -980,7 +986,7 @@ pre {
 }
 
 @media screen and (max-width: 450px) {
-  h1 {
+  h2 {
     font-size: 2.3em;
   }
 
