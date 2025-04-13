@@ -758,6 +758,7 @@ pre {
     padding: 0 var(--sp6);
   }
 
+  h1,
   h2 {
     font-size: 3em;
   }
@@ -900,6 +901,10 @@ pre {
 }
 
 @media screen and (max-width: 580px) {
+  #introduction h1 {
+    letter-spacing: -0.04em;
+  }
+
   #design > div:first-of-type {
     display: flex;
     justify-content: center;
@@ -968,6 +973,7 @@ pre {
     gap: var(--sp3);
   }
 
+  h1,
   h2 {
     font-size: 2.5em;
   }
@@ -986,6 +992,7 @@ pre {
 }
 
 @media screen and (max-width: 450px) {
+  h1,
   h2 {
     font-size: 2.3em;
   }
