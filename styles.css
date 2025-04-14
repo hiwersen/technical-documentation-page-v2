@@ -30,6 +30,17 @@
   --ease: 0.3s ease;
 
   font-size: clamp(16px, 0.33vw + 13px, 20px);
+
+  --border1: solid var(--sp1x0) var(--c2);
+  --border2: solid var(--sp0x5) var(--c4);
+  --border3: solid var(--sp1x5) var(--c4);
+  --border4: solid var(--sp2) var(--c5);
+
+  /* Page's settings: */
+  /* Page's max-width*/
+  --page-mw: 1900px;
+  /* Pages padding */
+  --page-pd: var(--sp6);
 }
 
 /* For Firefox */
@@ -66,9 +77,9 @@ main {
 }
 
 .page-container {
-  max-width: 1900px;
+  max-width: var(--page-mw);
   margin: 0 auto;
-  padding: var(--sp6) var(--sp6) 0;
+  padding: var(--page-pd) var(--page-pd) 0;
 }
 
 #container-content1,
@@ -296,7 +307,7 @@ footer a {
 }
 
 .list li {
-  border-top: var(--sp1x0) solid var(--c2);
+  border-bottom: var(--border1);
   padding-top: 0.5em;
   padding-bottom: 0.5em;
 }
@@ -347,7 +358,7 @@ footer a {
 
 .hamb-menu span {
   display: block;
-  border-bottom: var(--sp2) solid var(--c5);
+  border-bottom: var(--border4);
   height: 0;
   width: inherit;
   transform-origin: center center;
@@ -527,7 +538,7 @@ footer a {
   bottom: -0.17em;
   left: 0.07em;
   width: 97.5%;
-  border-bottom: var(--sp1x5) solid var(--c4);
+  border-bottom: var(--border3);
 }
 
 .first-paragraph {
@@ -553,12 +564,14 @@ pre {
 #styling > .flex-c:first-of-type {
   flex-direction: column-reverse;
   row-gap: var(--sp6);
-  background-color: var(--c2);
+
+  /* ! BUILDING */
+  /* background-color: var(--c2);*/
   padding: var(--sp6);
 }
 
 #styling h2 {
-  font-size: clamp(2.5em, 10vw - 24px, 156px);
+  font-size: clamp(2.5em, 9vw - 24px, 156px);
   color: var(--color4);
   letter-spacing: 0.1em;
   width: fit-content;
@@ -608,7 +621,7 @@ pre {
   display: block;
   line-height: 2;
   background-color: var(--c2);
-  padding: 0.8em;
+  padding: 1em;
   overflow: auto;
 }
 
@@ -629,8 +642,8 @@ pre {
 
 #text-input {
   padding: var(--sp8) 0;
-  border-top: var(--sp1x5) solid var(--c4);
-  border-bottom: var(--sp1x5) solid var(--c4);
+  border-top: var(--border3);
+  border-bottom: var(--border3);
 }
 
 #title-and-label.grid-c2,
@@ -660,7 +673,7 @@ pre {
 
 #submitting_data .banner p {
   color: unset;
-  border-top: var(--sp1x0) solid var(--c2);
+  border-top: var(--border1);
   padding-top: var(--sp4);
 }
 
@@ -675,6 +688,232 @@ pre {
   row-gap: var(--sp4);
   column-gap: var(--sp6);
   height: fit-content;
+}
+
+/* ! BUILDING */
+.code-css {
+  display: none;
+}
+
+#container-content2 {
+  /* ANIMATION SETTINGS: */
+  /* Determine the length of the scroll container:
+    the container height */
+  --ch: 400vh;
+  height: var(--ch);
+
+  /* Determine the inset:
+    - adjustment of the scrollport, or
+    - length of the animation timeline */
+  --step1: calc(var(--ch) - 10vh);
+  --step2: calc(var(--ch) - 40vh);
+  --step3: calc(var(--ch) - 100vh);
+  --step4: calc(var(--ch) - 200vh);
+
+  --inset1: var(--step1) 0%; /* 0 - 10vh */
+  --inset2: var(--step2) 20vh; /* 20vh - 40vh */
+  --inset3: var(--step3) 40vh; /* 40vh - 100vh */
+  --inset4: var(--step4) 100vh; /* 100vh - 200vh */
+
+  /*  Determine the timing function: */
+  --tf: cubic-bezier(0.1, -0.6, 0.2, 0);
+
+  /* The page's padding to discount: */
+  --lp: var(--page-pd);
+
+  perspective: 1000px;
+  position: relative;
+  width: calc(100% + calc(var(--lp) * 2));
+  margin-left: calc(var(--lp) * -1);
+
+  /* ! BUILDING: never trust what you see! */
+  background-color: yellow;
+}
+
+#styling {
+  position: sticky;
+  top: 0;
+  min-height: 100dvh;
+
+  /* ANIMATION SETTINGS: */
+  /* Important for maintaining 3D */
+  /*
+  transform-style: preserve-3d;
+  animation-timeline: view(var(--inset1));
+  animation-name: slideForward;
+  animation-fill-mode: forwards;
+  animation-timing-function: var(--tf);
+  */
+
+  /* Firefox requires this to apply the animation */
+  animation-duration: 1ms;
+
+  /* ! BUILDING: never trust what you see! */
+  background-color: blue;
+}
+
+#styling h2 {
+  /* ! BUILDING: never trust what you see! */
+  background-color: chartreuse;
+}
+
+#styling p {
+  /* ! BUG: blurry fonts */
+  /* Attempts - nothing worked */
+  /* Fix text blurriness issues */
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+
+  font-smooth: never; /* For Safari */
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  text-rendering: optimizeLegibility;
+}
+
+#styling-content {
+  transform: translateY(150px);
+  /* ANIMATION SETTINGS: */
+  /*
+  animation-timeline: view(var(--inset2));
+  animation-name: slideUp;
+  animation-fill-mode: forwards;
+  animation-timing-function: var(--tf);
+  */
+  /* Firefox requires this to apply the animation */
+  animation-duration: 1ms;
+
+  /* ! BUILDING: never trust what you see! */
+  background-color: chartreuse;
+  transform: translateY(0);
+}
+
+#cards-container {
+  position: relative;
+  /*
+    The flex: 1 shorthand is equivalent to
+    flex-grow: 1 (grow to take available space)
+    flex-shrink: 1 (shrink if needed)
+    flex-basis: 0% (start from zero width)
+  */
+  /* ! TODO: need fix when container's direction is row */
+  flex: 1;
+  width: 100%;
+  align-self: center;
+
+  /* ANIMATION SETTINGS: */
+  perspective: 500px; /* Enhanced perspective effect at children */
+  /* Move the viewpoint to above the center */
+  perspective-origin: center -10%;
+  --scroll-container-offset: 50vh;
+  --view-offset: 80vh;
+  --card-height: 350px;
+  --z-offset: 38px;
+  --y-offset: calc(var(--card-height) + 50px);
+  --total-y-offset: calc(var(--y-offset) * 4 + var(--view-offset));
+  --total-z-offset: calc(var(--z-offset) * 4);
+
+  /*
+  animation-timeline: view(var(--inset3));
+  animation-name: slideUp;
+  animation-fill-mode: forwards;
+  animation-timing-function: var(--tf);
+  */
+  /* Firefox requires this to apply the animation */
+  animation-duration: 1ms;
+
+  /* ! BUILDING: never trust what you see! */
+  background-color: deeppink;
+}
+
+.card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+
+  /* Apply stacked effect based on DOM position */
+  --stack-y: calc(var(--view-offset) + var(--y-offset) * var(--card-index, 0));
+  transform: translate3d(0, var(--stack-y), var(--total-z-offset));
+
+  /* ANIMATION SETTINGS: */
+  /* This creates the staggered view timeline effect */
+  --view-start: calc(
+    var(--scroll-container-offset) + var(--total-y-offset) - var(--stack-y)
+  );
+  --view-end: var(--stack-y);
+
+  animation-timeline: view(block var(--view-start) var(--view-end));
+  animation-name: slideUpAndBack;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+
+  /* Firefox requires this to apply the animation */
+  animation-duration: 1ms;
+
+  /* ! BUILDING: never trust what you see! */
+  border: solid 1px black;
+  height: var(--card-height);
+  width: calc(var(--card-height) * 1.618);
+  border-radius: 6px;
+}
+
+.card:nth-child(1) {
+  --card-index: 0;
+  z-index: 1;
+  background-color: blue;
+}
+.card:nth-child(2) {
+  --card-index: 1;
+  z-index: 2;
+  background-color: red;
+}
+.card:nth-child(3) {
+  --card-index: 2;
+  z-index: 3;
+  background-color: purple;
+}
+.card:nth-child(4) {
+  --card-index: 3;
+  z-index: 4;
+  background-color: yellow;
+}
+.card:nth-child(5) {
+  --card-index: 4;
+  z-index: 5;
+  background-color: darkorange;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50vh);
+    background-color: red;
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes slideForward {
+  from {
+    transform: translate3d(0, 0, -150px);
+    background-color: red;
+  }
+  to {
+    transform: translate3d(0);
+  }
+}
+
+@keyframes slideUpAndBack {
+  0% {
+    transform: translate3d(0, var(--stack-y), var(--total-z-offset));
+  }
+  100% {
+    transform: translate3d(0, 0, var(--total-z-offset));
+  }
 }
 
 @media screen and (max-width: 1300px) {
@@ -753,7 +992,7 @@ pre {
     background-color: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(5px);
     margin: 0;
-    border: var(--sp2) solid var(--c5);
+    border: var(--dark-border);
     display: flex;
     align-items: center;
     gap: var(--sp5);
@@ -795,7 +1034,7 @@ pre {
     display: flex;
     align-items: center;
     padding: 0 1.5em;
-    border-bottom: solid var(--sp0x5) var(--c4);
+    border-bottom: var(--border2);
   }
 
   .hamb-menu {
