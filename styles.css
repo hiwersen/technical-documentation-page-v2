@@ -43,6 +43,10 @@
   --page-mw: 1900px;
   /* Pages padding */
   --page-pd: var(--sp6);
+
+  /* ANIMATION SETTINGS: */
+  /*  Determine the animation timing function: */
+  --tf: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 /* For Firefox */
@@ -468,6 +472,13 @@ footer a {
 #introduction .banner-title {
   width: 100%;
   row-gap: 0;
+
+  /* ANIMATION SETTINGS: */
+  animation-name: slideUpShort;
+  animation-duration: 1.75s;
+  animation-delay: 750ms;
+  animation-fill-mode: both;
+  animation-timing-function: var(--tf);
 }
 
 #introduction .banner-title p {
@@ -716,9 +727,6 @@ pre {
   --inset3: var(--step3) 40vh; /* 40vh - 100vh */
   --inset4: var(--step4) 100vh; /* 100vh - 200vh */
 
-  /*  Determine the timing function: */
-  --tf: cubic-bezier(0.1, -0.6, 0.2, 0);
-
   /* The page's padding to discount: */
   --lp: var(--page-pd);
 
@@ -729,6 +737,7 @@ pre {
 
   /* ! BUILDING: never trust what you see! */
   background-color: yellow;
+  display: none;
 }
 
 #styling {
@@ -825,7 +834,6 @@ pre {
 
   /* ! BUILDING: never trust what you see! */
   background-color: deeppink;
-  display: none;
 }
 
 .card {
@@ -892,6 +900,17 @@ pre {
   from {
     transform: translateY(50vh);
     background-color: red;
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUpShort {
+  from {
+    transform: translateY(15vh);
     opacity: 0;
   }
   to {
