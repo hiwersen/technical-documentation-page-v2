@@ -87,8 +87,13 @@ window.addEventListener("load", () => {
 
     if (navLinks.classList.contains("active")) {
       navLinksContainer.classList.remove("hide");
+      navbarLabel.classList.remove("hide");
     } else {
       navLinksContainer.classList.add("hide");
+
+      if (navBar.classList.contains("menu-only")) {
+        navbarLabel.classList.add("hide");
+      }
     }
   });
 
