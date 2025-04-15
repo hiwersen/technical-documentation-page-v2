@@ -32,9 +32,11 @@
   font-size: clamp(16px, 0.33vw + 13px, 20px);
 
   --border1: solid var(--sp1x0) var(--c2);
-  --border2: solid var(--sp0x5) var(--c4);
-  --border3: solid var(--sp1x5) var(--c4);
-  --border4: solid var(--sp2) var(--c5);
+  --border2: solid var(--sp1) var(--c3);
+  --border3: solid var(--sp0x5) var(--c4);
+  --border4: solid var(--sp1x5) var(--c4);
+  --border5: solid var(--sp1x0) var(--c5);
+  --border6: solid var(--sp1) var(--c5);
 
   /* Page's settings: */
   /* Page's max-width*/
@@ -307,7 +309,7 @@ footer a {
 }
 
 .list li {
-  border-bottom: var(--border1);
+  border-bottom: var(--border5);
   padding-top: 0.5em;
   padding-bottom: 0.5em;
 }
@@ -358,7 +360,7 @@ footer a {
 
 .hamb-menu span {
   display: block;
-  border-bottom: var(--border4);
+  border-bottom: var(--border6);
   height: 0;
   width: inherit;
   transform-origin: center center;
@@ -426,7 +428,7 @@ footer a {
   display: block;
   width: 100%;
   text-decoration: none;
-  border-left: var(--sp1x0) solid var(--c5);
+  border-left: var(--border4);
   transition:
     color var(--ease),
     background-color var(--ease);
@@ -451,7 +453,6 @@ footer a {
 
 .navbar a.view {
   background-color: var(--c2);
-  border-left: var(--sp1) solid var(--c3);
 }
 
 #introduction {
@@ -628,7 +629,7 @@ pre {
 #form-container {
   /*  Dynamic resizing */
   font-size: clamp(1em, 1.55vw, 1.5em);
-  border: var(--sp1) solid var(--c5);
+  border: var(--border6);
 }
 
 #the_label_input_and_textarea_elements h2 {
@@ -642,8 +643,8 @@ pre {
 
 #text-input {
   padding: var(--sp8) 0;
-  border-top: var(--border3);
-  border-bottom: var(--border3);
+  border-top: var(--border6);
+  border-bottom: var(--border6);
 }
 
 #title-and-label.grid-c2,
@@ -673,7 +674,7 @@ pre {
 
 #submitting_data .banner p {
   color: unset;
-  border-top: var(--border1);
+  border-top: var(--border3);
   padding-top: var(--sp4);
 }
 
@@ -806,7 +807,7 @@ pre {
   /* Move the viewpoint to above the center */
   perspective-origin: center -10%;
   --scroll-container-offset: 50vh;
-  --view-offset: 80vh;
+  --view-offset: 75vh;
   --card-height: 350px;
   --z-offset: 38px;
   --y-offset: calc(var(--card-height) + 50px);
@@ -824,6 +825,7 @@ pre {
 
   /* ! BUILDING: never trust what you see! */
   background-color: deeppink;
+  display: none;
 }
 
 .card {
@@ -835,17 +837,18 @@ pre {
 
   /* Apply stacked effect based on DOM position */
   --stack-y: calc(var(--view-offset) + var(--y-offset) * var(--card-index, 0));
+  --stack-z: calc(var(--card-index, 0) * var(--z-offset));
   transform: translate3d(0, var(--stack-y), var(--total-z-offset));
 
   /* ANIMATION SETTINGS: */
-  /* This creates the staggered view timeline effect */
+  /* Create the staggered view timeline effect */
   --view-start: calc(
     var(--scroll-container-offset) + var(--total-y-offset) - var(--stack-y)
   );
-  --view-end: var(--stack-y);
+  --view-end: calc(var(--stack-y) - var(--stack-z));
 
   animation-timeline: view(block var(--view-start) var(--view-end));
-  animation-name: slideUpAndBack;
+  animation-name: moveUpAndBack;
   animation-fill-mode: both;
   animation-timing-function: ease-in-out;
 
@@ -907,12 +910,15 @@ pre {
   }
 }
 
-@keyframes slideUpAndBack {
+@keyframes moveUpAndBack {
   0% {
     transform: translate3d(0, var(--stack-y), var(--total-z-offset));
   }
-  100% {
+  80% {
     transform: translate3d(0, 0, var(--total-z-offset));
+  }
+  100% {
+    transform: translate3d(0, 0, var(--stack-z));
   }
 }
 
@@ -992,7 +998,7 @@ pre {
     background-color: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(5px);
     margin: 0;
-    border: var(--dark-border);
+    border: var(--border6);
     display: flex;
     align-items: center;
     gap: var(--sp5);
@@ -1034,7 +1040,7 @@ pre {
     display: flex;
     align-items: center;
     padding: 0 1.5em;
-    border-bottom: var(--border2);
+    border-bottom: var(--border3);
   }
 
   .hamb-menu {
