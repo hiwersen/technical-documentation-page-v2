@@ -729,6 +729,7 @@ pre {
 
   /* ! BUILDING: never trust what you see! */
   background-color: yellow;
+  display: none;
 }
 
 #styling {
@@ -825,7 +826,6 @@ pre {
 
   /* ! BUILDING: never trust what you see! */
   background-color: deeppink;
-  display: none;
 }
 
 .card {
