@@ -92,6 +92,9 @@ main {
 #container-content3 {
   display: flex;
   column-gap: var(--sp6);
+
+  /* ! BUILDING */
+  display: none !important;
 }
 
 #container-content3 {
@@ -463,6 +466,10 @@ footer a {
   min-height: 72vh;
 }
 
+#introduction.grid-c2 {
+  row-gap: var(--sp10);
+}
+
 #introduction h1 {
   letter-spacing: -0.09em;
   line-height: 0.8em;
@@ -573,25 +580,18 @@ pre {
   height: 100%;
 }
 
-#styling > .flex-c:first-of-type {
-  flex-direction: column-reverse;
-  row-gap: var(--sp6);
-
+#styling {
   /* ! BUILDING */
   /* background-color: var(--c2);*/
   padding: var(--sp6);
 }
 
 #styling h2 {
-  font-size: clamp(2.5em, 9vw - 24px, 156px);
+  font-size: clamp(2.5em, 9vw - 10px, 164px);
   color: var(--color4);
   letter-spacing: 0.1em;
   width: fit-content;
   margin: 0;
-}
-
-#styling > .flex-c:first-of-type > .grid-c2:nth-of-type(2) .flex-r {
-  grid-column: 2;
 }
 
 #styling .banner {
@@ -602,10 +602,16 @@ pre {
   font-size: 1.2em;
 }
 
+#styling .heading pre,
+#codeblock-style-element {
+  overflow: visible;
+}
+
 #codeblock-style-element {
   background-color: initial;
   font-size: inherit;
   padding: 0;
+  margin: -0.4em 0;
 }
 
 #styling a {
@@ -737,7 +743,6 @@ pre {
 
   /* ! BUILDING: never trust what you see! */
   background-color: yellow;
-  display: none;
 }
 
 #styling {
@@ -759,7 +764,14 @@ pre {
   animation-duration: 1ms;
 
   /* ! BUILDING: never trust what you see! */
-  background-color: blue;
+  background-color: rgba(0, 0, 255, 0.668);
+}
+
+#styling .flex-c.heading {
+  position: relative;
+  width: fit-content;
+  row-gap: 0;
+  background-color: red;
 }
 
 #styling h2 {
@@ -781,44 +793,30 @@ pre {
   text-rendering: optimizeLegibility;
 }
 
-#styling-content {
-  transform: translateY(150px);
-  /* ANIMATION SETTINGS: */
-  /*
-  animation-timeline: view(var(--inset2));
-  animation-name: slideUp;
-  animation-fill-mode: forwards;
-  animation-timing-function: var(--tf);
-  */
-  /* Firefox requires this to apply the animation */
-  animation-duration: 1ms;
-
-  /* ! BUILDING: never trust what you see! */
-  background-color: chartreuse;
-  transform: translateY(0);
-}
-
 #cards-container {
-  position: relative;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   /*
     The flex: 1 shorthand is equivalent to
     flex-grow: 1 (grow to take available space)
     flex-shrink: 1 (shrink if needed)
     flex-basis: 0% (start from zero width)
+    flex: 1;
   */
-  /* ! TODO: need fix when container's direction is row */
-  flex: 1;
-  width: 100%;
-  align-self: center;
 
   /* ANIMATION SETTINGS: */
   perspective: 500px; /* Enhanced perspective effect at children */
   /* Move the viewpoint to above the center */
-  perspective-origin: center -10%;
+  perspective-origin: center center;
   --scroll-container-offset: 50vh;
   --view-offset: 75vh;
-  --card-height: 350px;
-  --z-offset: 38px;
+  --card-height: clamp(320px, 24.7vw, 480px); /* 24.7 - 14.7vw */
+  --z-offset: 0px;
   --y-offset: calc(var(--card-height) + 50px);
   --total-y-offset: calc(var(--y-offset) * 4 + var(--view-offset));
   --total-z-offset: calc(var(--z-offset) * 4);
@@ -832,13 +830,14 @@ pre {
   /* Firefox requires this to apply the animation */
   animation-duration: 1ms;
 
-  /* ! BUILDING: never trust what you see! */
+  /* ! BUILDING: never trust what you see! 
   background-color: deeppink;
+  */
 }
 
 .card {
   position: absolute;
-  top: 0;
+  top: calc(51% - var(--card-height) / 2);
   left: 0;
   right: 0;
   margin: auto;
@@ -866,8 +865,7 @@ pre {
   /* ! BUILDING: never trust what you see! */
   border: solid 1px black;
   height: var(--card-height);
-  width: calc(var(--card-height) * 1.618);
-  border-radius: 6px;
+  width: 96%;
 }
 
 .card:nth-child(1) {
@@ -894,6 +892,21 @@ pre {
   --card-index: 4;
   z-index: 5;
   background-color: darkorange;
+}
+
+#styling-content {
+  /* ANIMATION SETTINGS: */
+  /*
+  animation-timeline: view(var(--inset2));
+  animation-name: slideUp;
+  animation-fill-mode: forwards;
+  animation-timing-function: var(--tf);
+  */
+  /* Firefox requires this to apply the animation */
+  animation-duration: 1ms;
+
+  /* ! BUILDING: never trust what you see! */
+  background-color: purple;
 }
 
 @keyframes slideUp {
@@ -942,13 +955,21 @@ pre {
 }
 
 @media screen and (max-width: 1300px) {
-  .grid-c2 {
+  .grid-c2:not(#styling .grid-c2) {
     display: flex;
     flex-direction: column;
   }
 
-  #styling > .flex-c:first-of-type {
-    flex-direction: initial;
+  #styling h2 {
+    font-size: clamp(2.5em, 10.3vw - 24px, 156px);
+  }
+
+  #styling-content .flex-r {
+    flex-direction: column;
+  }
+
+  #cards-container {
+    --card-height: clamp(170px, 24vw - 15px, 320px); /* 24.7 - 14.7vw */
   }
 
   .list ul {
@@ -985,6 +1006,11 @@ pre {
     column-gap: var(--sp8);
   }
 
+  .grid-c2 {
+    display: flex;
+    flex-direction: column;
+  }
+
   #design {
     gap: var(--sp10);
   }
@@ -996,6 +1022,14 @@ pre {
   h1,
   h2 {
     font-size: 3em;
+  }
+
+  #styling h2 {
+    font-size: clamp(2.5em, 17.8vw - 10px, 132px);
+  }
+
+  #cards-container {
+    --card-height: clamp(155px, 47vw - 12px, 380px); /* 24.7 - 14.7vw */
   }
 
   .navbar {
@@ -1203,6 +1237,10 @@ pre {
 }
 
 @media screen and (max-width: 510px) {
+  #styling-content .flex-r {
+    flex-direction: column-reverse;
+  }
+
   header {
     font-size: 1.25em;
     gap: var(--sp3);
