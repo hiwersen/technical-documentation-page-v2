@@ -618,20 +618,6 @@ pre {
   color: inherit;
 }
 
-.css-code {
-  position: relative;
-
-  /* ! DEBUGGING */
-  display: none;
-}
-
-.css-code > p:first-of-type {
-  position: absolute;
-  top: 12px;
-  left: 24px;
-  color: var(--color4) !important;
-}
-
 .code {
   font-size: clamp(0.9rem, 1.6vw, 1.2rem);
   background-color: var(--bg-color1);
@@ -715,9 +701,20 @@ pre {
 
 #container-content2 {
   /* ANIMATION SETTINGS: */
-  /* Determine the length of the scroll container:
+  /* Determine the length of the scroll container
     the container height */
-  --ch: 400vh;
+  --ch: 270dvw; /* ! dvW! */
+  --scroll-container-offset: 20dvw; /* ! dvW! */
+  --view-offset: 30dvw; /* ! dvW! */
+  --card-height: clamp(320px, 24.7vw, 480px); /* 24.7 - 14.7vw */
+  --z-offset: 5px;
+  --y-offset: calc(var(--card-height) + 50px);
+  --max-index: 6;
+  --total-y-offset: calc(
+    var(--y-offset) * var(--max-index) + var(--view-offset)
+  );
+  --total-z-offset: calc(var(--z-offset) * var(--max-index));
+
   height: var(--ch);
 
   /* Determine the inset:
@@ -741,13 +738,14 @@ pre {
   width: calc(100% + calc(var(--lp) * 2));
   margin-left: calc(var(--lp) * -1);
 
-  /* ! BUILDING: never trust what you see! */
-  background-color: yellow;
+  /* ! DEBUGGING */
+  background-color: red;
 }
 
 #styling {
   position: sticky;
   top: 0;
+  height: 100%;
   min-height: 100dvh;
 
   /* ANIMATION SETTINGS: */
@@ -763,15 +761,13 @@ pre {
   /* Firefox requires this to apply the animation */
   animation-duration: 1ms;
 
-  /* ! BUILDING: never trust what you see! */
-  background-color: rgba(0, 0, 255, 0.668);
+  /* ! DEBUGGING */
+  background-color: yellow;
 }
 
 #styling .flex-c.heading {
   position: relative;
-  width: fit-content;
   row-gap: 0;
-  background-color: red;
 }
 
 #styling h2 {
@@ -795,31 +791,18 @@ pre {
 
 #cards-container {
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   /*
     The flex: 1 shorthand is equivalent to
     flex-grow: 1 (grow to take available space)
     flex-shrink: 1 (shrink if needed)
     flex-basis: 0% (start from zero width)
-    flex: 1;
   */
 
   /* ANIMATION SETTINGS: */
   perspective: 500px; /* Enhanced perspective effect at children */
   /* Move the viewpoint to above the center */
   perspective-origin: center center;
-  --scroll-container-offset: 50vh;
-  --view-offset: 75vh;
-  --card-height: clamp(320px, 24.7vw, 480px); /* 24.7 - 14.7vw */
-  --z-offset: 0px;
-  --y-offset: calc(var(--card-height) + 50px);
-  --total-y-offset: calc(var(--y-offset) * 4 + var(--view-offset));
-  --total-z-offset: calc(var(--z-offset) * 4);
 
   /*
   animation-timeline: view(var(--inset3));
@@ -831,16 +814,16 @@ pre {
   animation-duration: 1ms;
 
   /* ! BUILDING: never trust what you see! 
-  background-color: deeppink;
-  */
+  background-color: deeppink; */
 }
 
 .card {
   position: absolute;
-  top: calc(51% - var(--card-height) / 2);
+  top: calc(50% - var(--card-height) / 2);
   left: 0;
   right: 0;
   margin: auto;
+  padding: 1em;
 
   /* Apply stacked effect based on DOM position */
   --stack-y: calc(var(--view-offset) + var(--y-offset) * var(--card-index, 0));
@@ -865,12 +848,24 @@ pre {
   /* ! BUILDING: never trust what you see! */
   border: solid 1px black;
   height: var(--card-height);
-  width: 96%;
+  width: 95%;
+}
+
+.card * {
+  /* ! BUILDING: never trust what you see! 
+  display: none; */
+  overflow: hidden;
+}
+
+.card .codeblock-css {
+  font-size: 1em;
+  padding: 0;
 }
 
 .card:nth-child(1) {
   --card-index: 0;
   z-index: 1;
+  margin-top: -3.5em;
   background-color: blue;
 }
 .card:nth-child(2) {
@@ -894,7 +889,20 @@ pre {
   background-color: darkorange;
 }
 
+.card:nth-child(6) {
+  --card-index: 5;
+  z-index: 6;
+  background-color: deeppink;
+}
+
+.card:nth-child(7) {
+  --card-index: 6;
+  z-index: 7;
+  background-color: chartreuse;
+}
+
 #styling-content {
+  font-size: clamp(11px, 1.3vw, 24px);
   /* ANIMATION SETTINGS: */
   /*
   animation-timeline: view(var(--inset2));
@@ -904,15 +912,24 @@ pre {
   */
   /* Firefox requires this to apply the animation */
   animation-duration: 1ms;
+  /*background-color: yellow; */
+  flex: 1;
+}
 
-  /* ! BUILDING: never trust what you see! */
-  background-color: purple;
+#styling-content .code {
+  font-size: 0.9em;
+}
+
+#styling-content > .flex-c {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  row-gap: 0; /* calc(var(--sp10) + var(--sp7)); */
 }
 
 @keyframes slideUp {
   from {
     transform: translateY(50vh);
-    background-color: red;
     opacity: 0;
   }
   to {
@@ -935,7 +952,6 @@ pre {
 @keyframes slideForward {
   from {
     transform: translate3d(0, 0, -150px);
-    background-color: red;
   }
   to {
     transform: translate3d(0);
@@ -960,15 +976,27 @@ pre {
     flex-direction: column;
   }
 
+  #container-content2 {
+    --ch: 4000px;
+
+    /* For scroll container offset - from 0dvw at 800px viewport to 20dvw at 1300px viewport */
+    --scroll-container-offset: 0dvw;
+  }
+
   #styling h2 {
     font-size: clamp(2.5em, 10.3vw - 24px, 156px);
   }
 
   #styling-content .flex-r {
-    flex-direction: column;
+    row-gap: 0.5em;
+  }
+
+  #styling-content .banner {
+    flex: initial;
   }
 
   #cards-container {
+    /*--scroll-container-offset: 0dvh;*/
     --card-height: clamp(170px, 24vw - 15px, 320px); /* 24.7 - 14.7vw */
   }
 
@@ -1011,8 +1039,63 @@ pre {
     flex-direction: column;
   }
 
+  #styling > .grid-c2 {
+    height: 100%;
+    position: relative;
+
+    /* ! DEBUGGING */
+    background-color: black;
+  }
+
   #design {
     gap: var(--sp10);
+  }
+
+  #container-content2 {
+    --ch: 4500px;
+    --scroll-container-offset: 40dvw; /* ! dvW! */
+    --view-offset: 40dvh; /* ! dvW! */
+    --card-height: clamp(320px, 24.7vw, 480px); /* 24.7 - 14.7vw */
+    --z-offset: 5px;
+  }
+
+  #styling {
+    position: initial;
+    top: initial;
+  }
+
+  #styling .flex-c.heading {
+    align-items: center;
+  }
+
+  #styling-content {
+    font-size: unset;
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    padding-top: var(--sp6);
+    flex: initial;
+    background-color: red;
+  }
+
+  #styling-content > .flex-c {
+    row-gap: var(--sp6);
+    background-color: blue;
+    height: 100%;
+  }
+
+  #styling-content > .flex-c > .flex-r {
+    background-color: aqua;
+  }
+
+  #cards-container {
+    position: relative;
+    flex: 1;
+    background-color: blueviolet;
+  }
+
+  .card {
+    top: calc(50% - var(--card-height) / 2);
   }
 
   main {
@@ -1187,6 +1270,20 @@ pre {
     row-gap: var(--sp10);
   }
 
+  #styling-content {
+    height: fit-content;
+    font-size: clamp(11px, 3.5vw, 16px);
+  }
+
+  #cards-container {
+    flex: initial;
+    height: calc(var(--card-height) * 2);
+  }
+
+  #styling-content .code {
+    font-size: clamp(8px, 1.8vw + 2px, 14.5px);
+  }
+
   #container-content3 {
     margin-bottom: var(--sp10);
   }
@@ -1237,10 +1334,6 @@ pre {
 }
 
 @media screen and (max-width: 510px) {
-  #styling-content .flex-r {
-    flex-direction: column-reverse;
-  }
-
   header {
     font-size: 1.25em;
     gap: var(--sp3);
@@ -1272,5 +1365,9 @@ pre {
 
   .code {
     padding: 0.4em;
+  }
+
+  #styling > .grid-c2 {
+    row-gap: var(--sp6);
   }
 }

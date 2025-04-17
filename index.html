@@ -452,99 +452,95 @@
 </style>`;
                 </script>
               </h2>
-              <div id="cards-container">
-                <div class="card"></div>
-                <div class="card"></div>
-                <div class="card"></div>
-                <div class="card"></div>
-                <div class="card"></div>
-              </div>
             </div>
-            <div id="styling-content">
-              <div class="flex-r">
-                <div class="banner">
-                  <p>
-                    It is beyond the scope of this documentation to teach form
-                    styling in detail but some basic form styling with CSS to
-                    make it look
-                    <span class="ok">OK.</span>
-                  </p>
+            <div id="styling-content" class="flex-c">
+              <div class="flex-c">
+                <div class="flex-r">
+                  <div class="banner">
+                    <p>
+                      It is beyond the scope of this documentation to teach form
+                      styling in detail but some basic form styling with CSS to
+                      make it look
+                      <span class="ok">OK.</span>
+                    </p>
+                  </div>
+                  <div class="banner">
+                    <p>
+                      First of all, add a
+                      <a
+                        href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style"
+                        target="_blank"
+                        ><code>&lt;style&gt;</code></a
+                      >
+                      element to your page, inside your HTML head:
+                    </p>
+                  </div>
                 </div>
-                <div class="banner">
-                  <p>
-                    First of all, add a
-                    <a
-                      href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style"
-                      target="_blank"
-                      ><code>&lt;style&gt;</code></a
-                    >
-                    element to your page, inside your HTML head.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--
-          <div class="css-code">
-            <p>Inside the style tags, add the following CSS:</p>
-
-            <pre><codeblock id="codeblock-css" class="code">
-form {
+                <div id="cards-container">
+                  <div class="card">
+                    <p>Inside the style tags, add the following CSS:</p>
+                  </div>
+                  <div class="card">
+                    <pre><codeblock class="code codeblock-css">form {
   /* Center the form on the page */
   margin: 0 auto;
   width: 400px;
-  /* Form outline */
   padding: 16px;
   border: 1px solid #ccc;
   border-radius: 1em;
 }
-    
-label {
+                  </codeblock></pre>
+                  </div>
+                  <div class="card">
+                    <pre><codeblock class="code codeblock-css">label {
   /* Uniform size & alignment */
   display: inline-block;
   width: 90px;
-  text-align: right;
+  text-align: right;        
 }
-    
-input,
+                  </codeblock></pre>
+                  </div>
+                  <div class="card">
+                    <pre><codeblock class="code codeblock-css">input,
 textarea {
-  /* Make sure all text fields
-    have the same font settings
-    By default and textarea have
-    a monospace font
-  */
+  /* Match form fields' properties */
   font: 1em sans-serif;
-
-  /* Uniform text field's size */
   width: 300px;
   box-sizing: border-box;
-
-  /* Match form field's borders */
   border: 1px solid #999;
 }
-    
-textarea {
+                  </codeblock></pre>
+                  </div>
+                  <div class="card">
+                    <pre><codeblock class="code codeblock-css">textarea {
   /* Align multiline text fields
     with their labels */
   vertical-align: top;
 }
-    
-button {
+                  </codeblock></pre>
+                  </div>
+                  <div class="card">
+                    <pre><codeblock class="code codeblock-css">button {
   /* This extra margin represents 
     roughly the same space as the space
     between the labels and their text fields */
   margin-left: 98px;
 }
-    
-input:not(input:first-of-type),
+                  </codeblock></pre>
+                  </div>
+                  <div class="card">
+                    <pre><codeblock class="code codeblock-css">input:not(input:first-of-type),
 label:not(label:first-of-type),
 textarea,
 button {
-    margin-top: 16px;
+  margin-top: 16px;
 }
-              </codeblock></pre>
+                  </codeblock></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          -->
         </section>
       </div>
 
