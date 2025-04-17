@@ -494,6 +494,10 @@ footer a {
   animation-timing-function: var(--tf);
 }
 
+#introduction .banner-title p.slideUpShort-animation {
+  animation-delay: 1s;
+}
+
 #introduction .banner-title p {
   color: var(--color3);
 }
@@ -727,7 +731,7 @@ pre {
     - the container height */
   --ch: min(270dvw, calc(2.7 * var(--page-mw))); /* ! dvW! */
 
-  --scroll-container-offset: 20dvw; /* ! dvW! */
+  --scroll-container-offset: 50dvw; /* ! dvW! */
   --view-offset: 30dvw; /* ! dvW! */
   --card-height: clamp(320px, 24.7vw, 480px); /* 24.7 - 14.7vw */
   --z-offset: 5px;
@@ -823,8 +827,6 @@ pre {
   animation-timing-function: var(--tf);
   /* Firefox requires this to apply the animation */
   animation-duration: 1ms;
-
-  background-color: red;
 }
 
 .card {
@@ -975,8 +977,13 @@ pre {
   95% {
     background-color: rgba(0, 0, 0, 1);
   }
+  99% {
+    transform: translate3d(0, 0, var(--stack-z));
+    background-color: rgba(0, 0, 0, 0.5);
+  }
   100% {
     transform: translate3d(0, 0, var(--stack-z));
+    background-color: rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -990,7 +997,7 @@ pre {
     --ch: 4000px;
     /* For scroll container offset 
       - from 0dvw at 800px viewport to 20dvw at 1300px viewport */
-    --scroll-container-offset: 0dvw;
+    --scroll-container-offset: 50dvw;
   }
 
   #styling h2 {
@@ -1060,10 +1067,13 @@ pre {
 
   #container-content2 {
     --ch: 4500px;
-    --scroll-container-offset: 40dvw; /* ! dvW! */
+    --scroll-container-offset: 80dvw; /* ! dvW! */
     --view-offset: 40dvh; /* ! dvW! */
     --card-height: clamp(320px, 24.7vw, 480px);
     --z-offset: 5px;
+
+    --step1: calc(var(--ch) - 20vh);
+    --inset1: var(--step1) 0vh;
   }
 
   #styling {
