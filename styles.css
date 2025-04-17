@@ -1151,6 +1151,9 @@ pre {
     align-items: center;
     gap: var(--sp5);
     min-height: calc(var(--sp9) - var(--sp3));
+
+    /* For Safari */
+    position: relative;
   }
 
   .nav-links-container {
@@ -1196,7 +1199,10 @@ pre {
   }
 
   .section-in-view {
-    display: inline-block;
+    display: block;
+    /* For Safari: */
+    position: relative;
+    align-self: center;
   }
 
   .navbar ul {
