@@ -1080,6 +1080,9 @@ pre {
     position: initial;
     top: initial;
     height: 100%;
+
+    /* ! DEBUGGING 
+    display: none; */
   }
 
   #styling .flex-c.heading {
@@ -1127,7 +1130,9 @@ pre {
   }
 
   .navbar {
+    position: fixed;
     top: var(--sp4);
+    left: var(--sp4);
     width: 100%;
   }
 

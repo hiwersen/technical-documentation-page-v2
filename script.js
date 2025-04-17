@@ -60,14 +60,27 @@ window.addEventListener("load", () => {
 
     lastY = scrollY;
 
-    sections.forEach((section) => {
-      const margin = 180;
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-      const sectionBottom = sectionTop + sectionHeight;
+    const viewportTop = scrollY;
+    const viewportBottom = scrollY + window.innerHeight;
+    const viewportMiddle = viewportTop + window.innerHeight / 2;
 
-      if (scrollY > sectionTop - margin && scrollY < sectionBottom + margin) {
+    sections.forEach((section) => {
+      const margin = 80;
+      const rect =
+        section.getBoundingClientRect(); /* ! Don't use offsetHeight */
+      const sectionTop = scrollY + rect.top;
+      const sectionBottom = sectionTop + rect.height;
+
+      const isInView = [
+        !sectionInViewID,
+        sectionTop - margin < viewportBottom,
+        sectionBottom + margin > viewportTop,
+      ];
+
+      if (isInView.every((test) => test)) {
         sectionInViewID = section.getAttribute("id");
+        console.log(sectionInViewID, sectionTop, sectionBottom);
+        console.log("viewportMiddle:", viewportMiddle);
       }
     });
 
