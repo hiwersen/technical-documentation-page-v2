@@ -79,8 +79,6 @@ window.addEventListener("load", () => {
 
       if (isInView.every((test) => test)) {
         sectionInViewID = section.getAttribute("id");
-        console.log(sectionInViewID, sectionTop, sectionBottom);
-        console.log("viewportMiddle:", viewportMiddle);
       }
     });
 

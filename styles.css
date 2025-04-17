@@ -974,16 +974,9 @@ pre {
     transform: translate3d(0, 0, var(--total-z-offset));
     background-color: rgba(0, 0, 0, 1);
   }
-  95% {
-    background-color: rgba(0, 0, 0, 1);
-  }
-  99% {
-    transform: translate3d(0, 0, var(--stack-z));
-    background-color: rgba(0, 0, 0, 0.5);
-  }
   100% {
     transform: translate3d(0, 0, var(--stack-z));
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -1133,7 +1126,8 @@ pre {
     position: fixed;
     top: var(--sp4);
     left: var(--sp4);
-    width: 100%;
+    right: 0;
+    width: calc(100% - 2 * var(--sp4));
   }
 
   .navbar.menu-only {
