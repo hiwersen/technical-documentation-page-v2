@@ -1,4 +1,6 @@
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -74,6 +76,9 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   color: var(--c4);
+
+  /* ! BUG: doesn't respond to resizing */
+  overflow-x: hidden;
 }
 
 main {
@@ -93,8 +98,8 @@ main {
   display: flex;
   column-gap: var(--sp6);
 
-  /* ! BUILDING */
-  display: none !important;
+  /* ! BUILDING
+  display: none !important;  */
 }
 
 #container-content3 {
@@ -479,8 +484,9 @@ footer a {
 #introduction .banner-title {
   width: 100%;
   row-gap: 0;
+}
 
-  /* ANIMATION SETTINGS: */
+.slideUpShort-animation {
   animation-name: slideUpShort;
   animation-duration: 1.75s;
   animation-delay: 750ms;
@@ -514,9 +520,8 @@ footer a {
   right: 0;
   width: 21px;
   margin-right: -20px;
-  height: 100%;
   background-color: inherit;
-  z-index: 2;
+  z-index: -1;
 }
 
 #prerequisites .banner {
@@ -738,23 +743,36 @@ pre {
   /* Determine the inset:
     - adjustment of the scrollport, or
     - length of the animation timeline */
-  --step1: calc(var(--ch) - 10vh);
-  --step2: calc(var(--ch) - 40vh);
+  --step1: calc(var(--ch) - 60vh);
+  --step2: calc(var(--ch) - 80vh);
   --step3: calc(var(--ch) - 100vh);
   --step4: calc(var(--ch) - 200vh);
 
-  --inset1: var(--step1) 0%; /* 0 - 10vh */
-  --inset2: var(--step2) 20vh; /* 20vh - 40vh */
+  --inset1: var(--step1) 10vh; /* 20vh - 60vh */
+  --inset2: var(--step2) 30vh; /* 30vh - 80vh */
   --inset3: var(--step3) 40vh; /* 40vh - 100vh */
   --inset4: var(--step4) 100vh; /* 100vh - 200vh */
 
   /* The page's padding to discount: */
   --lp: var(--page-pd);
 
-  perspective: 1000px;
+  perspective: 500px;
   position: relative;
   width: calc(100% + calc(var(--lp) * 2));
   margin-left: calc(var(--lp) * -1);
+  padding: var(--sp11) 0;
+}
+
+#container-content2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--c5);
+  z-index: -1;
 }
 
 /* ! BUG: flickering white line during animation  */
@@ -765,13 +783,11 @@ pre {
 
   /* ANIMATION SETTINGS: */
   /* Important for maintaining 3D */
-  /*
   transform-style: preserve-3d;
   animation-timeline: view(var(--inset1));
   animation-name: slideForward;
-  animation-fill-mode: forwards;
+  animation-fill-mode: both;
   animation-timing-function: var(--tf);
-  */
 
   /* Firefox requires this to apply the animation */
   animation-duration: 1ms;
@@ -801,14 +817,14 @@ pre {
   /* Move the viewpoint to above the center */
   perspective-origin: center center;
 
-  /*
   animation-timeline: view(var(--inset3));
   animation-name: slideUp;
-  animation-fill-mode: forwards;
+  animation-fill-mode: both;
   animation-timing-function: var(--tf);
-  */
   /* Firefox requires this to apply the animation */
   animation-duration: 1ms;
+
+  background-color: red;
 }
 
 .card {
@@ -909,33 +925,41 @@ pre {
 }
 
 @keyframes slideUp {
-  from {
+  0% {
     transform: translateY(50vh);
     opacity: 0;
   }
-  to {
+  80% {
+    opacity: 0.5;
+  }
+  100% {
     transform: translateY(0px);
     opacity: 1;
   }
 }
 
 @keyframes slideUpShort {
-  from {
+  0% {
     transform: translateY(10vh);
     opacity: 0;
   }
-  to {
+  100% {
     transform: translateY(0px);
     opacity: 1;
   }
 }
 
 @keyframes slideForward {
-  from {
-    transform: translate3d(0, 0, -150px);
+  0% {
+    transform: translate3d(0, 250px, -250px);
+    opacity: 0;
   }
-  to {
+  80% {
+    opacity: 0.5;
+  }
+  100% {
     transform: translate3d(0);
+    opacity: 1;
   }
 }
 
@@ -946,9 +970,9 @@ pre {
   }
   80% {
     transform: translate3d(0, 0, var(--total-z-offset));
-    background-color: rgba(0, 0, 0, 0.65);
+    background-color: rgba(0, 0, 0, 1);
   }
-  90% {
+  95% {
     background-color: rgba(0, 0, 0, 1);
   }
   100% {
@@ -1261,6 +1285,10 @@ pre {
 
   #styling-content .code {
     font-size: clamp(8px, 1.8vw + 2px, 14.5px);
+  }
+
+  #container-content2 {
+    padding: var(--sp10) 0;
   }
 
   #container-content3 {
