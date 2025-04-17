@@ -1,4 +1,6 @@
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -43,6 +45,10 @@
   --page-mw: 1900px;
   /* Pages padding */
   --page-pd: var(--sp6);
+
+  /* ANIMATION SETTINGS: */
+  /*  Determine the animation timing function: */
+  --tf: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 /* For Firefox */
@@ -70,6 +76,9 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   color: var(--c4);
+
+  /* ! BUG: doesn't respond to resizing */
+  overflow-x: hidden;
 }
 
 main {
@@ -88,6 +97,9 @@ main {
 #container-content3 {
   display: flex;
   column-gap: var(--sp6);
+
+  /* ! BUILDING
+  display: none !important;  */
 }
 
 #container-content3 {
@@ -143,6 +155,12 @@ header {
   color: var(--c5);
   font-size: 2em;
   padding: 0.25em;
+
+  transition-property: width;
+  transition-duration: 1.75s;
+  transition-delay: 750ms;
+  transition-timing-function: ease-in-out;
+  transform-origin: top left;
 }
 
 section[id]:not(:first-of-type) {
@@ -339,10 +357,10 @@ footer a {
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  height: calc(var(--sp7) - var(--sp2));
-  width: var(--sp7);
+  height: calc(var(--sp7) - var(--sp3));
   box-sizing: content-box;
   padding: var(--sp3);
+  overflow: hidden;
 }
 
 /* Desktop */
@@ -360,31 +378,25 @@ footer a {
 
 .hamb-menu span {
   display: block;
+  height: 0.5px;
+  width: var(--sp7);
   border-bottom: var(--border6);
-  height: 0;
-  width: inherit;
-  transform-origin: center center;
-}
-
-.hamb-menu.close {
-  justify-content: center;
-  align-items: center;
-}
-
-.hamb-menu.close span {
-  position: absolute;
+  transform-origin: center left;
+  transition-property: transform;
+  transition-duration: 225ms;
+  transition-timing-function: ease-in-out;
 }
 
 .hamb-menu.close span:first-of-type {
-  transform: rotate(-45deg);
-}
-
-.hamb-menu.close span:last-of-type {
   transform: rotate(45deg);
 }
 
+.hamb-menu.close span:last-of-type {
+  transform: rotate(-45deg);
+}
+
 .hamb-menu.close span:nth-of-type(2) {
-  display: none;
+  transform: translate(-125%);
 }
 
 .navbar-label {
@@ -459,6 +471,10 @@ footer a {
   min-height: 72vh;
 }
 
+#introduction.grid-c2 {
+  row-gap: var(--sp10);
+}
+
 #introduction h1 {
   letter-spacing: -0.09em;
   line-height: 0.8em;
@@ -468,6 +484,18 @@ footer a {
 #introduction .banner-title {
   width: 100%;
   row-gap: 0;
+}
+
+.slideUpShort-animation {
+  animation-name: slideUpShort;
+  animation-duration: 1.75s;
+  animation-delay: 750ms;
+  animation-fill-mode: both;
+  animation-timing-function: var(--tf);
+}
+
+#introduction .banner-title p.slideUpShort-animation {
+  animation-delay: 1s;
 }
 
 #introduction .banner-title p {
@@ -496,9 +524,8 @@ footer a {
   right: 0;
   width: 21px;
   margin-right: -20px;
-  height: 100%;
   background-color: inherit;
-  z-index: 2;
+  z-index: -1;
 }
 
 #prerequisites .banner {
@@ -562,57 +589,59 @@ pre {
   height: 100%;
 }
 
-#styling > .flex-c:first-of-type {
-  flex-direction: column-reverse;
-  row-gap: var(--sp6);
-
-  /* ! BUILDING */
-  /* background-color: var(--c2);*/
+#styling {
+  background-color: var(--c5);
   padding: var(--sp6);
 }
 
+#styling-content .code,
+#styling-content .card {
+  color: var(--c1);
+}
+
+#styling-content .card {
+  background-color: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+#styling-content .code.codeblock-css {
+  background-color: transparent;
+}
+
 #styling h2 {
-  font-size: clamp(2.5em, 9vw - 24px, 156px);
-  color: var(--color4);
+  font-size: clamp(2.5em, 9vw - 10px, 164px);
+  color: var(--c3);
   letter-spacing: 0.1em;
   width: fit-content;
   margin: 0;
 }
 
-#styling > .flex-c:first-of-type > .grid-c2:nth-of-type(2) .flex-r {
-  grid-column: 2;
+#styling h2 .code {
+  color: inherit;
 }
 
 #styling .banner {
-  color: var(--c5);
+  color: var(--c2);
 }
 
 .ok {
   font-size: 1.2em;
 }
 
+#styling .heading pre,
+#codeblock-style-element {
+  overflow: visible;
+}
+
 #codeblock-style-element {
   background-color: initial;
   font-size: inherit;
   padding: 0;
+  margin: -0.4em 0;
 }
 
 #styling a {
   color: inherit;
-}
-
-.css-code {
-  position: relative;
-
-  /* ! DEBUGGING */
-  display: none;
-}
-
-.css-code > p:first-of-type {
-  position: absolute;
-  top: 12px;
-  left: 24px;
-  color: var(--color4) !important;
 }
 
 .code {
@@ -698,40 +727,59 @@ pre {
 
 #container-content2 {
   /* ANIMATION SETTINGS: */
-  /* Determine the length of the scroll container:
-    the container height */
-  --ch: 400vh;
+  /* Determine the length of the scroll container
+    - the container height */
+  --ch: min(270dvw, calc(2.7 * var(--page-mw))); /* ! dvW! */
+
+  --scroll-container-offset: 50dvw; /* ! dvW! */
+  --view-offset: 30dvw; /* ! dvW! */
+  --card-height: clamp(320px, 24.7vw, 480px); /* 24.7 - 14.7vw */
+  --z-offset: 5px;
+  --y-offset: calc(var(--card-height) + 50px);
+  --max-index: 6; /* Number of cards - 1 */
+  --total-y-offset: calc(
+    var(--y-offset) * var(--max-index) + var(--view-offset)
+  );
+  --total-z-offset: calc(var(--z-offset) * var(--max-index));
+
   height: var(--ch);
 
   /* Determine the inset:
     - adjustment of the scrollport, or
     - length of the animation timeline */
-  --step1: calc(var(--ch) - 10vh);
-  --step2: calc(var(--ch) - 40vh);
+  --step1: calc(var(--ch) - 60vh);
+  --step2: calc(var(--ch) - 80vh);
   --step3: calc(var(--ch) - 100vh);
   --step4: calc(var(--ch) - 200vh);
 
-  --inset1: var(--step1) 0%; /* 0 - 10vh */
-  --inset2: var(--step2) 20vh; /* 20vh - 40vh */
+  --inset1: var(--step1) 10vh; /* 20vh - 60vh */
+  --inset2: var(--step2) 30vh; /* 30vh - 80vh */
   --inset3: var(--step3) 40vh; /* 40vh - 100vh */
   --inset4: var(--step4) 100vh; /* 100vh - 200vh */
-
-  /*  Determine the timing function: */
-  --tf: cubic-bezier(0.1, -0.6, 0.2, 0);
 
   /* The page's padding to discount: */
   --lp: var(--page-pd);
 
-  perspective: 1000px;
+  perspective: 500px;
   position: relative;
   width: calc(100% + calc(var(--lp) * 2));
   margin-left: calc(var(--lp) * -1);
-
-  /* ! BUILDING: never trust what you see! */
-  background-color: yellow;
-  display: none;
+  padding: var(--sp11) 0;
 }
 
+#container-content2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--c5);
+  z-index: -1;
+}
+
+/* ! BUG: flickering white line during animation  */
 #styling {
   position: sticky;
   top: 0;
@@ -739,24 +787,19 @@ pre {
 
   /* ANIMATION SETTINGS: */
   /* Important for maintaining 3D */
-  /*
   transform-style: preserve-3d;
   animation-timeline: view(var(--inset1));
   animation-name: slideForward;
-  animation-fill-mode: forwards;
+  animation-fill-mode: both;
   animation-timing-function: var(--tf);
-  */
 
   /* Firefox requires this to apply the animation */
   animation-duration: 1ms;
-
-  /* ! BUILDING: never trust what you see! */
-  background-color: blue;
 }
 
-#styling h2 {
-  /* ! BUILDING: never trust what you see! */
-  background-color: chartreuse;
+#styling .flex-c.heading {
+  position: relative;
+  row-gap: 0;
 }
 
 #styling p {
@@ -765,75 +808,36 @@ pre {
   /* Fix text blurriness issues */
   backface-visibility: hidden;
   -webkit-font-smoothing: subpixel-antialiased;
-
-  font-smooth: never; /* For Safari */
-  -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: grayscale;
-
   text-rendering: optimizeLegibility;
 }
 
-#styling-content {
-  transform: translateY(150px);
-  /* ANIMATION SETTINGS: */
-  /*
-  animation-timeline: view(var(--inset2));
-  animation-name: slideUp;
-  animation-fill-mode: forwards;
-  animation-timing-function: var(--tf);
-  */
-  /* Firefox requires this to apply the animation */
-  animation-duration: 1ms;
-
-  /* ! BUILDING: never trust what you see! */
-  background-color: chartreuse;
-  transform: translateY(0);
-}
-
 #cards-container {
-  position: relative;
-  /*
-    The flex: 1 shorthand is equivalent to
-    flex-grow: 1 (grow to take available space)
-    flex-shrink: 1 (shrink if needed)
-    flex-basis: 0% (start from zero width)
-  */
-  /* ! TODO: need fix when container's direction is row */
-  flex: 1;
-  width: 100%;
-  align-self: center;
+  position: absolute;
+  inset: 0;
 
   /* ANIMATION SETTINGS: */
-  perspective: 500px; /* Enhanced perspective effect at children */
+  perspective: 500px; /* Enhanced perspective effect at children level */
   /* Move the viewpoint to above the center */
-  perspective-origin: center -10%;
-  --scroll-container-offset: 50vh;
-  --view-offset: 75vh;
-  --card-height: 350px;
-  --z-offset: 38px;
-  --y-offset: calc(var(--card-height) + 50px);
-  --total-y-offset: calc(var(--y-offset) * 4 + var(--view-offset));
-  --total-z-offset: calc(var(--z-offset) * 4);
+  perspective-origin: center center;
 
-  /*
   animation-timeline: view(var(--inset3));
   animation-name: slideUp;
-  animation-fill-mode: forwards;
+  animation-fill-mode: both;
   animation-timing-function: var(--tf);
-  */
   /* Firefox requires this to apply the animation */
   animation-duration: 1ms;
-
-  /* ! BUILDING: never trust what you see! */
-  background-color: deeppink;
 }
 
 .card {
   position: absolute;
-  top: 0;
+  top: calc(3.5em + 50% - var(--card-height) / 2);
   left: 0;
   right: 0;
+  height: var(--card-height);
+  width: 95%;
   margin: auto;
+  padding: 1em;
 
   /* Apply stacked effect based on DOM position */
   --stack-y: calc(var(--view-offset) + var(--y-offset) * var(--card-index, 0));
@@ -854,82 +858,163 @@ pre {
 
   /* Firefox requires this to apply the animation */
   animation-duration: 1ms;
+}
 
-  /* ! BUILDING: never trust what you see! */
-  border: solid 1px black;
-  height: var(--card-height);
-  width: calc(var(--card-height) * 1.618);
-  border-radius: 6px;
+.card * {
+  overflow: hidden;
+}
+
+.card .codeblock-css {
+  font-size: 1em;
+  padding: 0;
 }
 
 .card:nth-child(1) {
   --card-index: 0;
   z-index: 1;
-  background-color: blue;
+  margin-top: -3.5em;
 }
 .card:nth-child(2) {
   --card-index: 1;
   z-index: 2;
-  background-color: red;
 }
 .card:nth-child(3) {
   --card-index: 2;
   z-index: 3;
-  background-color: purple;
 }
 .card:nth-child(4) {
   --card-index: 3;
   z-index: 4;
-  background-color: yellow;
 }
 .card:nth-child(5) {
   --card-index: 4;
   z-index: 5;
-  background-color: darkorange;
+}
+
+.card:nth-child(6) {
+  --card-index: 5;
+  z-index: 6;
+}
+
+.card:nth-child(7) {
+  --card-index: 6;
+  z-index: 7;
+}
+
+#styling-content {
+  flex: 1;
+  font-size: clamp(11px, 1.3vw, 24px);
+  /* ANIMATION SETTINGS: */
+  /*
+  animation-timeline: view(var(--inset2));
+  animation-name: slideUp;
+  animation-fill-mode: forwards;
+  animation-timing-function: var(--tf);
+  */
+  /* Firefox requires this to apply the animation */
+  animation-duration: 1ms;
+}
+
+#styling-content .code {
+  font-size: 0.9em;
+}
+
+#styling-content > .flex-c {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  row-gap: 0;
 }
 
 @keyframes slideUp {
-  from {
+  0% {
     transform: translateY(50vh);
-    background-color: red;
     opacity: 0;
   }
-  to {
+  80% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUpShort {
+  0% {
+    transform: translateY(10vh);
+    opacity: 0;
+  }
+  100% {
     transform: translateY(0px);
     opacity: 1;
   }
 }
 
 @keyframes slideForward {
-  from {
-    transform: translate3d(0, 0, -150px);
-    background-color: red;
+  0% {
+    transform: translate3d(0, 250px, -250px);
+    opacity: 0;
   }
-  to {
+  80% {
+    opacity: 0.5;
+  }
+  100% {
     transform: translate3d(0);
+    opacity: 1;
   }
 }
 
 @keyframes moveUpAndBack {
   0% {
     transform: translate3d(0, var(--stack-y), var(--total-z-offset));
+    background-color: rgba(0, 0, 0, 0.1);
   }
   80% {
     transform: translate3d(0, 0, var(--total-z-offset));
+    background-color: rgba(0, 0, 0, 1);
+  }
+  95% {
+    background-color: rgba(0, 0, 0, 1);
+  }
+  99% {
+    transform: translate3d(0, 0, var(--stack-z));
+    background-color: rgba(0, 0, 0, 0.5);
   }
   100% {
     transform: translate3d(0, 0, var(--stack-z));
+    background-color: rgba(0, 0, 0, 0.2);
   }
 }
 
 @media screen and (max-width: 1300px) {
-  .grid-c2 {
+  .grid-c2:not(#styling .grid-c2) {
     display: flex;
     flex-direction: column;
   }
 
-  #styling > .flex-c:first-of-type {
-    flex-direction: initial;
+  #container-content2 {
+    --ch: 4000px;
+    /* For scroll container offset 
+      - from 0dvw at 800px viewport to 20dvw at 1300px viewport */
+    --scroll-container-offset: 50dvw;
+  }
+
+  #styling h2 {
+    font-size: clamp(2.5em, 10.3vw - 24px, 156px);
+  }
+
+  #styling-content .flex-r {
+    row-gap: 0.5em;
+  }
+
+  #styling-content .banner {
+    flex: initial;
+  }
+
+  #cards-container {
+    /*--scroll-container-offset: 0dvh;*/
+    --card-height: clamp(170px, 24vw - 15px, 320px);
   }
 
   .list ul {
@@ -966,8 +1051,62 @@ pre {
     column-gap: var(--sp8);
   }
 
+  .grid-c2 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #styling > .grid-c2 {
+    height: 100%;
+    position: relative;
+  }
+
   #design {
     gap: var(--sp10);
+  }
+
+  #container-content2 {
+    --ch: 4500px;
+    --scroll-container-offset: 80dvw; /* ! dvW! */
+    --view-offset: 40dvh; /* ! dvW! */
+    --card-height: clamp(320px, 24.7vw, 480px);
+    --z-offset: 5px;
+
+    --step1: calc(var(--ch) - 20vh);
+    --inset1: var(--step1) 0vh;
+  }
+
+  #styling {
+    position: initial;
+    top: initial;
+    height: 100%;
+  }
+
+  #styling .flex-c.heading {
+    align-items: center;
+  }
+
+  #styling-content {
+    font-size: unset;
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    padding-top: var(--sp6);
+    flex: initial;
+  }
+
+  #styling-content > .flex-c {
+    row-gap: var(--sp6);
+    height: 100%;
+  }
+
+  #cards-container {
+    position: relative;
+    flex: 1;
+  }
+
+  .card {
+    top: calc(50% - var(--card-height) / 2);
   }
 
   main {
@@ -977,6 +1116,14 @@ pre {
   h1,
   h2 {
     font-size: 3em;
+  }
+
+  #styling h2 {
+    font-size: clamp(2.5em, 17.8vw - 10px, 132px);
+  }
+
+  #cards-container {
+    --card-height: clamp(155px, 47vw - 12px, 380px);
   }
 
   .navbar {
@@ -989,7 +1136,9 @@ pre {
   }
 
   .navbar.menu-only header {
-    /* Don't use gray colors against black background */
+    /* Use back with alpha channel for shadows
+     - instead of gray border colors against 
+     black background */
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
   }
 
@@ -1134,6 +1283,24 @@ pre {
     row-gap: var(--sp10);
   }
 
+  #styling-content {
+    height: fit-content;
+    font-size: clamp(11px, 3.5vw, 16px);
+  }
+
+  #cards-container {
+    flex: initial;
+    height: calc(var(--card-height) * 2);
+  }
+
+  #styling-content .code {
+    font-size: clamp(8px, 1.8vw + 2px, 14.5px);
+  }
+
+  #container-content2 {
+    padding: var(--sp10) 0;
+  }
+
   #container-content3 {
     margin-bottom: var(--sp10);
   }
@@ -1215,5 +1382,9 @@ pre {
 
   .code {
     padding: 0.4em;
+  }
+
+  #styling > .grid-c2 {
+    row-gap: var(--sp6);
   }
 }

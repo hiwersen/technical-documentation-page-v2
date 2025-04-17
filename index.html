@@ -64,8 +64,8 @@
         <div class="grid-c1">
           <section id="introduction" class="grid-c2">
             <div class="banner-title">
-              <h1>INTRODUCTION</h1>
-              <p>
+              <h1 class="slideUpShort-animation">INTRODUCTION</h1>
+              <p class="slideUpShort-animation">
                 Web forms are a very powerful tool for interacting with users —
                 most commonly they are used for collecting data from users, or
                 allowing them to control a user interface. However, for
@@ -439,20 +439,22 @@
       </div>
 
       <div id="container-content2">
-        <section id="styling" class="flex-c sub">
-          <div class="flex-c">
-            <div class="grid-c2">
+        <section id="styling">
+          <div class="grid-c2">
+            <div class="flex-c heading">
               <h2>
                 <pre><codeblock id="codeblock-style-element" class="code"></codeblock></pre>
                 <script>
                   document.getElementById(
                     "codeblock-style-element"
                   ).textContent = `<style>
-  …
+
 </style>`;
                 </script>
               </h2>
-              <div id="styling-content" class="flex-c">
+            </div>
+            <div id="styling-content" class="flex-c">
+              <div class="flex-c">
                 <div class="flex-r">
                   <div class="banner">
                     <p>
@@ -475,77 +477,73 @@
                   </div>
                 </div>
                 <div id="cards-container">
-                  <div class="card"></div>
-                  <div class="card"></div>
-                  <div class="card"></div>
-                  <div class="card"></div>
-                  <div class="card"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="css-code">
-            <p>Inside the style tags, add the following CSS:</p>
-
-            <pre><codeblock id="codeblock-css" class="code">
-form {
+                  <div class="card">
+                    <p>Inside the style tags, add the following CSS:</p>
+                  </div>
+                  <div class="card">
+                    <pre><codeblock class="code codeblock-css">form {
   /* Center the form on the page */
   margin: 0 auto;
   width: 400px;
-  /* Form outline */
   padding: 16px;
   border: 1px solid #ccc;
   border-radius: 1em;
 }
-    
-label {
+                  </codeblock></pre>
+                  </div>
+                  <div class="card">
+                    <pre><codeblock class="code codeblock-css">label {
   /* Uniform size & alignment */
   display: inline-block;
   width: 90px;
-  text-align: right;
+  text-align: right;        
 }
-    
-input,
+                  </codeblock></pre>
+                  </div>
+                  <div class="card">
+                    <pre><codeblock class="code codeblock-css">input,
 textarea {
-  /* Make sure all text fields
-    have the same font settings
-    By default and textarea have
-    a monospace font
-  */
+  /* Match form fields' properties */
   font: 1em sans-serif;
-
-  /* Uniform text field's size */
   width: 300px;
   box-sizing: border-box;
-
-  /* Match form field's borders */
   border: 1px solid #999;
 }
-    
-textarea {
+                  </codeblock></pre>
+                  </div>
+                  <div class="card">
+                    <pre><codeblock class="code codeblock-css">textarea {
   /* Align multiline text fields
     with their labels */
   vertical-align: top;
 }
-    
-button {
+                  </codeblock></pre>
+                  </div>
+                  <div class="card">
+                    <pre><codeblock class="code codeblock-css">button {
   /* This extra margin represents 
     roughly the same space as the space
     between the labels and their text fields */
   margin-left: 98px;
 }
-    
-input:not(input:first-of-type),
+                  </codeblock></pre>
+                  </div>
+                  <div class="card">
+                    <pre><codeblock class="code codeblock-css">input:not(input:first-of-type),
 label:not(label:first-of-type),
 textarea,
 button {
-    margin-top: 16px;
+  margin-top: 16px;
 }
-              </codeblock></pre>
+                  </codeblock></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </div>
+
       <div id="container-content3">
         <nav class="navbar">
           <header>

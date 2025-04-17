@@ -61,9 +61,14 @@ window.addEventListener("load", () => {
     lastY = scrollY;
 
     sections.forEach((section) => {
+      const margin = 180;
       const sectionTop = section.offsetTop;
-      if (scrollY > sectionTop - 64)
+      const sectionHeight = section.offsetHeight;
+      const sectionBottom = sectionTop + sectionHeight;
+
+      if (scrollY > sectionTop - margin && scrollY < sectionBottom + margin) {
         sectionInViewID = section.getAttribute("id");
+      }
     });
 
     sectionInView.textContent = sectionNames[sectionInViewID];
@@ -82,8 +87,13 @@ window.addEventListener("load", () => {
 
     if (navLinks.classList.contains("active")) {
       navLinksContainer.classList.remove("hide");
+      navbarLabel.classList.remove("hide");
     } else {
       navLinksContainer.classList.add("hide");
+
+      if (navBar.classList.contains("menu-only")) {
+        navbarLabel.classList.add("hide");
+      }
     }
   });
 
@@ -97,6 +107,9 @@ window.addEventListener("load", () => {
       navLinksContainer.classList.remove("hide");
     } else {
       navLinksContainer.classList.add("hide");
+      if (navBar.classList.contains("menu-only")) {
+        navbarLabel.classList.add("hide");
+      }
     }
   });
 
