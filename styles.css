@@ -532,18 +532,9 @@ footer a {
   position: relative;
   background-color: var(--c5);
   min-height: 50vh;
-  padding: var(--sp8) 0;
-}
-
-#prerequisites::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 21px;
-  margin-right: -20px;
-  background-color: inherit;
-  z-index: -1;
+  width: calc(100% + var(--sp6) * 2);
+  margin-left: calc(var(--sp6) * -1);
+  padding: var(--sp8) var(--sp6);
 }
 
 #prerequisites .banner {
@@ -1041,10 +1032,6 @@ pre {
     letter-spacing: -0.04em;
   }
 
-  #prerequisites {
-    padding-left: var(--sp8);
-  }
-
   footer {
     font-size: 0.9em;
   }
@@ -1256,22 +1243,6 @@ pre {
 
   .banner-title p {
     font-size: 1.6em;
-  }
-
-  #prerequisites::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 21px;
-    margin-left: -20px;
-    height: 100%;
-    background-color: inherit;
-    z-index: 2;
-  }
-
-  #prerequisites {
-    padding: var(--sp8) 0;
   }
 
   footer .banner {
