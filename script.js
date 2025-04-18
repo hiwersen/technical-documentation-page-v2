@@ -53,8 +53,6 @@ window.addEventListener("load", () => {
         elem.classList.add("active");
       } else if (!isInView && isActive && !isFarFromView) {
         elem.classList.remove("active");
-
-        if (elem.classList.contains("card")) console.log(elem);
       }
     });
   }
