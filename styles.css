@@ -744,8 +744,8 @@ pre {
 
   /* Determine the length of the scroll container
     - the container height */
-  --ch: min(270dvw, calc(2.7 * var(--page-mw))); /* ! dvW! */
-  height: var(--ch);
+  /* ! --ch: min(270dvw, calc(2.7 * var(--page-mw)));  dvW! */
+  /* ! height: var(--ch); */
   perspective: 500px;
 }
 
