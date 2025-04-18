@@ -48,20 +48,20 @@ window.addEventListener("load", () => {
       }
         */
 
-      if (isInView) {
-        if (!isActive) {
-          elem.classList.add("active");
-        }
-      } else {
+      if (isInView && !isActive) {
+        elem.classList.add("active");
+      } else if (!isInView && isActive) {
         elem.classList.remove("active");
+
+        if (elem.classList.contains("card")) console.log(elem);
       }
     });
   }
 
-  willAnimate(elementsWillAnimate, -50, 50);
+  willAnimate(elementsWillAnimate, -200, -200);
 
   window.addEventListener("scroll", () => {
-    willAnimate(elementsWillAnimate, -50, 50);
+    willAnimate(elementsWillAnimate, -200, -200);
 
     let sectionInViewID = "";
     const sectionNames = {

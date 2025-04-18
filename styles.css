@@ -808,17 +808,6 @@ pre {
   animation-timing-function: var(--tf);
 }
 
-@supports (animation-timeline: view()) {
-  .slideForward {
-    animation-timeline: view(var(--inset1));
-
-    /* Reset unsupported browsers: */
-    animation-delay: initial;
-    /* Firefox requires this to apply the animation */
-    animation-duration: 1ms;
-  }
-}
-
 #styling .flex-c.heading {
   position: relative;
   row-gap: 0;
@@ -861,7 +850,7 @@ pre {
   opacity: 0;
 }
 
-.slideUP.active {
+.slideUp.active {
   animation-name: slideUp;
   animation-duration: 1s;
   animation-delay: 250ms;
@@ -869,28 +858,15 @@ pre {
   animation-timing-function: var(--tf);
 }
 
-@supports (animation-timeline: view()) {
-  .slideUp {
-    animation-timeline: view(var(--inset3));
-
-    /* Reset unsupported browsers: */
-    /* Firefox requires this to apply the animation */
-    animation-duration: 1ms;
-  }
-}
-
 .card {
-  position: absolute;
-  top: calc(3.5em + 50% - var(--card-height) / 2);
-  left: 0;
-  right: 0;
+  position: relative;
   height: var(--card-height);
   width: 95%;
   margin: auto;
   padding: 1em;
 }
 
-.moveBackAndUp-view {
+.moveUpAndBack {
   /* Apply stacked effect based on DOM position */
   --stack-y: calc(var(--view-offset) + var(--y-offset) * var(--card-index, 0));
   --stack-z: calc(var(--card-index, 0) * var(--z-offset));
@@ -902,11 +878,50 @@ pre {
   --view-end: calc(var(--stack-y) - var(--stack-z));
 
   animation-name: moveUpAndBack;
-  animation-timeline: view(block var(--view-start) var(--view-end));
   animation-fill-mode: both;
   animation-timing-function: ease-in-out;
-  /* Firefox requires this to apply the animation */
-  animation-duration: 1ms;
+}
+
+.moveUpAndBack.active {
+  animation-duration: 1s;
+  animation-delay: 250ms;
+}
+
+@supports (animation-timeline: view()) {
+  .card {
+    position: absolute;
+    top: calc(3.5em + 50% - var(--card-height) / 2);
+    left: 0;
+    right: 0;
+    height: var(--card-height);
+    width: 95%;
+    margin: auto;
+    padding: 1em;
+
+    /* Animation settings: 
+    transform: translate3d(0, var(--stack-y), var(--total-z-offset)); */
+  }
+
+  .slideForward,
+  .slideUp,
+  .moveUpAndBack {
+    /* Reset unsupported browsers: */
+    animation-delay: initial;
+    /* Firefox requires this to apply the animation */
+    animation-duration: 1ms;
+  }
+
+  .slideForward {
+    animation-timeline: view(var(--inset1));
+  }
+
+  .slideUp {
+    animation-timeline: view(var(--inset3));
+  }
+
+  .moveUpAndBack {
+    animation-timeline: view(block var(--view-start) var(--view-end));
+  }
 }
 
 .card * {
@@ -1072,6 +1087,7 @@ pre {
   #styling > .grid-c2 {
     height: 100%;
     position: relative;
+    row-gap: var(--sp10);
   }
 
   #design {
@@ -1107,7 +1123,6 @@ pre {
     position: sticky;
     top: 0;
     height: 100dvh;
-    padding-top: var(--sp6);
     flex: initial;
   }
 
@@ -1276,8 +1291,8 @@ pre {
     grid-template-columns: 1fr !important;
   }
 
-  main {
-    row-gap: var(--sp10);
+  #styling > .grid-c2 {
+    row-gap: var(--sp8);
   }
 
   #styling-content {
@@ -1374,9 +1389,5 @@ pre {
 
   .code {
     padding: 0.4em;
-  }
-
-  #styling > .grid-c2 {
-    row-gap: var(--sp6);
   }
 }
