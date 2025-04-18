@@ -504,7 +504,7 @@ footer a {
   row-gap: 0;
 }
 
-.slideUpShort-animation {
+.slideUpShort.active {
   animation-name: slideUpShort;
   animation-duration: 1.75s;
   animation-delay: 750ms;
@@ -512,7 +512,7 @@ footer a {
   animation-timing-function: var(--tf);
 }
 
-#introduction .banner-title p.slideUpShort-animation {
+#introduction .banner-title p.slideUpShort {
   animation-delay: 1s;
 }
 
@@ -599,7 +599,6 @@ pre {
 }
 
 #styling {
-  background-color: var(--c5);
   padding: var(--sp6);
 }
 
@@ -735,6 +734,14 @@ pre {
 }
 
 #container-content2 {
+  /* The page's padding to discount: */
+  --lp: var(--page-pd);
+
+  position: relative;
+  width: calc(100% + calc(var(--lp) * 2));
+  margin-left: calc(var(--lp) * -1);
+  padding: var(--sp11) 0;
+
   /* ANIMATION SETTINGS: */
   /* Determine the length of the scroll container
     - the container height */
@@ -766,14 +773,7 @@ pre {
   --inset3: var(--step3) 40vh; /* 40vh - 100vh */
   --inset4: var(--step4) 100vh; /* 100vh - 200vh */
 
-  /* The page's padding to discount: */
-  --lp: var(--page-pd);
-
   perspective: 500px;
-  position: relative;
-  width: calc(100% + calc(var(--lp) * 2));
-  margin-left: calc(var(--lp) * -1);
-  padding: var(--sp11) 0;
 }
 
 #container-content2::before {
@@ -788,7 +788,7 @@ pre {
   z-index: -1;
 }
 
-/* ! BUG: flickering white line during animation  */
+/* ! BUG: flickering line during animation  */
 #styling {
   position: sticky;
   top: 0;
@@ -797,13 +797,27 @@ pre {
   /* ANIMATION SETTINGS: */
   /* Important for maintaining 3D */
   transform-style: preserve-3d;
-  animation-timeline: view(var(--inset1));
+  opacity: 0;
+  z-index: 1;
+}
+
+.slideForward.active {
   animation-name: slideForward;
+  animation-duration: 750ms;
+  animation-delay: 250ms;
   animation-fill-mode: both;
   animation-timing-function: var(--tf);
+}
 
-  /* Firefox requires this to apply the animation */
-  animation-duration: 1ms;
+@supports (animation-timeline: view()) {
+  .slideForward {
+    animation-timeline: view(var(--inset1));
+
+    /* Reset unsupported browsers: */
+    animation-delay: initial;
+    /* Firefox requires this to apply the animation */
+    animation-duration: 1ms;
+  }
 }
 
 #styling .flex-c.heading {
@@ -821,6 +835,22 @@ pre {
   text-rendering: optimizeLegibility;
 }
 
+#styling-content {
+  flex: 1;
+  font-size: clamp(11px, 1.3vw, 24px);
+}
+
+#styling-content .code {
+  font-size: 0.9em;
+}
+
+#styling-content > .flex-c {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  row-gap: 0;
+}
+
 #cards-container {
   position: absolute;
   inset: 0;
@@ -829,9 +859,12 @@ pre {
   perspective: 500px; /* Enhanced perspective effect at children level */
   /* Move the viewpoint to above the center */
   perspective-origin: center center;
+  opacity: 0;
+}
 
-  animation-timeline: view(var(--inset3));
+.slideUP-view {
   animation-name: slideUp;
+  animation-timeline: view(var(--inset3));
   animation-fill-mode: both;
   animation-timing-function: var(--tf);
   /* Firefox requires this to apply the animation */
@@ -847,24 +880,23 @@ pre {
   width: 95%;
   margin: auto;
   padding: 1em;
+}
 
+.moveBackAndUp-view {
   /* Apply stacked effect based on DOM position */
   --stack-y: calc(var(--view-offset) + var(--y-offset) * var(--card-index, 0));
   --stack-z: calc(var(--card-index, 0) * var(--z-offset));
   transform: translate3d(0, var(--stack-y), var(--total-z-offset));
-
-  /* ANIMATION SETTINGS: */
   /* Create the staggered view timeline effect */
   --view-start: calc(
     var(--scroll-container-offset) + var(--total-y-offset) - var(--stack-y)
   );
   --view-end: calc(var(--stack-y) - var(--stack-z));
 
-  animation-timeline: view(block var(--view-start) var(--view-end));
   animation-name: moveUpAndBack;
+  animation-timeline: view(block var(--view-start) var(--view-end));
   animation-fill-mode: both;
   animation-timing-function: ease-in-out;
-
   /* Firefox requires this to apply the animation */
   animation-duration: 1ms;
 }
@@ -908,31 +940,6 @@ pre {
 .card:nth-child(7) {
   --card-index: 6;
   z-index: 7;
-}
-
-#styling-content {
-  flex: 1;
-  font-size: clamp(11px, 1.3vw, 24px);
-  /* ANIMATION SETTINGS: */
-  /*
-  animation-timeline: view(var(--inset2));
-  animation-name: slideUp;
-  animation-fill-mode: forwards;
-  animation-timing-function: var(--tf);
-  */
-  /* Firefox requires this to apply the animation */
-  animation-duration: 1ms;
-}
-
-#styling-content .code {
-  font-size: 0.9em;
-}
-
-#styling-content > .flex-c {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  row-gap: 0;
 }
 
 @keyframes slideUp {
@@ -1139,19 +1146,16 @@ pre {
     width: fit-content;
   }
 
-  .navbar.menu-only header {
-    /* Use black with alpha channel for shadows
-      against black background
-     - instead of gray border colors -  */
-    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
-  }
-
   header {
     font-size: 1.5em;
     background-color: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(5px);
     margin: 0;
     border: var(--border6);
+    /* Use black with alpha channel for shadows
+      against black background
+     - instead of gray border colors -  */
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
   }
 
   .nav-links-container {

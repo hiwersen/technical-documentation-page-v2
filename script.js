@@ -9,6 +9,7 @@ window.addEventListener("load", () => {
   const navLinks = document.querySelector(".nav-links");
   const navLinksList = document.querySelectorAll(".nav-link");
   const hambMenu = document.querySelector(".hamb-menu");
+  const elementsWillAnimate = document.querySelectorAll(".will-animate");
 
   let lastY = 0;
 
@@ -26,7 +27,42 @@ window.addEventListener("load", () => {
     navLinksContainer.classList.remove("hide");
   }
 
+  function willAnimate(elements, offsetTop, offsetBottom) {
+    const viewTop = scrollY + offsetTop;
+    const viewBottom = scrollY + window.innerHeight - offsetBottom;
+
+    elements.forEach((elem) => {
+      const rect = elem.getBoundingClientRect();
+      const top = scrollY + rect.top;
+      const bottom = top + rect.height;
+
+      const isInView = bottom > viewTop && top < viewBottom;
+      const isActive = elem.classList.contains("active");
+
+      /*
+      if (elem.getAttribute("id") === "styling") {
+        console.log("isInView:", isInView, "isActive:", isActive);
+        console.log("top:", top, "bottom:", bottom);
+        console.log("viewTop:", viewTop, "viewBottom:", viewBottom);
+        console.log("--------------------------");
+      }
+        */
+
+      if (isInView) {
+        if (!isActive) {
+          elem.classList.add("active");
+        }
+      } else {
+        elem.classList.remove("active");
+      }
+    });
+  }
+
+  willAnimate(elementsWillAnimate, -50, 50);
+
   window.addEventListener("scroll", () => {
+    willAnimate(elementsWillAnimate, -50, 50);
+
     let sectionInViewID = "";
     const sectionNames = {
       introduction: "Introduction",
