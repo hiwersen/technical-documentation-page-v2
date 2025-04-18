@@ -36,8 +36,9 @@ window.addEventListener("load", () => {
       const top = scrollY + rect.top;
       const bottom = top + rect.height;
 
-      const isInView = bottom > viewTop && top < viewBottom;
       const isActive = elem.classList.contains("active");
+      const isInView = bottom > viewTop && top < viewBottom;
+      const isFarFromView = bottom > viewTop - 500 && top < viewBottom + 500;
 
       /*
       if (elem.getAttribute("id") === "styling") {
@@ -50,7 +51,7 @@ window.addEventListener("load", () => {
 
       if (isInView && !isActive) {
         elem.classList.add("active");
-      } else if (!isInView && isActive) {
+      } else if (!isInView && isActive && !isFarFromView) {
         elem.classList.remove("active");
 
         if (elem.classList.contains("card")) console.log(elem);
@@ -58,10 +59,10 @@ window.addEventListener("load", () => {
     });
   }
 
-  willAnimate(elementsWillAnimate, -200, -200);
+  willAnimate(elementsWillAnimate, -200, 0);
 
   window.addEventListener("scroll", () => {
-    willAnimate(elementsWillAnimate, -200, -200);
+    willAnimate(elementsWillAnimate, -200, 0);
 
     let sectionInViewID = "";
     const sectionNames = {
