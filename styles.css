@@ -29,6 +29,8 @@
   --sp11: 180px;
   --sp12: 280px;
 
+  --navbar-h: 52px;
+
   --ease: 0.3s ease;
 
   font-size: clamp(16px, 0.33vw + 13px, 20px);
@@ -151,10 +153,14 @@ main {
 }
 
 header {
+  height: var(--navbar-h);
+  min-width: var(--navbar-h);
   background-color: var(--c1);
   color: var(--c5);
   font-size: 2em;
-  padding: 0.25em;
+
+  display: flex;
+  align-items: center;
 
   transition-property: width;
   transition-duration: 1.75s;
@@ -352,9 +358,17 @@ footer a {
   z-index: -1;
 }
 
+.hamb-menu-wrapper {
+  display: none;
+  width: var(--navbar-h);
+  height: var(--navbar-h);
+  justify-content: center;
+  align-items: center;
+}
+
 .hamb-menu {
   position: relative;
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: calc(var(--sp7) - var(--sp3));
@@ -399,32 +413,36 @@ footer a {
   transform: translate(-125%);
 }
 
+.mini-form-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  column-gap: var(--sp3);
+  overflow: hidden;
+  /* Required so that .section-in-view's ellipsis work */
+  text-overflow: ellipsis;
+}
+
+.mini-form-container > * {
+  font-family: "Courier New", Courier, monospace;
+  letter-spacing: -0.03em;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+  font-size: 0.9em;
+  font-weight: 100;
+  text-wrap: nowrap;
+  white-space: nowrap;
+}
+
 .navbar-label {
   display: inline-block;
-  font-family: "Courier New", Courier, monospace;
-  height: 0.9em;
-  /* Match the height for center alignment */
-  line-height: 0.9em;
-  letter-spacing: -0.03em;
-  margin-bottom: -0.2em;
-  text-shadow: 1px 1px 1px var(--c2);
   text-wrap: nowrap;
 }
 
 .section-in-view {
   display: none;
-  height: 100%;
-  align-items: center;
-  font-family: "Courier New", Courier, monospace;
-  letter-spacing: -0.03em;
-  font-size: 0.9em;
-  padding: 0.2em 0.4em;
-  margin-bottom: -0.2em;
-  font-weight: 100;
-  text-wrap: nowrap;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-bottom: -0.05em;
 }
 
 .nav-links-container {
@@ -1135,9 +1153,9 @@ pre {
   }
 
   .navbar.menu-only header {
-    /* Use back with alpha channel for shadows
-     - instead of gray border colors against 
-     black background */
+    /* Use black with alpha channel for shadows
+      against black background
+     - instead of gray border colors -  */
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
   }
 
@@ -1147,13 +1165,6 @@ pre {
     backdrop-filter: blur(5px);
     margin: 0;
     border: var(--border6);
-    display: flex;
-    align-items: center;
-    gap: var(--sp5);
-    min-height: calc(var(--sp9) - var(--sp3));
-
-    /* For Safari */
-    position: relative;
   }
 
   .nav-links-container {
@@ -1162,6 +1173,7 @@ pre {
     min-width: var(--sp12);
   }
 
+  .mini-form-container.hide,
   .navbar-label.hide,
   .section-in-view.hide,
   .nav-links-container.hide {
@@ -1187,37 +1199,19 @@ pre {
 
   .nav-links a {
     /* ! BUG: Ellipsis doesn't work with flexbox ? */
-    height: calc(var(--sp9) - var(--sp3));
+    height: var(--navbar-h);
     display: flex;
     align-items: center;
     padding: 0 1.5em;
     border-bottom: var(--border3);
   }
 
-  .hamb-menu {
+  .hamb-menu-wrapper {
     display: flex;
   }
 
   .section-in-view {
-    display: block;
-    /* For Safari: */
-    position: relative;
-    align-self: center;
-  }
-
-  @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-    /* Safari-specific fixes */
-    .navbar header {
-      /* Force a paint context in Safari */
-      transform: translateZ(0);
-    }
-
-    .section-in-view {
-      /* Additional Safari-specific positioning */
-      position: relative;
-      top: 0;
-      align-self: center;
-    }
+    display: inline-block;
   }
 
   .navbar ul {
@@ -1373,7 +1367,6 @@ pre {
 @media screen and (max-width: 510px) {
   header {
     font-size: 1.25em;
-    gap: var(--sp3);
   }
 
   h1,
