@@ -747,6 +747,37 @@ pre {
   /* ! --ch: min(270dvw, calc(2.7 * var(--page-mw)));  dvW! */
   /* ! height: var(--ch); */
   perspective: 500px;
+
+  /* Determine the length of the scroll container
+    - the container height */
+  --ch: min(270dvw, calc(2.7 * var(--page-mw))); /* ! dvW! */
+  height: var(--ch);
+
+  /* ANIMATION SETTINGS: */
+  --scroll-container-offset: 50dvw; /* ! dvW! */
+  --view-offset: 30dvw; /* ! dvW! */
+  --card-height: clamp(320px, 24.7vw, 480px); /* 24.7 - 14.7vw */
+  --z-offset: 5px;
+  --y-offset: calc(var(--card-height) + 50px);
+  --y-offset-short: calc(var(--card-height) + 2px);
+  --max-index: 6; /* Number of cards - 1 */
+  --total-y-offset: calc(
+    var(--y-offset) * var(--max-index) + var(--view-offset)
+  );
+  --total-z-offset: calc(var(--z-offset) * var(--max-index));
+
+  /* Determine the inset:
+      - adjustment of the scrollport, or
+      - length of the animation timeline */
+  --step1: calc(var(--ch) - 60vh);
+  --step2: calc(var(--ch) - 80vh);
+  --step3: calc(var(--ch) - 100vh);
+  --step4: calc(var(--ch) - 200vh);
+
+  --inset1: var(--step1) 10vh; /* 20vh - 60vh */
+  --inset2: var(--step2) 30vh; /* 30vh - 80vh */
+  --inset3: var(--step3) 40vh; /* 40vh - 100vh */
+  --inset4: var(--step4) 100vh; /* 100vh - 200vh */
 }
 
 #container-content2::before {
@@ -842,10 +873,22 @@ pre {
   width: 95%;
   margin: auto;
   padding: 1em;
+
+  /* Animation settings: */
+  /* Apply stacked effect based on DOM position */
+  --stack-y: calc(var(--view-offset) + var(--y-offset) * var(--card-index, 0));
+  --stack-y-short: calc(var(--y-offset-short) * var(--card-index, 0));
+  --stack-z: calc(var(--card-index, 0) * var(--z-offset));
+  /* ! transform: translate3d(0, var(--stack-y), var(--total-z-offset)); */
+  /* Create the staggered view timeline effect */
+  --view-start: calc(
+    var(--scroll-container-offset) + var(--total-y-offset) - var(--stack-y)
+  );
+  --view-end: calc(var(--stack-y) - var(--stack-z));
 }
 
 .moveUpAndBack {
-  animation-name: moveUpAndBack;
+  animation-name: moveUpAndBackShort;
   animation-fill-mode: both;
   animation-timing-function: ease-in-out;
 }
@@ -856,38 +899,6 @@ pre {
 }
 
 @supports (animation-timeline: view()) {
-  #container-content2 {
-    /* Determine the length of the scroll container
-      - the container height */
-    --ch: min(270dvw, calc(2.7 * var(--page-mw))); /* ! dvW! */
-    height: var(--ch);
-
-    /* ANIMATION SETTINGS: */
-    --scroll-container-offset: 50dvw; /* ! dvW! */
-    --view-offset: 30dvw; /* ! dvW! */
-    --card-height: clamp(320px, 24.7vw, 480px); /* 24.7 - 14.7vw */
-    --z-offset: 5px;
-    --y-offset: calc(var(--card-height) + 50px);
-    --max-index: 6; /* Number of cards - 1 */
-    --total-y-offset: calc(
-      var(--y-offset) * var(--max-index) + var(--view-offset)
-    );
-    --total-z-offset: calc(var(--z-offset) * var(--max-index));
-
-    /* Determine the inset:
-      - adjustment of the scrollport, or
-      - length of the animation timeline */
-    --step1: calc(var(--ch) - 60vh);
-    --step2: calc(var(--ch) - 80vh);
-    --step3: calc(var(--ch) - 100vh);
-    --step4: calc(var(--ch) - 200vh);
-
-    --inset1: var(--step1) 10vh; /* 20vh - 60vh */
-    --inset2: var(--step2) 30vh; /* 30vh - 80vh */
-    --inset3: var(--step3) 40vh; /* 40vh - 100vh */
-    --inset4: var(--step4) 100vh; /* 100vh - 200vh */
-  }
-
   #cards-container {
     position: absolute;
     top: 0;
@@ -902,19 +913,6 @@ pre {
     width: 95%;
     margin: auto;
     padding: 1em;
-
-    /* Animation settings: */
-    /* Apply stacked effect based on DOM position */
-    --stack-y: calc(
-      var(--view-offset) + var(--y-offset) * var(--card-index, 0)
-    );
-    --stack-z: calc(var(--card-index, 0) * var(--z-offset));
-    /* ! transform: translate3d(0, var(--stack-y), var(--total-z-offset)); */
-    /* Create the staggered view timeline effect */
-    --view-start: calc(
-      var(--scroll-container-offset) + var(--total-y-offset) - var(--stack-y)
-    );
-    --view-end: calc(var(--stack-y) - var(--stack-z));
   }
 
   .slideForward,
@@ -935,6 +933,7 @@ pre {
   }
 
   .moveUpAndBack {
+    animation-name: moveUpAndBack;
     animation-timeline: view(block var(--view-start) var(--view-end));
   }
 }
@@ -1022,6 +1021,21 @@ pre {
 @keyframes moveUpAndBack {
   0% {
     transform: translate3d(0, var(--stack-y), var(--total-z-offset));
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  80% {
+    transform: translate3d(0, 0, var(--total-z-offset));
+    background-color: rgba(0, 0, 0, 1);
+  }
+  100% {
+    transform: translate3d(0, 0, var(--stack-z));
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+@keyframes moveUpAndBackShort {
+  0% {
+    transform: translate3d(0, var(--stack-y-short), var(--total-z-offset));
     background-color: rgba(0, 0, 0, 0.1);
   }
   80% {
@@ -1192,7 +1206,7 @@ pre {
     width: fit-content;
   }
 
-  .navbar.menu-only .hamb-menu-wrapper {
+  .navbar.menu-only header {
     /* Use black with alpha channel for shadows
       against black background
      - instead of gray border colors -  */
