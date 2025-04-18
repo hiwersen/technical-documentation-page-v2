@@ -1192,16 +1192,19 @@ pre {
     width: fit-content;
   }
 
+  .navbar.menu-only .hamb-menu-wrapper {
+    /* Use black with alpha channel for shadows
+      against black background
+     - instead of gray border colors -  */
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
+  }
+
   header {
     font-size: 1.5em;
     background-color: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(5px);
     margin: 0;
     border: var(--border6);
-    /* Use black with alpha channel for shadows
-      against black background
-     - instead of gray border colors -  */
-    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
   }
 
   .nav-links-container {
