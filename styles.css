@@ -803,8 +803,7 @@ pre {
 
 .slideForward.active {
   animation-name: slideForward;
-  animation-duration: 750ms;
-  animation-delay: 250ms;
+  animation-duration: 1s;
   animation-fill-mode: both;
   animation-timing-function: var(--tf);
 }
@@ -862,13 +861,22 @@ pre {
   opacity: 0;
 }
 
-.slideUP-view {
+.slideUP.active {
   animation-name: slideUp;
-  animation-timeline: view(var(--inset3));
+  animation-duration: 1s;
+  animation-delay: 250ms;
   animation-fill-mode: both;
   animation-timing-function: var(--tf);
-  /* Firefox requires this to apply the animation */
-  animation-duration: 1ms;
+}
+
+@supports (animation-timeline: view()) {
+  .slideUp {
+    animation-timeline: view(var(--inset3));
+
+    /* Reset unsupported browsers: */
+    /* Firefox requires this to apply the animation */
+    animation-duration: 1ms;
+  }
 }
 
 .card {
@@ -969,7 +977,7 @@ pre {
 
 @keyframes slideForward {
   0% {
-    transform: translate3d(0, 250px, -250px);
+    transform: translate3d(0, 100px, -150px);
     opacity: 0;
   }
   80% {
@@ -1241,7 +1249,7 @@ pre {
   }
 
   #introduction h1 {
-    margin: calc(1em + 47px) 0 1em;
+    margin: calc(1em + var(--navbar-h) + var(--sp4)) 0 1em;
     letter-spacing: unset;
   }
 
@@ -1292,10 +1300,6 @@ pre {
 
   #container-content3 {
     margin-bottom: var(--sp10);
-  }
-
-  .grid-c1 {
-    gap: var(--sp10);
   }
 
   .flex-c {
