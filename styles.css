@@ -298,6 +298,7 @@ footer .banner {
 
 footer p {
   color: var(--c2) !important;
+  max-width: var(--sp12);
 }
 
 footer a {
@@ -1120,11 +1121,7 @@ pre {
   }
 
   footer {
-    font-size: 0.9em;
-  }
-
-  footer .banner {
-    width: unset;
+    font-size: 0.85em;
   }
 }
 
@@ -1384,11 +1381,6 @@ pre {
 
   #container-content2 {
     padding: var(--sp10) 0;
-  }
-
-  #container-content3 {
-    padding: var(--sp10) 0;
-    margin-bottom: var(--sp10);
   }
 
   .flex-c {

@@ -61,7 +61,7 @@ window.addEventListener("load", () => {
 
     parallaxWrapper.style.height = `${content2Height + content3Height}px`;
 
-    if (content3Top - 400 < window.innerHeight) {
+    if (content3Top < window.innerHeight) {
       content2.style.position = "sticky";
       content2.style.top = `${content2Top}px`;
     } else {

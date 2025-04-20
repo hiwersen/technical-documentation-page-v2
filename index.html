@@ -70,24 +70,20 @@
             <div class="banner-title">
               <h1 class="will-animate slideUpShort">INTRODUCTION</h1>
               <p class="will-animate slideUpShort">
-                Web forms are a very powerful tool for interacting with users —
-                most commonly they are used for collecting data from users, or
-                allowing them to control a user interface. However, for
-                historical and technical reasons, it's not always obvious how to
-                use them to their full potential.
+                Web forms serve as powerful tools for user interaction,
+                primarily collecting data and enabling user interface control.
+                However, their full potential can be elusive due to technical
+                complexities in implementation.
               </p>
             </div>
             <div class="list">
-              <p>
-                In this documentation, we'll cover all the essential aspects of
-                Web forms including:
-              </p>
+              <p>This guide explores key web form concepts, including:</p>
               <ul>
-                <li>Marking up their HTML structure</li>
-                <li>Styling form controls</li>
+                <li>HTML structural markup</li>
+                <li>Control styling techniques</li>
 
-                <li>Validating form data</li>
-                <li>Submitting data to the server</li>
+                <li>Data validation methods</li>
+                <li>Server submission processes</li>
               </ul>
             </div>
           </section>
@@ -97,16 +93,18 @@
               <h2>Prerequisites</h2>
               <article>
                 <p>
-                  You should at least work through the
+                  Familiarize yourself with the
                   <a
                     href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML"
                     target="_blank"
-                    >Introduction to HTML.</a
+                    >Introduction to HTML</a
                   >
+                  before proceeding.
                 </p>
+
                 <p>
-                  However, form elements are more complex than most other HTML
-                  elements, and they also require a close marriage of related
+                  However, form elements exceed the complexity of standard HTML
+                  components, requiring integrated
                   <a
                     href="https://developer.mozilla.org/en-US/docs/Learn/CSS"
                     target="_blank"
@@ -118,7 +116,7 @@
                     target="_blank"
                     >JavaScript</a
                   >
-                  techniques to get the most out of them.
+                  knowledge to maximize their effectiveness.
                 </p>
               </article>
             </div>
@@ -131,16 +129,14 @@
 
                 <article>
                   <p>
-                    From a user experience (UX) point of view, it's important to
-                    remember that the bigger your form, the more you risk
-                    frustrating people and losing them. Keep it simple and stay
-                    focused: ask only for the data you absolutely need.
+                    For optimal user experience (UX), remember that form length
+                    directly impacts abandonment rates. Maintain simplicity and
+                    focus by requesting only essential information.
                   </p>
                   <p>
-                    In the example, our form will contain three text fields and
-                    one button. We are asking the user for their name, their
-                    email and the message they want to send. Hitting the button
-                    will send their data to a web server.
+                    Our demonstration includes three text fields (name, email,
+                    message) and a submission button that transmits data to the
+                    server when clicked.
                   </p>
                 </article>
               </div>
@@ -188,26 +184,26 @@
                       target="_blank"
                       ><code>&lt;form&gt;</code></a
                     >
-                    element is a container element like a section or footer
-                    element, but specifically for containing forms; it also
-                    supports some specific attributes to configure the way the
-                    form behaves.
+                    element functions as a specialized container similar to
+                    section or footer elements, but specifically designed for
+                    forms; it also features unique attributes that configure
+                    form behavior.
                   </p>
                 </div>
                 <div class="list">
                   <p>
-                    All of its attributes are optional, but it's standard
-                    practice to always set at least the action and method
+                    While all its attributes are optional, best practice
+                    dictates setting at minimum both action and method
                     attributes:
                   </p>
                   <ul>
                     <li>
-                      The action attribute defines the location (URL) where the
-                      form's collected data should be sent when it is submitted.
+                      The action attribute specifies the destination URL where
+                      collected form data should be sent upon submission.
                     </li>
                     <li>
-                      The method attribute defines which HTTP method to send the
-                      data with (usually get or post).
+                      The method attribute determines which HTTP method
+                      transmits the data (typically get or post).
                     </li>
                   </ul>
                 </div>
@@ -226,18 +222,18 @@
                 </h2>
                 <div class="flex-c">
                   <p class="first-paragraph">
-                    Note the use of the for attribute on all label elements,
-                    which takes as its value the id of the form control with
-                    which it is associated — this is how you associate a form
-                    control with its label, enabling mouse, trackpad, and touch
-                    device users to click on the label to activate the
-                    corresponding control, and it also provides an accessible
-                    name for screen readers to read out to their users.
+                    Note that each label element includes a for attribute
+                    containing the id of its associated form control — this
+                    creates the connection between label and control, allowing
+                    users with mouse, trackpad, or touch devices to activate the
+                    control by clicking its label, while simultaneously
+                    providing an accessible name for screen readers to announce
+                    to their users.
                   </p>
                   <div class="list">
                     <p>
-                      Our contact form is not complex: the data entry portion
-                      contains three text fields, each with a corresponding
+                      Our contact form features three text fields, each paired
+                      with a corresponding
                       <a
                         href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label"
                         target="_blank"
@@ -246,26 +242,26 @@
                     </p>
                     <ul>
                       <li>
-                        The
+                        The name field uses an
                         <a
                           href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input"
                           target="_blank"
                           ><code>&lt;input&gt;</code></a
                         >
-                        field for the name is a single-line text field.
+                        of type text: a single-line text field.
                       </li>
                       <li>
-                        The input field for the email is an input of type email:
-                        a single-line text field that accepts only email
-                        addresses.
+                        The email field uses an input of type email: a
+                        single-line text field that validates email address
+                        formats.
                       </li>
                       <li>
-                        The input field for the message is a
+                        The message field implements a
                         <a
                           href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea"
                           target="_blank"
                           ><code>&lt;textarea&gt;</code></a
-                        >; a multiline text field.
+                        >: a multiline text field.
                       </li>
                     </ul>
                   </div>
@@ -280,19 +276,19 @@
   action="/my-handling-form-page" 
   method="post"
 >
-  <label for="name">Name</label>
+  <label for="name">Name:</label>
   <input 
     id="name" 
     name="user-name" 
     type="text" 
   />
-  <label for="mail">Email</label>
+  <label for="mail">Email:</label>
   <input 
     id="mail" 
     name="user-email"
     type="email"
   />
-  <label for="msg">Message</label>
+  <label for="msg">Message:</label>
   <textarea 
     id="msg" 
     name="user-message">
@@ -310,29 +306,28 @@
               <div class="flex-r">
                 <div class="list">
                   <p>
-                    On the input element, the most important attribute is the
-                    type attribute. This attribute is extremely important
-                    because it defines the way the input element appears and
-                    behaves.
+                    The type attribute is the most important attribute for input
+                    elements, fundamentally determining both their appearance
+                    and behavior.
                   </p>
                   <ul>
                     <li>
-                      In our simple example, we use the value text for the first
-                      input — the default value for this attribute. It
-                      represents a basic single-line text field that accepts any
-                      kind of text input.
+                      The default value for this attribute is "text", as
+                      utilized in the first input example — this default setting
+                      creates a standard single-line field accepting any text
+                      content.
                     </li>
                     <li>
-                      For the second input, we use the value email, which
-                      defines a single-line text field that only accepts a
-                      well-formed email address.
+                      The value "email", implemented in the second input,
+                      generates a single-line field that validates for properly
+                      formatted email addresses.
                     </li>
                   </ul>
                 </div>
                 <div>
                   <p>
-                    To define the default value of an input element you have to
-                    use the value attribute, like this:
+                    To establish an input element's default value, you must
+                    utilize the value attribute, as shown:
                   </p>
                 </div>
               </div>
@@ -353,18 +348,17 @@
               <div class="flex-r">
                 <div class="banner">
                   <p>
-                    Last but not least, note the syntax of input vs. textarea.
-                    This is one of the oddities of HTML. The input tag is a void
-                    element, meaning that it doesn't need a closing tag.
-                    textarea is not a void element, meaning it should be closed
-                    with the proper ending tag.
+                    Note the important syntactical difference between input and
+                    textarea elements. Input functions as a void element,
+                    requiring no closing tag. Textarea, however, is not a void
+                    element and must include a proper closing tag.
                   </p>
                 </div>
                 <div class="banner">
                   <p>
-                    If you want to define a default value for a textarea, you
-                    put it between the opening and closing tags of the textarea
-                    element, like this:
+                    When setting a default value for a textarea, place the
+                    content between its opening and closing tags, as
+                    demonstrated:
                   </p>
                 </div>
               </div>
@@ -406,32 +400,31 @@
                       target="_blank"
                       ><code>&lt;button&gt;</code></a
                     >
-                    element allows the user to send, or "submit", their data
-                    once they have filled out the form.
+                    element enables users to send or "submit" their information
+                    after completing the form.
                   </p>
                 </div>
                 <div class="list">
                   <p>
-                    The button element also accepts a type attribute — this
-                    accepts one of three values: submit, reset, or button:
+                    The button element supports a type attribute that accepts
+                    three possible values: submit, reset, or button:
                   </p>
                   <ul>
                     <li>
-                      A click on a submit button (the default value) sends the
-                      form's data to the web page defined by the action
-                      attribute of the form element.
+                      Clicking a submit button (the default type) transmits the
+                      form data to the webpage specified in the form element's
+                      action attribute.
                     </li>
                     <li>
-                      A click on a reset button resets all the form widgets to
-                      their default value immediately. From a UX point of view,
-                      this is considered bad practice, so you should avoid using
-                      this type of button unless you really have a good reason
-                      to include one.
+                      Clicking a reset button immediately restores all form
+                      widgets to their default values. This is generally
+                      considered poor UX practice, so avoid using this type
+                      unless specifically necessary.
                     </li>
                     <li>
-                      A click on a button button does nothing! That sounds
-                      silly, but it's amazingly useful for building custom
-                      buttons — you can define their chosen functionality with
+                      Clicking a button of type button performs no default
+                      action. While this seems counterintuitive, it's extremely
+                      valuable for implementing custom functionality via
                       JavaScript.
                     </li>
                   </ul>
@@ -462,21 +455,20 @@
                   <div class="flex-r">
                     <div class="banner">
                       <p>
-                        It is beyond the scope of this documentation to teach
-                        form styling in detail but some basic form styling with
-                        CSS to make it look
+                        While comprehensive form styling exceeds this guide's
+                        scope, we can implement some basic CSS to make it look
                         <span class="ok">OK.</span>
                       </p>
                     </div>
                     <div class="banner">
                       <p>
-                        First of all, add a
+                        Begin by adding a
                         <a
                           href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style"
                           target="_blank"
                           ><code>&lt;style&gt;</code></a
                         >
-                        element to your page, inside your HTML head:
+                        element within your HTML head section:
                       </p>
                     </div>
                   </div>
@@ -610,36 +602,32 @@ button {
               <article class="flex-r">
                 <div class="banner">
                   <p>
-                    The form element defines where and how to send the data to
-                    the server thanks to the action and method attributes.
+                    The form element determines where and how data is
+                    transmitted to the server through its action and method
+                    attributes.
                   </p>
                   <p>
-                    The form data is sent to the server as name/value pairs. We
-                    provide a name attribute for each form control. The names
-                    are important on both the client- and server-side; they tell
-                    the browser which name to give each piece of data and, on
-                    the server side, they let the server handle each piece of
-                    data by name.
+                    Form data is transmitted as name/value pairs. Each form
+                    control requires a name attribute. These names serve dual
+                    purposes: they tell browsers how to label each data piece
+                    and enable servers to process individual data items by name.
                   </p>
                   <p>
-                    In our example, the form will send 3 pieces of data named
-                    "user-name", "user-email", and "user-message". That data
-                    will be sent to the URL "/my-handling-form-page" using the
-                    HTTP POST method.
+                    Our example transmits three data pieces labeled "user-name",
+                    "user-email", and "user-message". This data will be sent to
+                    "/my-handling-form-page" using the HTTP POST method.
                   </p>
                 </div>
                 <div class="banner">
                   <p>
-                    On the server side, the script at the URL
-                    "/my-handling-form-page" will receive the data as a list of
-                    3 key/value items contained in the HTTP request. The way
-                    this script will handle that data is up to you. It's beyond
-                    the scope of this guide to go deeply into that subject
+                    On the server side, the script at "/my-handling-form-page"
+                    receives the data as three key/value pairs within the HTTP
+                    request. The specific handling of this data depends on your
+                    implementation and exceeds this guide's scope.
                   </p>
                   <p>
-                    To name the data in a form, you need to use the name
-                    attribute on each form widget that will collect a specific
-                    piece of data:
+                    To identify data within a form, define the name attribute to
+                    each form widget collecting specific information:
                   </p>
                 </div>
               </article>
@@ -674,7 +662,7 @@ button {
       </div>
     </main>
     <footer>
-      <div class="page-container">
+      <div class="page-container flex-r">
         <div class="banner">
           <p>
             All documentation on this page has been sourced from
@@ -685,6 +673,27 @@ button {
               MDN Web form building blocks
             </a>
             for educational purposes.
+          </p>
+        </div>
+        <div class="banner">
+          <p>
+            This page was created as part of the "Build a Technical
+            Documentation Page" project for
+            <a
+              href="https://www.freecodecamp.org/learn/2022/responsive-web-design/build-a-technical-documentation-page-project/build-a-technical-documentation-page"
+              target="_blank"
+              >freeCodeCamp</a
+            >.
+          </p>
+        </div>
+        <div class="banner">
+          <p>
+            View the source code on
+            <a
+              href="https://github.com/hiwersen/technical-documentation-page-v2.git"
+              target="_blank"
+              >GitHub</a
+            >.
           </p>
         </div>
       </div>
