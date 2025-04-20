@@ -90,22 +90,43 @@ main {
 }
 
 .page-container {
+  position: relative;
   max-width: var(--page-mw);
   margin: 0 auto;
   padding: var(--page-pd) var(--page-pd) 0;
+}
+
+#container-content2 {
+  /* ! BUG: black top border behind #container-content3
+   - during parallax scrolling - Chrome
+   - it */
+  z-index: -1;
+}
+#container-content3 {
+  z-index: 1;
 }
 
 #container-content1,
 #container-content3 {
   display: flex;
   column-gap: var(--sp6);
-
-  /* ! BUILDING
-  display: none !important;  */
 }
 
 #container-content3 {
-  margin-bottom: var(--sp11);
+  position: relative;
+  padding: var(--sp11) 0;
+}
+
+#container-content3::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100dvw;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--c1);
+  z-index: -1;
 }
 
 .grid-c1 {
@@ -756,7 +777,7 @@ pre {
   position: relative;
   width: calc(100% + calc(var(--lp) * 2));
   margin-left: calc(var(--lp) * -1);
-  padding: var(--sp11) 0;
+  padding-top: var(--sp11);
 
   /* Determine the length of the scroll container
     - the container height */
@@ -814,7 +835,6 @@ pre {
   position: sticky;
   top: 0;
   min-height: 100dvh;
-  z-index: 1;
 
   /* ANIMATION SETTINGS: */
   /* Important for maintaining 3D */
@@ -857,7 +877,7 @@ pre {
   position: relative;
   width: 100%;
   height: 100%;
-  row-gap: 0;
+  row-gap: var(--sp6);
 }
 
 #cards-container {
@@ -871,7 +891,6 @@ pre {
   perspective: 500px; /* Enhanced perspective effect at children level */
   /* Move the viewpoint to above the center */
   perspective-origin: center center;
-  opacity: 0;
 }
 
 .slideUp.active {
@@ -902,7 +921,11 @@ pre {
   --view-end: calc(var(--stack-y) - var(--stack-z));
 
   /* ! BUILDING: */
-  background-color: yellow;
+  --card-y: calc(var(--card-height) * var(--card-index, 0));
+}
+
+.card:not(:first-of-type) {
+  transform: translateY(calc((var(--card-height) - 3em) * -1));
 }
 
 @supports (animation-timeline: view()) {
@@ -955,7 +978,6 @@ pre {
   }
 
   .moveUpAndBack {
-    animation-name: moveUpAndBack;
     animation-timeline: view(block var(--view-start) var(--view-end));
   }
 }
@@ -1180,7 +1202,6 @@ pre {
   }
 
   #styling-content > .flex-c {
-    row-gap: var(--sp6);
     height: 100%;
   }
 
@@ -1198,7 +1219,7 @@ pre {
   }
 
   #cards-container {
-    --card-height: clamp(155px, 47vw - 12px, 380px);
+    --card-height: clamp(200px, 20vw + 160px, 280px);
   }
 
   .navbar {
@@ -1358,7 +1379,7 @@ pre {
   }
 
   #styling-content .code {
-    font-size: clamp(8px, 1.8vw + 2px, 14.5px);
+    font-size: clamp(11px, 2.6vw + 2px, 14.5px);
   }
 
   #container-content2 {
@@ -1366,7 +1387,7 @@ pre {
   }
 
   #container-content3 {
-    margin-bottom: var(--sp10);
+    margin-bottom: var(--sp11);
   }
 
   .flex-c {

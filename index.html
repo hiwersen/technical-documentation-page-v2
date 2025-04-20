@@ -441,51 +441,51 @@
           </section>
         </div>
       </div>
-
-      <div id="container-content2">
-        <section id="styling" class="will-animate slideForward">
-          <div class="grid-c2">
-            <div class="flex-c heading">
-              <h2>
-                <pre><codeblock id="codeblock-style-element" class="code"></codeblock></pre>
-                <script>
-                  document.getElementById(
-                    "codeblock-style-element"
-                  ).textContent = `<style>
+      <div id="parallax-wrapper">
+        <div id="container-content2">
+          <section id="styling" class="will-animate slideForward">
+            <div class="grid-c2">
+              <div class="flex-c heading">
+                <h2>
+                  <pre><codeblock id="codeblock-style-element" class="code"></codeblock></pre>
+                  <script>
+                    document.getElementById(
+                      "codeblock-style-element"
+                    ).textContent = `<style>
 
 </style>`;
-                </script>
-              </h2>
-            </div>
-            <div id="styling-content" class="flex-c">
-              <div class="flex-c">
-                <div class="flex-r">
-                  <div class="banner">
-                    <p>
-                      It is beyond the scope of this documentation to teach form
-                      styling in detail but some basic form styling with CSS to
-                      make it look
-                      <span class="ok">OK.</span>
-                    </p>
+                  </script>
+                </h2>
+              </div>
+              <div id="styling-content" class="flex-c">
+                <div class="flex-c">
+                  <div class="flex-r">
+                    <div class="banner">
+                      <p>
+                        It is beyond the scope of this documentation to teach
+                        form styling in detail but some basic form styling with
+                        CSS to make it look
+                        <span class="ok">OK.</span>
+                      </p>
+                    </div>
+                    <div class="banner">
+                      <p>
+                        First of all, add a
+                        <a
+                          href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style"
+                          target="_blank"
+                          ><code>&lt;style&gt;</code></a
+                        >
+                        element to your page, inside your HTML head:
+                      </p>
+                    </div>
                   </div>
-                  <div class="banner">
-                    <p>
-                      First of all, add a
-                      <a
-                        href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style"
-                        target="_blank"
-                        ><code>&lt;style&gt;</code></a
-                      >
-                      element to your page, inside your HTML head:
-                    </p>
-                  </div>
-                </div>
-                <div id="cards-container" class="will-animate slideUp">
-                  <div class="card will-animate moveUpAndBack">
-                    <p>Inside the style tags, add the following CSS:</p>
-                  </div>
-                  <div class="card will-animate moveUpAndBack">
-                    <pre><codeblock class="code codeblock-css">form {
+                  <div id="cards-container">
+                    <div class="card will-animate moveUpAndBack">
+                      <p>Inside the style tags, add the following CSS:</p>
+                    </div>
+                    <div class="card will-animate moveUpAndBack">
+                      <pre><codeblock class="code codeblock-css">form {
   /* Center the form on the page */
   margin: 0 auto;
   width: 400px;
@@ -494,18 +494,18 @@
   border-radius: 1em;
 }
                   </codeblock></pre>
-                  </div>
-                  <div class="card will-animate moveUpAndBack">
-                    <pre><codeblock class="code codeblock-css">label {
+                    </div>
+                    <div class="card will-animate moveUpAndBack">
+                      <pre><codeblock class="code codeblock-css">label {
   /* Uniform size & alignment */
   display: inline-block;
   width: 90px;
   text-align: right;        
 }
                   </codeblock></pre>
-                  </div>
-                  <div class="card will-animate moveUpAndBack">
-                    <pre><codeblock class="code codeblock-css">input,
+                    </div>
+                    <div class="card will-animate moveUpAndBack">
+                      <pre><codeblock class="code codeblock-css">input,
 textarea {
   /* Match form fields' properties */
   font: 1em sans-serif;
@@ -514,160 +514,163 @@ textarea {
   border: 1px solid #999;
 }
                   </codeblock></pre>
-                  </div>
-                  <div class="card will-animate moveUpAndBack">
-                    <pre><codeblock class="code codeblock-css">textarea {
+                    </div>
+                    <div class="card will-animate moveUpAndBack">
+                      <pre><codeblock class="code codeblock-css">textarea {
   /* Align multiline text fields
     with their labels */
   vertical-align: top;
 }
                   </codeblock></pre>
-                  </div>
-                  <div class="card will-animate moveUpAndBack">
-                    <pre><codeblock class="code codeblock-css">button {
+                    </div>
+                    <div class="card will-animate moveUpAndBack">
+                      <pre><codeblock class="code codeblock-css">button {
   /* This extra margin represents 
     roughly the same space as the space
     between the labels and their text fields */
   margin-left: 98px;
 }
                   </codeblock></pre>
-                  </div>
-                  <div class="card will-animate moveUpAndBack">
-                    <pre><codeblock class="code codeblock-css">input:not(input:first-of-type),
+                    </div>
+                    <div class="card will-animate moveUpAndBack">
+                      <pre><codeblock class="code codeblock-css">input:not(input:first-of-type),
 label:not(label:first-of-type),
 textarea,
 button {
   margin-top: 16px;
 }
                   </codeblock></pre>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-      </div>
+          </section>
+        </div>
 
-      <div id="container-content3">
-        <nav class="navbar">
-          <header>
-            <span class="hamb-menu">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-            <span class="navbar-label">Web Forms:</span>
-            <span class="section-in-view"></span>
-          </header>
-          <div class="nav-links-container">
-            <div class="nav-links">
-              <ul>
-                <li>
-                  <a class="nav-link view" href="#introduction">Introduction</a>
-                </li>
-                <li>
-                  <a class="nav-link" href="#prerequisites">Prerequisites</a>
-                </li>
-                <li><a class="nav-link" href="#design">Design</a></li>
-                <li>
-                  <a class="nav-link" href="#the_form_element"
-                    >The form element</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="nav-link"
-                    href="#the_label_input_and_textarea_elements"
-                  >
-                    <span class="grouped-sections-link">
-                      <span>Label</span>
-                      <span>Input</span>
-                      <span>Textarea</span>
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a class="nav-link" href="#the_button_element"
-                    >The button element</a
-                  >
-                </li>
-                <li><a class="nav-link" href="#styling">Styling</a></li>
-                <li>
-                  <a class="nav-link" href="#submitting_data"
-                    >Submitting data</a
-                  >
-                </li>
-              </ul>
+        <div id="container-content3">
+          <nav class="navbar">
+            <header>
+              <span class="hamb-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+              <span class="navbar-label">Web Forms:</span>
+              <span class="section-in-view"></span>
+            </header>
+            <div class="nav-links-container">
+              <div class="nav-links">
+                <ul>
+                  <li>
+                    <a class="nav-link view" href="#introduction"
+                      >Introduction</a
+                    >
+                  </li>
+                  <li>
+                    <a class="nav-link" href="#prerequisites">Prerequisites</a>
+                  </li>
+                  <li><a class="nav-link" href="#design">Design</a></li>
+                  <li>
+                    <a class="nav-link" href="#the_form_element"
+                      >The form element</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="nav-link"
+                      href="#the_label_input_and_textarea_elements"
+                    >
+                      <span class="grouped-sections-link">
+                        <span>Label</span>
+                        <span>Input</span>
+                        <span>Textarea</span>
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="nav-link" href="#the_button_element"
+                      >The button element</a
+                    >
+                  </li>
+                  <li><a class="nav-link" href="#styling">Styling</a></li>
+                  <li>
+                    <a class="nav-link" href="#submitting_data"
+                      >Submitting data</a
+                    >
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-        </nav>
+          </nav>
 
-        <section id="submitting_data">
-          <h2>Submitting data</h2>
-          <div class="grid-c2">
-            <article class="flex-r">
-              <div class="banner">
-                <p>
-                  The form element defines where and how to send the data to the
-                  server thanks to the action and method attributes.
-                </p>
-                <p>
-                  The form data is sent to the server as name/value pairs. We
-                  provide a name attribute for each form control. The names are
-                  important on both the client- and server-side; they tell the
-                  browser which name to give each piece of data and, on the
-                  server side, they let the server handle each piece of data by
-                  name.
-                </p>
-                <p>
-                  In our example, the form will send 3 pieces of data named
-                  "user-name", "user-email", and "user-message". That data will
-                  be sent to the URL "/my-handling-form-page" using the HTTP
-                  POST method.
-                </p>
-              </div>
-              <div class="banner">
-                <p>
-                  On the server side, the script at the URL
-                  "/my-handling-form-page" will receive the data as a list of 3
-                  key/value items contained in the HTTP request. The way this
-                  script will handle that data is up to you. It's beyond the
-                  scope of this guide to go deeply into that subject
-                </p>
-                <p>
-                  To name the data in a form, you need to use the name attribute
-                  on each form widget that will collect a specific piece of
-                  data:
-                </p>
-              </div>
-            </article>
-            <div>
-              <pre><codeblock id="codeblock-submit-data" class="code"></codeblock></pre>
-              <script>
-                document.getElementById("codeblock-submit-data").textContent =
-                  `<form 
-  action="/handle-form-page" 
-  method="post"
->
-  <input
-    name="user-name"
-  />
-  <input
-    name="user-email"
-    type="email" 
-  />
-  <textarea
-    name="user-message"
+          <section id="submitting_data">
+            <h2>Submitting data</h2>
+            <div class="grid-c2">
+              <article class="flex-r">
+                <div class="banner">
+                  <p>
+                    The form element defines where and how to send the data to
+                    the server thanks to the action and method attributes.
+                  </p>
+                  <p>
+                    The form data is sent to the server as name/value pairs. We
+                    provide a name attribute for each form control. The names
+                    are important on both the client- and server-side; they tell
+                    the browser which name to give each piece of data and, on
+                    the server side, they let the server handle each piece of
+                    data by name.
+                  </p>
+                  <p>
+                    In our example, the form will send 3 pieces of data named
+                    "user-name", "user-email", and "user-message". That data
+                    will be sent to the URL "/my-handling-form-page" using the
+                    HTTP POST method.
+                  </p>
+                </div>
+                <div class="banner">
+                  <p>
+                    On the server side, the script at the URL
+                    "/my-handling-form-page" will receive the data as a list of
+                    3 key/value items contained in the HTTP request. The way
+                    this script will handle that data is up to you. It's beyond
+                    the scope of this guide to go deeply into that subject
+                  </p>
+                  <p>
+                    To name the data in a form, you need to use the name
+                    attribute on each form widget that will collect a specific
+                    piece of data:
+                  </p>
+                </div>
+              </article>
+              <div>
+                <pre><codeblock id="codeblock-submit-data" class="code"></codeblock></pre>
+                <script>
+                  document.getElementById("codeblock-submit-data").textContent =
+                    `<form 
+    action="/handle-form-page" 
+    method="post"
   >
-  </textarea>
-  <button>
-    Send your message
-  </button>
-</form>`;
-              </script>
+    <input
+      name="user-name"
+    />
+    <input
+      name="user-email"
+      type="email" 
+    />
+    <textarea
+      name="user-message"
+    >
+    </textarea>
+    <button>
+      Send your message
+    </button>
+  </form>`;
+                </script>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </div>
     </main>
     <footer>

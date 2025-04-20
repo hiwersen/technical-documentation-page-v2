@@ -10,6 +10,9 @@ window.addEventListener("load", () => {
   const navLinksList = document.querySelectorAll(".nav-link");
   const hambMenu = document.querySelector(".hamb-menu");
   const elementsWillAnimate = document.querySelectorAll(".will-animate");
+  const parallaxWrapper = document.getElementById("parallax-wrapper");
+  const content2 = document.getElementById("container-content2");
+  const content3 = document.getElementById("container-content3");
 
   let lastY = 0;
 
@@ -27,7 +30,9 @@ window.addEventListener("load", () => {
     navLinksContainer.classList.remove("hide");
   }
 
-  function willAnimate(elements, offsetTop, offsetBottom) {
+  function willAnimate(elements) {
+    const offsetTop = -200;
+    const offsetBottom = 0;
     const viewTop = scrollY + offsetTop;
     const viewBottom = scrollY + window.innerHeight - offsetBottom;
 
@@ -40,27 +45,51 @@ window.addEventListener("load", () => {
       const isInView = bottom > viewTop && top < viewBottom;
       const isFarFromView = bottom > viewTop - 500 && top < viewBottom + 500;
 
-      /*
-      if (elem.getAttribute("id") === "styling") {
-        console.log("isInView:", isInView, "isActive:", isActive);
-        console.log("top:", top, "bottom:", bottom);
-        console.log("viewTop:", viewTop, "viewBottom:", viewBottom);
-        console.log("--------------------------");
-      }
-        */
-
       if (isInView && !isActive) {
         elem.classList.add("active");
-      } else if (!isInView && isActive && !isFarFromView) {
+      } else if (top > viewBottom && !isFarFromView && isActive) {
         elem.classList.remove("active");
       }
     });
   }
 
-  willAnimate(elementsWillAnimate, -200, 0);
+  function parallax() {
+    const content2Height = parseInt(content2.getBoundingClientRect().height);
+    const content3Height = parseInt(content3.getBoundingClientRect().height);
+    const content2Top = parseInt(content2.getBoundingClientRect().top);
+    const content3Top = parseInt(content3.getBoundingClientRect().top);
+
+    parallaxWrapper.style.height = `${content2Height + content3Height}px`;
+
+    if (content3Top - 400 < window.innerHeight) {
+      content2.style.position = "sticky";
+      content2.style.top = `${content2Top}px`;
+    } else {
+      content2.style.position = "relative";
+      /* ! BUG: FIXED !!!!!!
+       set top to empty string when position when position is relative !*/
+      content2.style.top = "";
+    }
+
+    /*
+    ! CONSOLE.LOG EVERYTHING!!!!
+    console.log(
+      "content2-",
+      "rect-top:",
+      content2Top,
+      "css-top",
+      content2.style.top,
+      "position:",
+      content2.style.position
+    );
+    */
+  }
+
+  willAnimate(elementsWillAnimate);
 
   window.addEventListener("scroll", () => {
-    willAnimate(elementsWillAnimate, -200, 0);
+    const viewportTop = scrollY;
+    const viewportBottom = scrollY + window.innerHeight;
 
     let sectionInViewID = "";
     const sectionNames = {
@@ -93,12 +122,6 @@ window.addEventListener("load", () => {
       }
     }
 
-    lastY = scrollY;
-
-    const viewportTop = scrollY;
-    const viewportBottom = scrollY + window.innerHeight;
-    const viewportMiddle = viewportTop + window.innerHeight / 2;
-
     sections.forEach((section) => {
       const margin = 80;
       const rect =
@@ -124,6 +147,31 @@ window.addEventListener("load", () => {
         ? link.classList.add("view")
         : link.classList.remove("view");
     });
+
+    lastY = scrollY;
+
+    willAnimate(elementsWillAnimate);
+    parallax();
+  });
+
+  window.addEventListener("click", () => {
+    if (hambMenu.classList.contains("close")) {
+      hambMenu.classList.remove("close");
+      navLinks.classList.remove("active");
+    }
+
+    if (navLinks.classList.contains("active")) {
+      navLinksContainer.classList.remove("hide");
+    } else {
+      navLinksContainer.classList.add("hide");
+      if (navBar.classList.contains("menu-only")) {
+        navbarLabel.classList.add("hide");
+      }
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    parallax();
   });
 
   hambMenu.addEventListener("click", (event) => {
@@ -137,22 +185,6 @@ window.addEventListener("load", () => {
     } else {
       navLinksContainer.classList.add("hide");
 
-      if (navBar.classList.contains("menu-only")) {
-        navbarLabel.classList.add("hide");
-      }
-    }
-  });
-
-  window.addEventListener("click", () => {
-    if (hambMenu.classList.contains("close")) {
-      hambMenu.classList.remove("close");
-      navLinks.classList.remove("active");
-    }
-
-    if (navLinks.classList.contains("active")) {
-      navLinksContainer.classList.remove("hide");
-    } else {
-      navLinksContainer.classList.add("hide");
       if (navBar.classList.contains("menu-only")) {
         navbarLabel.classList.add("hide");
       }
